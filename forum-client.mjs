@@ -188,6 +188,51 @@ function createMeta(values, className = 'topic-meta') {
   return meta;
 }
 
+function appendInlineLinks(parent, text) {
+  const pattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s]+)/g;
+  let cursor = 0;
+  for (const match of text.matchAll(pattern)) {
+    if (match.index > cursor) parent.appendChild(document.createTextNode(text.slice(cursor, match.index)));
+    const link = document.createElement('a');
+    link.href = match[2] || match[3];
+    link.textContent = match[1] || match[3];
+    link.className = 'archive-link';
+    parent.appendChild(link);
+    cursor = match.index + match[0].length;
+  }
+  if (cursor < text.length) parent.appendChild(document.createTextNode(text.slice(cursor)));
+}
+
+function renderTopicBody(markdown, fallback) {
+  topicBody.replaceChildren();
+  const source = String(markdown || fallback || '').replace(/\r\n?/g, '\n');
+  for (const rawLine of source.split('\n')) {
+    const line = rawLine.trim();
+    if (!line) continue;
+    const headingMatch = line.match(/^#{1,6}\s+(.+)$/);
+    if (headingMatch) {
+      const heading = document.createElement('h2');
+      appendInlineLinks(heading, headingMatch[1]);
+      topicBody.appendChild(heading);
+      continue;
+    }
+    const paragraph = document.createElement('p');
+    const boldMatch = line.match(/^\*\*(.+?)\*\*\s*(.*)$/);
+    if (boldMatch) {
+      const strong = document.createElement('strong');
+      strong.textContent = boldMatch[1];
+      paragraph.appendChild(strong);
+      if (boldMatch[2]) {
+        paragraph.appendChild(document.createTextNode(' '));
+        appendInlineLinks(paragraph, boldMatch[2]);
+      }
+    } else {
+      appendInlineLinks(paragraph, line.replace(/\*\*/g, ''));
+    }
+    topicBody.appendChild(paragraph);
+  }
+}
+
 function createTopicRow(topic, section) {
   const link = document.createElement('a');
   link.href = topic.internalUrl;
@@ -335,7 +380,7 @@ function renderTopic(section, number) {
     `${topic.comments || 0} 条回复`,
     `${topic.upvotes || 0} 赞`,
   ], 'topic-detail-meta').childNodes);
-  topicBody.textContent = topic.body;
+  renderTopicBody(topic.bodyMarkdown, topic.body);
   topicBack.dataset.section = topic.section;
   document.title = `${topicDisplayTitle(topic)} - 金钱豹AI论坛`;
   loadGiscus(topicComments, topicSection, topic.number);
