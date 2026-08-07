@@ -17,23 +17,23 @@ function cleanField(value) {
 }
 
 export function makeAnnotationTerm({ pageKey, blockHash, start, end, quote }) {
-  const page = cleanField(pageKey).slice(-90);
+  const page = cleanField(pageKey).replace(/\.html$/i, '').slice(-90);
   const excerpt = cleanField(quote).slice(0, 90);
-  const term = `批注｜${page}｜${cleanField(blockHash)}｜${Number(start)}-${Number(end)}｜${excerpt}`;
+  const term = `文内批注｜${page}｜${excerpt}｜${cleanField(blockHash)}@${Number(start)}-${Number(end)}`;
   return term.slice(0, 240);
 }
 
 export function parseAnnotationTerm(term) {
-  if (!String(term).startsWith('批注｜')) return null;
+  if (!String(term).startsWith('文内批注｜')) return null;
   const parts = String(term).split('｜');
-  if (parts.length < 5) return null;
-  const offsets = /^(\d+)-(\d+)$/.exec(parts[3]);
-  if (!offsets) return null;
+  if (parts.length < 4) return null;
+  const anchor = /^([^@]+)@(\d+)-(\d+)$/.exec(parts[3]);
+  if (!anchor) return null;
   return {
-    pageKey: parts[1],
-    blockHash: parts[2],
-    start: Number(offsets[1]),
-    end: Number(offsets[2]),
-    quote: parts.slice(4).join('｜'),
+    pageKey: `${parts[1]}.html`,
+    blockHash: anchor[1],
+    start: Number(anchor[2]),
+    end: Number(anchor[3]),
+    quote: parts[2],
   };
 }

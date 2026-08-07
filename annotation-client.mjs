@@ -110,7 +110,7 @@ function showTrigger() {
   trigger.style.top = `${top}px`;
 }
 
-function loadGiscus(term) {
+function loadGiscus(annotation) {
   giscusHost.replaceChildren();
   const script = document.createElement('script');
   const attrs = {
@@ -119,9 +119,9 @@ function loadGiscus(term) {
     'data-repo-id': REPO_ID,
     'data-category': CATEGORY,
     'data-category-id': CATEGORY_ID,
-    'data-mapping': 'specific',
-    'data-term': term,
-    'data-strict': '1',
+    'data-mapping': annotation.number ? 'number' : 'specific',
+    'data-term': annotation.number ? String(annotation.number) : annotation.term,
+    'data-strict': annotation.number ? '0' : '1',
     'data-reactions-enabled': '1',
     'data-emit-metadata': '0',
     'data-input-position': 'top',
@@ -147,7 +147,7 @@ function openPanel(annotation, existingMark = null) {
     const mark = markRange(annotation.range, 'annotation-pending', annotation.term);
     if (mark) mark.addEventListener('click', () => openPanel(annotation, mark));
   }
-  loadGiscus(annotation.term);
+  loadGiscus(annotation);
 }
 
 function closePanel() {
