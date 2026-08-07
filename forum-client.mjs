@@ -225,7 +225,7 @@ function renderList(section) {
   listView.hidden = false;
   forumTitle.textContent = section.name;
   forumDescription.textContent = section.description;
-  document.title = `${section.name} - 金钱豹AI社区`;
+  document.title = `${section.name} - 金钱豹AI论坛`;
   topicList.replaceChildren();
 
   const needle = state.query.toLocaleLowerCase('zh-CN');
@@ -273,7 +273,7 @@ function renderTopic(section, number) {
   ], 'topic-detail-meta').childNodes);
   topicBody.textContent = topic.body;
   topicBack.dataset.section = topic.section;
-  document.title = `${topicDisplayTitle(topic)} - 金钱豹AI社区`;
+  document.title = `${topicDisplayTitle(topic)} - 金钱豹AI论坛`;
   loadGiscus(topicComments, topicSection, topic.number);
   scrollTo({ top: 0, behavior: 'instant' });
 }

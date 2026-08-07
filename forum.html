@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f6f8">
-<meta name="description" content="金钱豹AI社区：AI日报、分享交流、问答求助、文内批注、投票与综合讨论。">
-<title>金钱豹AI社区</title>
+<meta name="description" content="金钱豹AI论坛：AI日报、分享交流、问答求助、文内批注、投票与综合讨论。">
+<title>金钱豹AI论坛</title>
 <style>
 :root{color-scheme:light;--page:#f4f6f8;--surface:#fff;--surface-soft:#f7f9fb;--ink:#1f2328;--ink-2:#4b5563;--ink-3:#6e7781;--line:#d8dee4;--line-soft:#e8ebee;--blue:#0969da;--blue-hover:#0758b8;--blue-soft:#ddf4ff;--focus:#54aeff;--danger:#cf222e;--radius:12px;--radius-sm:8px;--shadow:0 8px 24px rgba(31,35,40,.07);--content:1240px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}button{color:inherit}::selection{background:#b6dcff;color:#0b2239}:focus-visible{outline:3px solid color-mix(in srgb,var(--focus) 48%,transparent);outline-offset:2px}*{scrollbar-width:thin;scrollbar-color:#b9c1c9 transparent}*::-webkit-scrollbar{width:10px;height:10px}*::-webkit-scrollbar-thumb{background:#b9c1c9;border:3px solid transparent;border-radius:10px;background-clip:padding-box}
@@ -32,20 +32,20 @@ FIRST VIEWPORT: 顶部品牌和搜索，左侧六版块，中间主题流，右�
 FORM: 现代社区标准版，工艺标杆为V2EX、Discourse和知乎阅读体验，seed 5e4e9225。
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->
-<header class="site-header"><div class="topbar"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">金</span><span>金钱豹AI</span></a><nav class="primary-nav" aria-label="主导航"><a href="./">AI日报</a><a class="active" href="forum.html" aria-current="page">社区</a></nav><span class="header-note">中文AI日报与实践交流</span></div></header>
+<header class="site-header"><div class="topbar"><a class="brand" href="forum.html"><span class="brand-mark" aria-hidden="true">金</span><span>金钱豹AI论坛</span></a><nav class="primary-nav" aria-label="主导航"><a class="active" href="forum.html" aria-current="page">论坛首页</a></nav><span class="header-note">AI讨论、日报、分享与问答</span></div></header>
 <main class="forum-page">
-<section class="forum-masthead" aria-labelledby="community-title"><div class="forum-identity"><h1 id="community-title">金钱豹AI社区</h1><p>发现、讨论并验证值得关注的AI进展</p></div><label class="search-wrap"><span class="sr-only" hidden>搜索主题</span><input class="forum-search" id="forum-search" type="search" autocomplete="off" aria-label="搜索主题" placeholder="搜索标题、内容或作者"><span class="search-key" aria-hidden="true">搜索</span></label><a class="masthead-action" href="#board">发起讨论</a></section>
+<section class="forum-masthead" aria-labelledby="forum-home-title"><div class="forum-identity"><h1 id="forum-home-title">金钱豹AI论坛</h1><p>AI日报只是其中一个版块，更多讨论在这里展开</p></div><label class="search-wrap"><span class="sr-only" hidden>搜索主题</span><input class="forum-search" id="forum-search" type="search" autocomplete="off" aria-label="搜索主题" placeholder="搜索标题、内容或作者"><span class="search-key" aria-hidden="true">搜索</span></label><a class="masthead-action" href="#board">发起讨论</a></section>
 <div class="forum-layout">
 <aside class="sidebar"><section class="nav-panel"><div class="panel-label">论坛版块</div><nav class="section-nav" id="section-nav" aria-label="论坛版块"></nav></section></aside>
 <section class="forum-main">
 <div id="list-view"><section class="list-surface"><header class="content-head"><div><h2 id="forum-title">正在加载社区</h2><p id="forum-description">正在读取最新主题</p></div><a class="compose-link" href="#board">在本版块发言</a></header><div class="topic-list" id="topic-list" aria-live="polite"><div class="skeleton-row"><div class="skeleton-line"></div><div class="skeleton-line"></div></div><div class="skeleton-row"><div class="skeleton-line"></div><div class="skeleton-line"></div></div></div></section><section class="board" id="board"><div class="board-head"><h2 id="board-heading">在本版块发言</h2><p>登录后即可发表内容、回复和点赞，全程留在金钱豹AI社区。</p></div><div class="giscus-host" id="board-comments"></div></section></div>
 <section class="topic-view" id="topic-view" data-open="false" hidden><button class="topic-back" id="topic-back" type="button">返回版块</button><div class="topic-reading-column"><article class="topic-article"><span class="topic-section-name" id="topic-section-name"></span><h1 id="topic-title"></h1><div class="topic-detail-meta" id="topic-meta"></div><div class="topic-body" id="topic-body"></div></article></div><section class="topic-comments"><div class="topic-comments-head"><h2>评论与回复</h2><p>登录后可以直接评论、回复和点赞，不会离开本站。</p></div><div class="giscus-host" id="topic-comments"></div></section></section>
 </section>
-<aside class="forum-rail"><section class="rail-panel"><h2>社区概况</h2><div class="community-stats"><div class="stat"><strong id="topic-total">0</strong><span>公开主题</span></div><div class="stat"><strong id="reply-total">0</strong><span>讨论回复</span></div></div></section><section class="rail-panel"><h2>参与方式</h2><ul class="guide-list"><li>分享真实使用经验和可复现步骤</li><li>提问时说明环境、目标和遇到的问题</li><li>选中日报原句可以添加文内批注</li><li>补充来源时优先提供可核验链接</li></ul><a class="rail-link" href="forum.html?section=general">进入综合讨论</a></section></aside>
+<aside class="forum-rail"><section class="rail-panel"><h2>论坛概况</h2><div class="community-stats"><div class="stat"><strong id="topic-total">0</strong><span>公开主题</span></div><div class="stat"><strong id="reply-total">0</strong><span>讨论回复</span></div></div></section><section class="rail-panel"><h2>参与方式</h2><ul class="guide-list"><li>分享真实使用经验和可复现步骤</li><li>提问时说明环境、目标和遇到的问题</li><li>选中日报原句可以添加文内批注</li><li>补充来源时优先提供可核验链接</li></ul><a class="rail-link" href="forum.html?section=general">进入综合讨论</a></section></aside>
 </div>
 </main>
-<nav class="mobile-nav" aria-label="移动端导航"><a href="./">日报</a><a class="active" href="forum.html?section=daily">社区</a><a href="forum.html?section=share">分享</a><a href="forum.html?section=qa">问答</a></nav>
-<footer class="site-footer"><div class="footer-line"><span>金钱豹AI社区</span><span>日报、分享、问答与文内批注</span></div></footer>
-<script type="module" src="forum-client.mjs?v=20260807c"></script>
+<nav class="mobile-nav" aria-label="移动端导航"><a class="active" href="forum.html">论坛</a><a href="forum.html?section=daily">日报版块</a><a href="forum.html?section=share">分享</a><a href="forum.html?section=qa">问答</a></nav>
+<footer class="site-footer"><div class="footer-line"><span>金钱豹AI论坛</span><span>AI日报、分享、问答与文内批注</span></div></footer>
+<script type="module" src="forum-client.mjs?v=20260807d"></script>
 </body>
 </html>
