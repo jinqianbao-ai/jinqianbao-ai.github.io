@@ -107,8 +107,13 @@ function topicDisplayTitle(topic) {
 }
 
 function authorInitial(author) {
-  const text = String(author || 'AI').trim();
+  const text = displayAuthor(author);
   return /[\u3400-\u9fff]/.test(text) ? text.slice(0, 1) : text.slice(0, 2).toUpperCase();
+}
+
+function displayAuthor(author) {
+  if (author === 'nguyminhdung519-web') return '金钱豹AI编辑部';
+  return String(author || '社区成员').trim();
 }
 
 function createMeta(values, className = 'topic-meta') {
@@ -139,7 +144,7 @@ function createTopicRow(topic, section) {
   title.textContent = topicDisplayTitle(topic);
   const excerpt = document.createElement('p');
   excerpt.textContent = topic.body.slice(0, 170) || '打开主题查看正文和讨论。';
-  const meta = createMeta([topic.author || '社区成员', formatDate(topic.updatedAt), section.name]);
+  const meta = createMeta([displayAuthor(topic.author), formatDate(topic.updatedAt), section.name]);
   copy.append(title, excerpt, meta);
 
   const replies = document.createElement('span');
@@ -206,7 +211,7 @@ function renderTopic(section, number) {
   topicTitle.textContent = topicDisplayTitle(topic);
   topicSectionName.textContent = topicSection.name;
   topicMeta.replaceChildren(...createMeta([
-    topic.author || '社区成员',
+    displayAuthor(topic.author),
     formatDate(topic.updatedAt),
     `${topic.comments || 0} 条回复`,
     `${topic.upvotes || 0} 赞`,
