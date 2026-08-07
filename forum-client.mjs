@@ -27,11 +27,17 @@ const topicBack = document.getElementById('topic-back');
 const forumSearch = document.getElementById('forum-search');
 const topicTotal = document.getElementById('topic-total');
 const replyTotal = document.getElementById('reply-total');
+const dashboardView = document.getElementById('dashboard-view');
+const sectionDirectory = document.getElementById('section-directory');
+const recentTopicList = document.getElementById('recent-topic-list');
+const recentTitle = document.getElementById('recent-title');
+const recentDescription = document.getElementById('recent-description');
+const mastheadAction = document.getElementById('masthead-action');
 const giscusCleanup = new WeakMap();
 
 function params() {
   const p = new URLSearchParams(location.search);
-  return { section: p.get('section') || 'daily', topic: Number(p.get('topic') || 0) };
+  return { section: p.get('section'), topic: Number(p.get('topic') || 0) };
 }
 
 function sectionByKey(key) {
@@ -219,10 +225,67 @@ function renderStats() {
   replyTotal.textContent = String(state.data.topics.reduce((sum, topic) => sum + Number(topic.comments || 0), 0));
 }
 
+function renderDashboard() {
+  dashboardView.hidden = false;
+  listView.hidden = true;
+  topicView.hidden = true;
+  topicView.dataset.open = 'false';
+  mastheadAction.href = 'forum.html?section=general#board';
+  document.title = '金钱豹AI论坛';
+  clearGiscus(boardComments);
+  clearGiscus(topicComments);
+
+  sectionDirectory.replaceChildren();
+  for (const section of state.data.sections) {
+    const sectionTopics = state.data.topics.filter((topic) => topic.section === section.key);
+    const latest = [...sectionTopics].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))[0];
+    const link = document.createElement('a');
+    link.className = 'section-entry';
+    link.href = `forum.html?section=${section.key}`;
+    link.dataset.dashboardSection = section.key;
+    const copy = document.createElement('div');
+    const title = document.createElement('h3');
+    title.textContent = section.name;
+    const description = document.createElement('p');
+    description.textContent = section.description;
+    const latestText = document.createElement('span');
+    latestText.className = 'section-latest';
+    latestText.textContent = latest ? `最新：${topicDisplayTitle(latest)}` : '暂时还没有主题';
+    copy.append(title, description, latestText);
+    const count = document.createElement('span');
+    count.className = 'section-entry-count';
+    const value = document.createElement('strong');
+    value.textContent = String(sectionTopics.length);
+    const label = document.createElement('span');
+    label.textContent = '主题';
+    count.append(value, label);
+    link.append(copy, count);
+    sectionDirectory.appendChild(link);
+  }
+
+  const needle = state.query.toLocaleLowerCase('zh-CN');
+  const topics = [...state.data.topics]
+    .filter((topic) => !needle || `${topic.title}\n${topic.body}\n${topic.author}`.toLocaleLowerCase('zh-CN').includes(needle))
+    .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+  recentTitle.textContent = state.query ? '全论坛搜索结果' : '最新主题';
+  recentDescription.textContent = state.query ? `正在搜索“${state.query}”` : '来自论坛各版块的最近更新';
+  recentTopicList.replaceChildren();
+  if (!topics.length) {
+    const empty = document.createElement('div');
+    empty.className = 'dashboard-empty search-empty';
+    empty.textContent = '没有找到匹配主题，请换一个关键词。';
+    recentTopicList.appendChild(empty);
+  } else {
+    topics.slice(0, 8).forEach((topic) => recentTopicList.appendChild(createTopicRow(topic, sectionByKey(topic.section))));
+  }
+}
+
 function renderList(section) {
+  dashboardView.hidden = true;
   topicView.dataset.open = 'false';
   topicView.hidden = true;
   listView.hidden = false;
+  mastheadAction.href = '#board';
   forumTitle.textContent = section.name;
   forumDescription.textContent = section.description;
   document.title = `${section.name} - 金钱豹AI论坛`;
@@ -260,6 +323,7 @@ function renderTopic(section, number) {
     return;
   }
   const topicSection = sectionByKey(topic.section);
+  dashboardView.hidden = true;
   listView.hidden = true;
   topicView.hidden = false;
   topicView.dataset.open = 'true';
@@ -280,6 +344,11 @@ function renderTopic(section, number) {
 
 function render() {
   const route = params();
+  if (!route.section) {
+    renderNav(null);
+    renderDashboard();
+    return;
+  }
   const section = sectionByKey(route.section);
   renderNav(section.key);
   if (route.topic) renderTopic(section, route.topic);
@@ -291,10 +360,13 @@ function navigate(href) {
   state.query = '';
   forumSearch.value = '';
   render();
+  if (location.hash === '#board') {
+    requestAnimationFrame(() => document.getElementById('board')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
 }
 
 document.addEventListener('click', (event) => {
-  const link = event.target.closest('a[href^="forum.html?"]');
+  const link = event.target.closest('a[href="forum.html"], a[href^="forum.html?"]');
   if (!link) return;
   event.preventDefault();
   navigate(link.getAttribute('href'));
@@ -305,7 +377,8 @@ forumSearch.addEventListener('input', () => {
   state.query = forumSearch.value.trim();
   const route = params();
   if (route.topic) history.replaceState({}, '', `forum.html?section=${route.section}`);
-  renderList(sectionByKey(route.section));
+  if (route.section) renderList(sectionByKey(route.section));
+  else renderDashboard();
 });
 
 fetch('forum-data.json', { cache: 'no-store' })
@@ -323,7 +396,7 @@ fetch('forum-data.json', { cache: 'no-store' })
     const error = document.createElement('div');
     error.className = 'error-state';
     const heading = document.createElement('strong');
-    heading.textContent = '社区暂时无法加载';
+    heading.textContent = '论坛暂时无法加载';
     const detail = document.createElement('span');
     detail.textContent = '请检查网络后刷新页面。';
     error.append(heading, detail);
