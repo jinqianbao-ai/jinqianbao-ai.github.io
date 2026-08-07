@@ -1,6 +1,12 @@
 const API_BASE = 'https://jinqianbao-forum-api.jinqianbao-forum-worker.workers.dev';
 const SESSION_KEY = 'jinqianbao_forum_session';
-const COMPOSER_SECTIONS = new Set(['share', 'qa', 'polls', 'general']);
+const COMPOSER_SECTION_OPTIONS = [
+  ['share', '分享交流'],
+  ['qa', '问答求助'],
+  ['polls', '投票调查'],
+  ['general', '综合讨论'],
+];
+const COMPOSER_SECTIONS = new Set(COMPOSER_SECTION_OPTIONS.map(([key]) => key));
 const REPO = 'jinqianbao-ai/jinqianbao-ai.github.io';
 const REPO_ID = 'R_kgDOTwz2XA';
 const CATEGORY_IDS = {
@@ -399,13 +405,15 @@ function createComposer() {
 }
 
 function updateComposerSections() {
-  if (!state.data) return;
   const current = composer.section.value;
   composer.section.replaceChildren();
-  for (const item of state.data.sections.filter((section) => COMPOSER_SECTIONS.has(section.key))) {
+  const options = state.data
+    ? state.data.sections.filter((section) => COMPOSER_SECTIONS.has(section.key)).map((section) => [section.key, section.name])
+    : COMPOSER_SECTION_OPTIONS;
+  for (const [key, name] of options) {
     const option = document.createElement('option');
-    option.value = item.key;
-    option.textContent = item.name;
+    option.value = key;
+    option.textContent = name;
     composer.section.appendChild(option);
   }
   if (current && COMPOSER_SECTIONS.has(current)) composer.section.value = current;
@@ -751,7 +759,7 @@ function openRouteComposer() {
 }
 
 function openRequestedComposer() {
-  if (state.composeHandled || !state.data) return;
+  if (state.composeHandled) return;
   const route = params();
   if (route.compose !== 'share') return;
   state.composeHandled = true;
