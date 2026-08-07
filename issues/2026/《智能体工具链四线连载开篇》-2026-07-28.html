@@ -121,8 +121,11 @@ footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);
   pre{border:1px solid #999;color:#000;background:#f4f4f4}
 }
 </style>
-</head>
-<body>
+<style id="site-mobile-override">
+.site-back{position:fixed;right:12px;bottom:14px;z-index:999;background:#0075de;color:#fff!important;text-decoration:none;padding:10px 13px;border-radius:999px;font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+@media(max-width:900px){#toc,.fold,#navtoggle{display:none!important}#main,#navtoggle:checked~#main{margin-left:0!important}.inner{max-width:680px!important;padding:18px 14px 58px!important}.masthead h1{font-size:26px!important}.card,.mainline,.judge{border-radius:12px!important;padding:15px!important}h2.sec{font-size:21px!important;margin-top:30px!important}pre{font-size:12px!important}.site-back{right:10px;bottom:calc(10px + env(safe-area-inset-bottom))}}
+</style></head>
+<body><a class="site-back" href="../../">← 日报首页</a>
 
 <input type="checkbox" id="navtoggle" aria-label="折叠或展开左侧目录">
 <nav id="toc" aria-label="报纸目录">
