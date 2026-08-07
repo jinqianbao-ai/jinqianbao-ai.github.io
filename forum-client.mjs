@@ -491,7 +491,7 @@ async function submitComposer() {
     return;
   }
   if (!state.session) {
-    showComposerError('请先登录 GitHub 后再发布，未登录不会创建主题。');
+    showComposerError('请先登录论坛后再发布，未登录不会创建主题。');
     return;
   }
   composer.submit.disabled = true;
