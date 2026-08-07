@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《智能体协议进入无状态时代》-2026-07-29</title>
+<style>
+:root{--nav-w:16.6667%;--warm:#bf6a37;--edu:#0d6b88;--judge:#8b4a9c;--ink:#1c1917;--sub:#57534e;--line:#e0dcd5;--bg:#faf8f5;--card:#fff;--ok:#1f7a4d;--mid:#b8860b;--low:#9a3412;--nav:#211d1a;--navink:#eee7dc;--navmuted:#c9bfb3}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.85 "Noto Serif SC","Source Han Serif SC","Songti SC",Georgia,serif;overflow-x:hidden}#navtoggle{position:absolute;opacity:0;pointer-events:none}#toc{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:var(--nav);color:var(--navink);overflow-y:auto;overflow-x:hidden;z-index:20;transition:width .18s ease;border-right:1px solid rgba(255,255,255,.08)}#navtoggle:checked~#toc{width:44px}#navtoggle:checked~#toc #tocnav,#navtoggle:checked~#toc .tochd,#navtoggle:checked~#toc .brand{display:none}#main{margin-left:var(--nav-w);padding:32px 40px 80px;transition:margin-left .18s ease}#navtoggle:checked~#main{margin-left:44px}.fold{display:block;width:100%;padding:10px 6px;cursor:pointer;font:600 12px/1.4 system-ui,sans-serif;color:var(--navmuted);text-align:center;border-bottom:1px solid rgba(255,255,255,.1);background:#171411;user-select:none}.fold:hover{color:#fff}.brand,.tochd{padding:12px 14px 8px;font:700 13px/1.5 system-ui,sans-serif;color:#f2c29e;letter-spacing:.5px}.brand a{color:#f2c29e;text-decoration:none;word-break:break-all}.brand span{display:block;color:var(--navmuted);font-size:11px;font-weight:400;margin-top:5px}#tocnav{padding:0 0 40px}#tocnav a{display:block;text-decoration:none;color:var(--navmuted);border-left:3px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#tocnav a:hover,#tocnav a.active{background:rgba(255,255,255,.08);color:#fff;border-left-color:#f2c29e}#tocnav a.lv1{padding:8px 8px 8px 12px;font:600 12.5px/1.42 system-ui,sans-serif;color:#fff;border-top:1px solid rgba(255,255,255,.08)}#tocnav a.lv2{padding:5px 6px 5px 20px;font:11.3px/1.35 system-ui,sans-serif;letter-spacing:-.25px}#tocnav a.lv3{padding:4px 6px 4px 31px;font:10.7px/1.3 system-ui,sans-serif;color:#a99f92}main{max-width:980px}h1,h2,h3{font-family:"Noto Serif SC","Songti SC",Georgia,serif;line-height:1.35}section{margin:0 0 44px;scroll-margin-top:22px}h2{font-size:1.5em;margin:0 0 16px;padding-bottom:8px;border-bottom:2px solid var(--warm)}section.edu h2{border-bottom-color:var(--edu);color:var(--edu)}section.judge h2{border-bottom-color:var(--judge);color:var(--judge)}h3{font-size:1.14em;margin:26px 0 10px;scroll-margin-top:22px}p{margin:0 0 14px}.masthead{border-bottom:3px double var(--ink);padding-bottom:18px;margin-bottom:26px}.kicker{font:600 12px/1 system-ui,sans-serif;letter-spacing:3px;color:var(--warm)}h1{font-size:2.15em;margin:.35em 0 .3em;letter-spacing:-.5px}.meta,.src{font:13px/1.7 system-ui,sans-serif;color:var(--sub)}.byline{margin-top:12px;font:13px/1.6 system-ui,sans-serif}.byline .who{display:block;font-weight:700;color:var(--ink)}.byline .url a{color:var(--edu);text-decoration:none;word-break:break-all}.lead{font-size:1.06em;color:#292524}.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--warm);border-radius:7px;padding:16px 18px;margin:0 0 18px;box-shadow:0 1px 2px rgba(0,0,0,.03)}section.edu .card{border-left-color:var(--edu);background:#f0f8fb}section.judge .card{border-left-color:var(--judge);background:#fbf3ff}.card h3{margin:0 0 8px;font-size:1.08em}.tag{display:inline-block;font:600 11px/1.5 system-ui,sans-serif;padding:2px 8px;border-radius:10px;margin:0 6px 6px 0}.t-ok{background:#e8f5ee;color:var(--ok);border:1px solid #b9dfca}.t-mid{background:#fdf6e3;color:var(--mid);border:1px solid #ecd9a4}.t-low{background:#fdeee8;color:var(--low);border:1px solid #f0c5b3}.t-edu{background:#e6f7fb;color:var(--edu);border:1px solid #9ad6e3}.grp{font:700 12px/1.5 system-ui,sans-serif;letter-spacing:1px;color:var(--warm);margin:26px 0 12px;padding:5px 0 5px 10px;border-left:4px solid var(--warm);background:#f5f0e8}.rel,.next{background:#f7f3ec;border-left:3px solid var(--warm);padding:9px 12px;margin:10px 0 0;font-size:.94em;color:#44403c}.next{background:#eef7fa;border:1px dashed var(--edu);border-left:3px solid var(--edu);color:#0c5570}ul,ol{margin:0 0 14px;padding-left:24px}li{margin-bottom:7px}pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:6px;overflow-x:auto;font:13px/1.65 ui-monospace,Consolas,monospace;margin:0 0 14px}code{font:.92em ui-monospace,Consolas,monospace;background:#f0ece4;padding:1px 5px;border-radius:3px}pre code{background:none;padding:0;color:inherit}table{border-collapse:collapse;width:100%;margin:0 0 16px;font-size:.93em}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}th{background:#f3efe8;font:600 13px/1.5 system-ui,sans-serif}.backtop{display:inline-block;margin-top:12px}.wx{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 14px;font-size:.96em}footer{border-top:3px double var(--ink);margin-top:40px;padding-top:20px;font:13px/1.8 system-ui,sans-serif;color:var(--sub)}@media(max-width:900px){#toc{position:sticky;width:100%;height:auto;max-height:42vh}#navtoggle:checked~#toc{width:100%;max-height:44px}#main,#navtoggle:checked~#main{margin-left:0;padding:20px 16px 60px}h1{font-size:1.6em}#tocnav a.lv2,#tocnav a.lv3{white-space:normal;text-overflow:clip}}@media(max-width:340px){#main{padding:16px 12px 54px}body{font-size:16px}pre{font-size:12px}}@media(prefers-color-scheme:dark){:root{--ink:#e7e5e4;--sub:#a8a29e;--line:#3f3f46;--bg:#1a1817;--card:#252220}.lead{color:#d6d3d1}.rel,.grp{background:#2a2622;color:#d6d3d1}.next{background:#12303a;color:#a5d8e8}section.edu .card{background:#11242a}section.judge .card{background:#261d2c}th{background:#2a2724}code{background:#332f2b}}@media print{#toc,.fold,#navtoggle{display:none}#main{margin-left:0;padding:0}body{background:#fff;font-size:11pt}.card,section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<input type="checkbox" id="navtoggle" aria-label="折叠或展开左侧目录">
+<aside id="toc">
+<label class="fold" for="navtoggle" title="折叠或展开左侧目录">☰ 折叠 / 展开</label>
+<div class="brand">金钱豹Ai中转<br><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a><span>2026-07-29 · 第 2 期</span></div>
+<div class="tochd">本期目录</div>
+<nav id="tocnav">
+<a class="lv1" href="#s0">卷首语</a>
+<a class="lv1" href="#s1">一、今日主线</a>
+<a class="lv2" href="#m1">MCP 无状态化</a><a class="lv2" href="#m2">Claude 同步支持</a><a class="lv2" href="#m3">智能体科研报告</a>
+<a class="lv1" href="#s2">二、今日要闻</a>
+<a class="lv2" href="#g1">模型与智能体</a><a class="lv3" href="#n1">MCP 新规范</a><a class="lv3" href="#n2">Claude 接入</a><a class="lv3" href="#n3">OpenAI 科研</a><a class="lv3" href="#n4">OpenAI 硬件</a>
+<a class="lv2" href="#g2">算力与芯片</a><a class="lv3" href="#n5">英伟达 SK</a><a class="lv3" href="#n6">Vera 造芯</a><a class="lv3" href="#n7">Intel CPU</a>
+<a class="lv2" href="#g3">资本与商业</a><a class="lv3" href="#n8">Multiverse</a><a class="lv3" href="#n9">Fish Audio</a><a class="lv3" href="#n10">Enigma 机器人</a>
+<a class="lv2" href="#g4">监管与安全</a><a class="lv3" href="#n11">GitHub 供应链</a><a class="lv3" href="#n12">越南 AI 法</a><a class="lv3" href="#rumor">行业风声</a>
+<a class="lv1" href="#s3">三、📚AI实用教程</a><a class="lv2" href="#t1">Claude Code Hooks</a><a class="lv2" href="#t2">Hermes 并行调研</a><a class="lv2" href="#t3">Claude 提示缓存</a>
+<a class="lv1" href="#s4">四、AI独立研判</a><a class="lv1" href="#s5">五、连载路线图</a><a class="lv1" href="#s6">编后与核验</a>
+</nav>
+</aside>
+<main id="main">
+<header class="masthead" id="top">
+<div class="kicker">每日全球 AI 情报报纸 · 第 2 期</div>
+<h1>《智能体协议进入无状态时代》</h1>
+<div class="meta">2026 年 7 月 29 日（星期三）北京时间 · 覆盖最近 24—36 小时 · 新闻与资讯约 68% · 教程约 30%</div>
+<div class="byline"><span class="who">金钱豹Ai中转</span><span class="url"><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a></span></div>
+</header>
+<section id="s0"><h2>卷首语</h2><p class="lead">今天这期的重点，是把“智能体从玩具走向基础设施”的几个信号串起来看：协议要能被网关、缓存和负载均衡接住；科研与企业开始把编码智能体写进真实流程；安全侧则同步收紧软件供应链。</p><p>读法仍然分两层：先看“今日主线”，理解今天格局变化；再看“今日要闻”，按模型与智能体、算力与芯片、资本与商业、监管与安全四类补全信息。每条都标明可信度，事实与后面的 AI 独立研判严格分开。</p></section>
+<section id="s1"><h2>一、今日主线：智能体协议开始像互联网基础设施一样改造</h2><p class="lead">主线判断：AI 智能体的竞争正在从“谁的模型更聪明”下沉到“谁的工具协议更像可运维的网络基础设施”。MCP 2026-07-28 把核心协议改成无状态、可缓存、可路由，意味着智能体连接工具这件事，开始进入企业级部署阶段。</p>
+<div class="card" id="m1"><span class="tag t-ok">正式信息｜已确认</span><h3>MCP 2026-07-28 发布：从有会话连接改为无状态请求响应</h3><p>模型上下文协议 MCP（Model Context Protocol，用来让 AI 智能体连接工具、数据和应用的开放协议）发布 2026-07-28 版。官方博客称，Tier 1 SDK 每月下载量接近 5 亿次，TypeScript 与 Python SDK 总下载量均已超过 10 亿次。</p><p>最大变化是协议核心从双向、有状态连接，转向无状态的请求/响应模式；旧的 initialize/initialized 握手和 Mcp-Session-Id 会话头被移除，请求本身携带协议版本、客户端身份和能力信息。这样任何请求都可以落到普通轮询负载均衡后的任一服务器实例，不再要求共享会话存储。</p><div class="rel"><b>与主线的关系：</b>这是今天最重要的一手信号。智能体工具连接从“开发者本地能跑”进入“网关、WAF、缓存、负载均衡都能接”的阶段。</div></div>
+<div class="card" id="m2"><span class="tag t-ok">正式信息｜已确认</span><h3>Anthropic 宣布 Claude 产品线支持 MCP 新规范</h3><p>Claude 官方博客同日确认，Claude 产品正在滚动支持 MCP 2026-07-28。Anthropic 强调三点：无状态核心、标准化扩展框架、生产级 OAuth 2.0 / OIDC 授权加固。</p><p>这不是单一厂商的功能升级，而是协议生态的“日零支持”信号。Figma、Intuit、Netlify、PostHog 等生态伙伴公开背书，说明 MCP 正在从 Claude 周边能力变成跨公司协作标准。</p><div class="rel"><b>与主线的关系：</b>协议只有被实际产品与企业伙伴接住，才算基础设施。Claude 同步接入让 MCP 新版不是纸面规范，而是马上会影响开发者工作流的生产变化。</div></div>
+<div class="card" id="m3"><span class="tag t-ok">正式信息｜已确认</span><h3>OpenAI 发布智能体科研计算现场报告：瓶颈从实现转向验证</h3><p>OpenAI 发布《智能体 AI 时代的科研计算》现场报告，总结 8 个生命科学为主的智能体辅助科研软件项目：其中 5 个使用 Codex，3 个结合 Codex 与 Claude Code。案例包括基因组数据解析库 cyvcf2 的现代化构建、语言迁移、GPU 原生重写等。</p><p>报告反复强调，智能体能显著降低工程实现成本，但不能可靠判断科学有效性；研究者的角色正在从“亲手实现”转为“定义目标、拆分任务、设定验收标准、验证结果”。</p><div class="rel"><b>与主线的关系：</b>如果 MCP 解决“工具怎么连”，这份报告解决“连上之后人怎么验”。智能体基础设施的下一层约束，是可度量验收与长期维护责任。</div></div>
+</section>
+<section id="s2"><h2>二、今日要闻</h2><p class="lead">以下 12 条为今天值得知道的实质资讯，按类别分组。标题为中文改写，来源链接保留原始地址。</p>
+<div class="grp" id="g1">模型与智能体</div>
+<div class="card" id="n1"><span class="tag t-ok">正式信息｜已确认</span><h3>1. MCP 新规范取消会话依赖，网关可以按请求头路由工具</h3><p>新版 MCP 要求 Streamable HTTP 请求带上 Mcp-Method 和 Mcp-Name 请求头，网关、限流器或 Web 应用防火墙可以不解析 JSON 正文，直接按工具方法和名称做路由、计量与授权。tools/list、prompts/list、resources/list 等列表结果也新增 ttlMs 与 cacheScope 缓存提示。</p><p><b>为什么重要：</b>这会降低企业部署 MCP 服务器的运维复杂度，也让工具目录缓存和上游提示缓存更稳定。对开发者来说，旧版依赖会话 ID 的服务器需要迁移。</p><div class="src">来源名称：Model Context Protocol 官方博客｜原始链接：<a href="https://blog.modelcontextprotocol.io/posts/2026-07-28/">https://blog.modelcontextprotocol.io/posts/2026-07-28/</a>｜发布时间：2026-07-28 09:00 UTC｜可信度：正式信息｜已确认</div></div>
+<div class="card" id="n2"><span class="tag t-ok">正式信息｜已确认</span><h3>2. Claude 把 MCP 2026-07-28 纳入产品，企业身份系统更容易接入</h3><p>Claude 官方说明，新规范的授权机制对齐生产级 OAuth 2.0 与 OIDC 部署，MCP 服务器更容易连接 Entra、Okta 等企业身份系统。MCP Apps 与 Tasks 也进入版本化扩展框架，分别服务交互界面和长任务。</p><p><b>为什么重要：</b>智能体要进入公司核心流程，身份、授权、审计必须先过关。Claude 的接入会把这些变化带到大量现有 MCP 用户面前。</p><div class="src">来源名称：Claude 官方博客｜原始链接：<a href="https://claude.com/blog/bringing-mcp-2026-07-28-to-claude">https://claude.com/blog/bringing-mcp-2026-07-28-to-claude</a>｜发布时间：2026-07-28｜可信度：正式信息｜已确认</div></div>
+<div class="card" id="n3"><span class="tag t-ok">正式信息｜已确认</span><h3>3. OpenAI 报告：科研编码智能体的“最后一公里”最费人</h3><p>OpenAI 的 8 个案例显示，编码智能体适合处理明确边界的工程任务，但在边缘案例、细微数值差异和科学有效性判断上仍需要人类专家把关。报告建议用外部参考、输出一致性、统计行为、模拟数据预设答案等方式做验收。</p><p><b>为什么重要：</b>这给科研与企业部署智能体划了一条现实边界：节省的是实现时间，不是验证责任。越是关键领域，越不能把“模型自信”当作正确性证据。</p><div class="src">来源名称：OpenAI 官方报告｜原始链接：<a href="https://openai.com/index/scientific-computing-agentic-ai/">https://openai.com/index/scientific-computing-agentic-ai/</a>｜发布时间：2026-07-28｜可信度：正式信息｜已确认</div></div>
+<div class="card" id="n4"><span class="tag t-mid">媒体报道｜待官方完整确认</span><h3>4. OpenAI 硬件路线浮出水面：无屏智能音箱先行，AI 手机最快 2027</h3><p>MacRumors 汇总供应链与爆料称，OpenAI 与 Jony Ive 团队的首款硬件更像便携无屏智能音箱，预计 2027 年初推出，价格约 200—300 美元；另有 AI 手机、智能眼镜、智能台灯、耳机等方向在研。</p><p><b>为什么重要：</b>如果报道属实，OpenAI 正在尝试把“持续感知 + 语音 + 家庭场景”作为智能体入口，而不是直接复制手机 App。未获 OpenAI 完整公告确认，规格与时间线需降权阅读。</p><div class="src">来源名称：MacRumors｜原始链接：<a href="https://www.macrumors.com/2026/07/28/openai-first-devices/">https://www.macrumors.com/2026/07/28/openai-first-devices/</a>｜发布时间：2026-07-28 18:00 PDT｜可信度：媒体报道｜待官方完整确认</div></div>
+<div class="grp" id="g2">算力与芯片</div>
+<div class="card" id="n5"><span class="tag t-mid">媒体报道｜待官方完整确认</span><h3>5. 英伟达与 SK 集团公布 5000 亿美元级 AI 合作，含 2 吉瓦 AI 工厂</h3><p>Data Center Dynamics 报道，英伟达与韩国 SK 集团宣布 5000 亿美元以上 AI 合作，包含建设 2 吉瓦“AI 工厂”，并共同开发下一代 AI 内存，包括高带宽内存 HBM。双方签署的是意向书，通常不具完全约束力；首个 AI 工厂计划 2027 年上线。</p><p><b>为什么重要：</b>这把 AI 基建竞争进一步推向“国家级电力 + 内存供应链 + AI 云平台”组合。由于文件性质是意向书，金额与落地节奏需继续跟踪。</p><div class="src">来源名称：Data Center Dynamics｜原始链接：<a href="https://www.datacenterdynamics.com/en/news/nvidia-and-sk-group-announce-500bn-ai-agreement-includes-2gw-of-data-center-capacity/">https://www.datacenterdynamics.com/en/news/nvidia-and-sk-group-announce-500bn-ai-agreement-includes-2gw-of-data-center-capacity/</a>｜发布时间：2026-07-27｜可信度：媒体报道｜待官方完整确认</div></div>
+<div class="card" id="n6"><span class="tag t-ok">正式信息｜已确认</span><h3>6. 英伟达用 Vera CPU 加速自家下一代芯片设计</h3><p>英伟达官方博客披露，正在把 Vera CPU 部署到下一代 CPU、GPU 和 AI 系统的电子设计自动化流程中，并与 Cadence、Synopsys 优化关键应用。早期测试显示，在选定的验证和仿真工作负载上，性能最高提升 1.5 倍。</p><p><b>为什么重要：</b>芯片公司开始用自己的新 CPU 加速下一代芯片设计，形成“硬件设计硬件”的反馈环。AI 芯片竞争不只在 GPU 推理，也在设计周期本身。</p><div class="src">来源名称：NVIDIA 官方博客｜原始链接：<a href="https://blogs.nvidia.com/blog/vera-cpu-eda/">https://blogs.nvidia.com/blog/vera-cpu-eda/</a>｜发布时间：2026-07-27｜可信度：正式信息｜已确认</div></div>
+<div class="card" id="n7"><span class="tag t-mid">媒体报道｜待官方完整确认</span><h3>7. 智能体沙箱需求让数据中心 CPU 重新吃紧</h3><p>The Next Platform 分析 Intel 二季度数据称，生成式 AI 和智能体沙箱带来了大量通用 CPU 需求；Intel 数据中心与 AI 业务季度收入 62.6 亿美元，同比增 59%，环比增 24%，运营利润 24.7 亿美元。</p><p><b>为什么重要：</b>智能体不是只在 GPU 上“想”，还要在沙箱里跑 Python、执行工具、验证结果。CPU、内存、I/O 的短缺会成为智能体扩张的新瓶颈。</p><div class="src">来源名称：The Next Platform｜原始链接：<a href="https://www.nextplatform.com/compute/2026/07/28/ai-hosts-and-sandboxes-save-intels-datacenter-cpu-cookies/5279338">https://www.nextplatform.com/compute/2026/07/28/ai-hosts-and-sandboxes-save-intels-datacenter-cpu-cookies/5279338</a>｜发布时间：2026-07-28｜可信度：媒体报道｜待官方完整确认</div></div>
+<div class="grp" id="g3">资本与商业</div>
+<div class="card" id="n8"><span class="tag t-ok">正式信息｜已确认</span><h3>8. Multiverse Computing 启动最高 5.7 亿美元 C 轮融资</h3><p>西班牙 Multiverse Computing 官方宣布启动最高 5.7 亿美元的 C 轮融资，投前估值 17 亿美元；该轮由 Forgepoint Capital International、BNPP SIVF、Bullhound Capital 共同领投。公司称其 CompactifAI 压缩技术可让大语言模型缩小 80%—95%，且准确率损失不显著。这里的 5.7 亿美元是目标上限，不等于全部资金已经到账。</p><p><b>为什么重要：</b>资本正在寻找“少用 GPU、少耗电”的 AI 基建公司。若模型压缩能稳定落地，边缘设备、主权数据中心和企业本地部署都会受益。</p><div class="src">来源名称：Multiverse Computing 官方新闻稿｜原始链接：<a href="https://multiversecomputing.com/resources/multiverse-computing-announces-series-c-fundraising-targeting-up-to-usd570m-eur500m-to-power">https://multiversecomputing.com/resources/multiverse-computing-announces-series-c-fundraising-targeting-up-to-usd570m-eur500m-to-power</a>｜发布时间：2026-07-27｜可信度：正式信息｜已确认</div></div>
+<div class="card" id="n9"><span class="tag t-mid">媒体报道｜待官方完整确认</span><h3>9. Fish Audio 获约 5000 万美元种子轮，语音模型商业化加速</h3><p>TechCrunch 报道，Palo Alto 的 Fish Audio 完成约 5000 万美元种子轮；公司新闻稿口径为 5200 万美元，由 Coreline Ventures 与 Capital Today 领投。公司称拥有 800 多万用户，年经常性收入 2100 万美元；其 Fish Speech GitHub 仓库超过 3.1 万星，最新 S2.1 Pro 模型仅通过付费 API 提供。</p><p><b>为什么重要：</b>语音生成从“好听”转向“可控、低延迟、可商用授权”。报道也提到创作者声音被未经同意上传的争议，说明语音模型的版权与同意机制会成为核心门槛。</p><div class="src">来源名称：TechCrunch｜原始链接：<a href="https://techcrunch.com/2026/07/28/fish-audio-raises-50m-seed-to-build-ai-voice-models-for-creators-and-enterprises/">https://techcrunch.com/2026/07/28/fish-audio-raises-50m-seed-to-build-ai-voice-models-for-creators-and-enterprises/</a>｜发布时间：2026-07-28 14:00 UTC｜可信度：媒体报道｜待官方完整确认</div></div>
+<div class="card" id="n10"><span class="tag t-mid">媒体报道｜待官方完整确认</span><h3>10. Enigma 融资 7100 万美元，试图把机器人控制变成“调音量”</h3><p>多家媒体报道，机器人 AI 初创公司 Enigma 获 7100 万美元种子轮，由 Index Ventures 与 Ribbit Capital 领投。公司希望构建机器人基础模型，并上线一个让用户远程控制 100 多台真实机器人的网站，以收集人类如何表达机器人控制意图的数据。</p><p><b>为什么重要：</b>具身智能的瓶颈不只是模型能力，还包括人机接口和真实交互数据。让普通用户用文字、语音、视频或图形控制机器人，本质是在为机器人语言收集语料。</p><div class="src">来源名称：TechCrunch / SiliconANGLE / Access Newswire｜原始链接：<a href="https://techcrunch.com/2026/07/27/enigma-raises-70m-to-make-controlling-a-robot-as-easy-as-adjusting-the-volume/">https://techcrunch.com/2026/07/27/enigma-raises-70m-to-make-controlling-a-robot-as-easy-as-adjusting-the-volume/</a>｜发布时间：2026-07-27｜可信度：媒体报道｜待官方完整确认</div></div>
+<div class="grp" id="g4">监管与安全</div>
+<div class="card" id="n11"><span class="tag t-ok">正式信息｜已确认</span><h3>11. GitHub 公布 npm 与 Actions 供应链防护进展</h3><p>GitHub 官方博客总结过去数月用于打断供应链攻击链的改动：高影响 npm 账号变更邮箱或用恢复码后进入 72 小时只读；pull_request_target 场景下 checkout 默认更安全；不可信触发器的 Actions 缓存变成只读；npm v12 将默认禁用安装时脚本；Dependabot 版本更新默认等待 3 天冷却。</p><p><b>为什么重要：</b>智能体越能自动写代码、发包和改 CI，供应链默认安全就越重要。GitHub 的方向是把“速度”稍微让位给“可发现攻击的时间窗口”。</p><div class="src">来源名称：GitHub 官方博客｜原始链接：<a href="https://github.blog/security/supply-chain-security/disrupting-supply-chain-attacks-on-npm-and-github-actions/">https://github.blog/security/supply-chain-security/disrupting-supply-chain-attacks-on-npm-and-github-actions/</a>｜发布时间：2026-07-28｜可信度：正式信息｜已确认</div></div>
+<div class="card" id="n12"><span class="tag t-mid">媒体报道｜待官方完整确认</span><h3>12. 越南 AI 法引发区域监管讨论：风险分级明确，但劳工与环境缺口明显</h3><p>The Diplomat 文章梳理称，越南 2026 年 3 月开始实施 Law 134/2025/QH15，建立高、中、低三档 AI 风险分类，并适用于在越南开展 AI 活动的国内外主体。文章认为它强化数据主权与透明度，但对数据中心水耗、能源、劳动者替代等问题覆盖不足。</p><p><b>为什么重要：</b>东南亚正在从自愿指南走向可能更硬的 AI 规则。对 AI 公司来说，合规不再只看模型风险，还会逐步牵连数据、能源、劳工和跨境业务。</p><div class="src">来源名称：The Diplomat｜原始链接：<a href="https://thediplomat.com/2026/07/vietnams-new-ai-law-and-its-strategic-implications/">https://thediplomat.com/2026/07/vietnams-new-ai-law-and-its-strategic-implications/</a>｜发布时间：2026-07-28｜可信度：媒体报道｜待官方完整确认</div></div>
+<div class="card" id="rumor"><span class="tag t-low">行业风声｜未经证实</span><h3>行业风声：今日无高价值、可追踪的行业传闻</h3><p>今天检索到若干关于 OpenAI 硬件、xAI / Mistral / Cursor 合作、DeepSeek 融资与内测的零散说法，但证据链主要来自二级聚合、社交转述或缺少原始文件。为了避免把噪声当成情报，本期不把它们列为可追踪传闻。</p><p><b>证据弱点：</b>缺少公司公告、监管文件、具名记者或可核验截图；部分页面为流量站或标题党。置信度：低。</p></div>
+</section>
+<section id="s3" class="edu"><h2>三、📚 AI实用教程（三线连载第 2 期）</h2><p class="lead">本期固定推进三条主线：Claude Code、Hermes Agent 与 Claude 模型。教程全部依据公开官方文档，命令与代码只作为读者可复制示例，不涉及本机维护或诊断。</p>
+<div class="card" id="t1"><span class="tag t-edu">Claude Code 系列｜第 2 期</span><span class="tag t-edu">难度：进阶</span><span class="tag t-edu">动手：20 分钟</span><span class="tag t-edu">成本：免费</span><h3>① Claude Code：用 Hooks 把格式化变成确定性动作</h3><p><b>环境：</b>支持 Hooks 的 Claude Code、Node.js 项目、<code>jq</code> 和项目内 Prettier。<b>适用场景：</b>每次 Claude 修改 JavaScript、TypeScript、JSON 或 Markdown 后，都必须按统一规则格式化，而不是靠模型“记得做”。</p><p>先在项目根目录安装 Prettier：</p><pre><code>npm install --save-dev prettier</code></pre><p>再创建或编辑项目级 <code>.claude/settings.json</code>：</p><pre><code>{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | xargs npx prettier --write"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre><p>在 Claude Code 中输入 <code>/hooks</code>，确认 <code>PostToolUse</code> 已注册，然后复制这段测试提示词：</p><pre><code>请在当前项目新建 hooks-demo.js，写一个包含单引号、缺少分号且缩进不统一的两行 JavaScript 示例。完成后不要手动运行格式化命令，只告诉我文件最终内容。</code></pre><p><b>验证方法：</b>文件最终格式应符合项目 Prettier 配置。<b>常见坑：</b>Windows/Git-Bash 也要能调用 <code>jq</code>；已有 <code>hooks</code> 时只合并新事件，不能覆盖整个对象；格式化不能代替测试。</p><p><b>什么情况下不该用：</b>仓库没有统一格式规则，或格式化会大面积改动历史文件时，先不要自动启用。</p><p class="src">参考：<a href="https://code.claude.com/docs/en/hooks-guide">Claude Code 官方 Hooks 指南</a></p><div class="next"><b>下期预告：</b>权限型 Hooks——在执行前阻止修改 <code>.env</code>、锁文件和 <code>.git/</code>。</div></div>
+<div class="card" id="t2"><span class="tag t-edu">Hermes Agent 系列｜第 2 期</span><span class="tag t-edu">难度：进阶</span><span class="tag t-edu">动手：15 分钟</span><span class="tag t-edu">成本：按子代理调用量</span><h3>② Hermes Agent：三路并行调研，只让摘要回到主上下文</h3><p><b>环境：</b>支持 <code>delegate_task</code> 的 Hermes Agent，父代理已启用网页或文件工具。Hermes 子代理拥有隔离会话、终端和工具上下文，中间工具调用不会灌进父代理，只有最终摘要返回。</p><p>在 Hermes 对话中直接复制：</p><pre><code>请把下面三项调研并行委派给三个独立子代理，全部完成后再综合：
+1. 核验最近 36 小时 OpenAI、Anthropic、Google 的官方模型或产品更新；
+2. 核验最近 36 小时 NVIDIA、AMD、Intel 的 AI 芯片与数据中心更新；
+3. 核验最近 36 小时全球 AI 融资、并购与监管更新。
+
+每个子代理必须：
+- 优先打开官方公告、监管文件或论文原文；
+- 输出 3—5 条，包含中文标题、发布日期、原始链接、可信度；
+- 不得把搜索摘要当成事实；找不到一手来源时降级为媒体报道；
+- 不修改文件，不发送消息，不执行系统维护。
+
+父代理最后负责去重，按“正式信息／媒体报道／未经证实”分层，
+并指出三路结果之间的共同主线。</code></pre><p>官方文档展示的核心工具结构如下：</p><pre><code>delegate_task(tasks=[
+  {"goal":"核验头部模型公司更新","context":"最近36小时；只用可打开来源；返回中文结构化摘要"},
+  {"goal":"核验AI芯片与数据中心更新","context":"最近36小时；重点核验官方数字与项目状态"},
+  {"goal":"核验融资并购与监管更新","context":"最近36小时；区分公告、媒体报道和传闻"}
+])</code></pre><p><b>验证方法：</b>应收到三份独立结果，再由父代理输出去重综合稿；中间网页材料不应整段进入主上下文。<b>常见坑：</b>子代理不知道主对话前文，必须在 <code>context</code> 中写清时间、路径、输出格式和禁区；可能修改同一文件的任务不要并行。</p><p><b>什么情况下不该用：</b>只有一个简单问题，或三项任务存在严格先后依赖时，串行更可靠。</p><p class="src">参考：<a href="https://hermes-agent.nousresearch.com/docs/guides/delegation-patterns">Hermes Agent 官方并行委派指南</a></p><div class="next"><b>下期预告：</b>多子代理审计——保存任务边界、来源清单和失败分支。</div></div>
+<div class="card" id="t3"><span class="tag t-edu">Claude 模型系列｜第 2 期</span><span class="tag t-edu">难度：进阶</span><span class="tag t-edu">动手：25 分钟</span><span class="tag t-edu">成本：按 API 用量</span><h3>③ Claude 模型：用提示缓存降低重复长上下文成本</h3><p><b>环境：</b>Python 3.9+、Anthropic Python SDK、Claude API 密钥和账户当前可用模型名。提示缓存适合固定规则或长资料反复复用、只有最后问题变化的任务。</p><pre><code>python -m pip install -U anthropic
+export ANTHROPIC_API_KEY="你的密钥由安全存储注入"
+export CLAUDE_MODEL="你的账户当前可用模型名"</code></pre><p>保存为 <code>cache_demo.py</code>：</p><pre><code>import os
+from anthropic import Anthropic
+
+client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+model = os.environ["CLAUDE_MODEL"]
+
+long_reference = ("公司客服规则：只能根据给定资料回答；不知道就明确说不知道；"
+                  "不得编造价格、库存、退款时限。\n") * 200
+system = [{
+    "type": "text",
+    "text": long_reference,
+    "cache_control": {"type": "ephemeral"}
+}]
+
+def ask(question):
+    response = client.messages.create(
+        model=model,
+        max_tokens=300,
+        system=system,
+        messages=[{"role": "user", "content": question}]
+    )
+    print(response.content[0].text)
+    print("缓存写入输入：", getattr(response.usage, "cache_creation_input_tokens", 0))
+    print("缓存命中输入：", getattr(response.usage, "cache_read_input_tokens", 0))
+
+ask("请用三句话概括客服回答边界。")
+ask("遇到资料未写明的退款时限，应该怎么回答？")</code></pre><pre><code>python cache_demo.py</code></pre><p><b>预期结果：</b>第一次调用通常出现缓存写入 token；第二次在缓存有效且前缀完全一致时出现缓存命中 token。<b>常见坑：</b>稳定内容放前面、变化问题放后面；改动缓存断点前的文字、工具定义或顺序会降低命中率；短提示可能达不到最小可缓存长度；不要复用含敏感用户数据的缓存前缀。</p><p><b>什么情况下不该用：</b>每次系统提示、工具列表和资料都大幅变化，或请求很少重复时，收益有限。</p><p class="src">参考：<a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">Anthropic 官方提示缓存文档</a></p><div class="next"><b>下期预告：</b>Claude API 限流与故障切换——指数退避、主备模型和可读的降级输出。</div></div>
+</section>
+<section id="s4" class="judge"><h2>四、🤖 AI独立研判（非新闻事实）</h2><div class="card"><p>【AI独立研判】基于今天收集到的事实，我的判断是：智能体行业正在进入“协议工程”阶段。前两年的焦点是模型会不会用工具；今天 MCP 的变化说明，真正的竞争点变成了工具调用能不能被企业网络设备、身份系统、缓存系统和审计系统接住。这不是新闻事实本身，而是我对事实的综合判断。</p><p>【AI独立研判】OpenAI 的科研计算报告和 GitHub 的供应链防护，合在一起给了一个很清楚的工程结论：智能体越强，越不能相信一次性输出。强智能体需要更强的验收、日志、权限与冷却窗口。未来 1—4 周最值得观察的信号，是 MCP 新规范在 GitHub、Cloudflare、AWS、Google Cloud 这些平台里的真实落地速度。</p><p>【AI独立研判】资本侧今天有两条相反但互补的线：一条是英伟达/SK 这种巨额 AI 工厂，继续把算力堆大；另一条是 Multiverse 这种模型压缩融资，试图把单位算力需求压小。我的倾向是两条都会成立：训练与最前沿推理继续变大，企业常规推理则会被压缩、缓存和本地化不断“减肥”。</p><p>【AI独立研判】我可能判断错的地方：MCP 的无状态化也可能短期带来迁移成本和兼容问题，开发者未必马上升级；OpenAI 硬件报道也可能被供应链噪声放大，最终产品形态与时间线可能大幅变化；机器人融资热度可能先于真实商业需求。</p></div></section>
+<section id="s5" class="edu"><h2>五、连载路线图</h2><table><tr><th>系列</th><th>第 1 期（已发）</th><th>第 2 期（本期）</th><th>第 3 期（预告）</th></tr><tr><td>① Claude Code</td><td>非交互管道、权限白名单与 MCP 接入</td><td>Hooks 自动格式化</td><td>权限型 Hooks：保护敏感文件</td></tr><tr><td>② Hermes Agent</td><td>skills、tools、cron 与 gateway 入门</td><td>三路并行调研与上下文隔离</td><td>多子代理审计与失败分支</td></tr><tr><td>③ Claude 模型</td><td>中转接入、成本对账与基础重试</td><td>提示缓存降低重复上下文成本</td><td>限流退避、主备模型与降级输出</td></tr></table></section>
+<section id="s6"><h2>编后与核验说明</h2><p><b>本报体例。</b>本期按北京日期 2026-07-29 归档。正文分为主线、分类要闻、系列教程、AI 独立研判四块；AI 独立研判不是新闻事实。</p><p><b>可信度分层。</b>「正式信息｜已确认」指官方博客、官方新闻稿、公司文档或可直接核验的一手页面；「媒体报道｜待官方完整确认」指可信媒体或记者报道但公司未完整确认；「行业风声｜未经证实」指社交爆料或弱证据链，本期未收录高价值传闻。</p><p><b>核验情况。</b>MCP、Claude、OpenAI、NVIDIA、GitHub、Multiverse 为一手页面核验；Fish Audio、Enigma、Intel CPU、OpenAI 硬件、越南 AI 法等为媒体报道或评论文章，已在正文降级标注。三篇教程分别依据 Claude Code 官方 Hooks 指南、Hermes Agent 官方并行委派指南和 Anthropic 官方提示缓存文档撰写；未为教程核验而在本机执行维护、诊断或清理命令。</p><div class="wx"><b>微信导读：</b>今天 AI 圈的关键词是“无状态”。MCP 新规范让智能体工具协议更像互联网基础设施；Claude 同步接入；OpenAI 报告提醒智能体科研的关键是验证；GitHub 则继续收紧供应链默认安全。</div><footer><div class="byline"><span class="who">金钱豹Ai中转</span><span class="url"><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a></span></div><p style="margin-top:10px">《智能体协议进入无状态时代》· 2026 年 7 月 29 日 · 每日全球 AI 情报报纸 · 第 2 期<br>新闻与资讯 12 条 · 系列连载教程 3 篇</p><a class="backtop" href="#top">回到顶部 ↑</a></footer></section>
+</main>
+<script>(function(){var links=[].slice.call(document.querySelectorAll('#tocnav a'));var ids=links.map(function(a){return document.querySelector(a.getAttribute('href'))});function on(){var y=scrollY+80,idx=0;ids.forEach(function(el,i){if(el&&el.offsetTop<=y)idx=i});links.forEach(function(a,i){a.classList.toggle('active',i===idx)})}addEventListener('scroll',on,{passive:true});addEventListener('resize',on);on();})();</script>
+</body>
+</html>
