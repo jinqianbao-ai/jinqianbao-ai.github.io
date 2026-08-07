@@ -9,7 +9,7 @@ const CATEGORY_IDS = {
   general: ['General', 'DIC_kwDOTwz2XM4DC2H4'],
 };
 
-const state = { data: null };
+const state = { data: null, query: '' };
 const sectionNav = document.getElementById('section-nav');
 const forumTitle = document.getElementById('forum-title');
 const forumDescription = document.getElementById('forum-description');
@@ -19,10 +19,14 @@ const listView = document.getElementById('list-view');
 const topicTitle = document.getElementById('topic-title');
 const topicMeta = document.getElementById('topic-meta');
 const topicBody = document.getElementById('topic-body');
+const topicSectionName = document.getElementById('topic-section-name');
 const topicComments = document.getElementById('topic-comments');
 const boardComments = document.getElementById('board-comments');
 const boardHeading = document.getElementById('board-heading');
 const topicBack = document.getElementById('topic-back');
+const forumSearch = document.getElementById('forum-search');
+const topicTotal = document.getElementById('topic-total');
+const replyTotal = document.getElementById('reply-total');
 
 function params() {
   const p = new URLSearchParams(location.search);
@@ -35,7 +39,7 @@ function sectionByKey(key) {
 
 function formatDate(value) {
   if (!value) return '';
-  return new Intl.DateTimeFormat('zh-CN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(value));
+  return new Intl.DateTimeFormat('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(new Date(value));
 }
 
 function clearGiscus(host) {
@@ -69,18 +73,29 @@ function loadGiscus(host, section, number) {
   host.appendChild(script);
 }
 
+function topicCounts() {
+  return Object.fromEntries(state.data.sections.map((section) => [section.key, state.data.topics.filter((topic) => topic.section === section.key).length]));
+}
+
 function renderNav(activeKey) {
   sectionNav.replaceChildren();
+  const counts = topicCounts();
   for (const section of state.data.sections) {
     const link = document.createElement('a');
     link.href = `forum.html?section=${section.key}`;
     link.dataset.section = section.key;
     link.className = section.key === activeKey ? 'active' : '';
+    if (section.key === activeKey) link.setAttribute('aria-current', 'page');
+    const text = document.createElement('span');
     const name = document.createElement('b');
     name.textContent = section.name;
     const description = document.createElement('small');
     description.textContent = section.description;
-    link.append(name, description);
+    const count = document.createElement('span');
+    count.className = 'section-count';
+    count.textContent = String(counts[section.key] || 0);
+    text.append(name, description);
+    link.append(text, count);
     sectionNav.appendChild(link);
   }
 }
@@ -91,35 +106,88 @@ function topicDisplayTitle(topic) {
   return parts.length >= 3 ? `批注：“${parts[2]}”` : topic.title;
 }
 
+function authorInitial(author) {
+  const text = String(author || 'AI').trim();
+  return /[\u3400-\u9fff]/.test(text) ? text.slice(0, 1) : text.slice(0, 2).toUpperCase();
+}
+
+function createMeta(values, className = 'topic-meta') {
+  const meta = document.createElement('div');
+  meta.className = className;
+  values.filter(Boolean).forEach((value) => {
+    const span = document.createElement('span');
+    span.textContent = value;
+    meta.appendChild(span);
+  });
+  return meta;
+}
+
+function createTopicRow(topic, section) {
+  const link = document.createElement('a');
+  link.href = topic.internalUrl;
+  link.dataset.topic = String(topic.number);
+  link.className = 'topic-row';
+
+  const avatar = document.createElement('span');
+  avatar.className = 'topic-avatar';
+  avatar.textContent = authorInitial(topic.author);
+  avatar.setAttribute('aria-hidden', 'true');
+
+  const copy = document.createElement('div');
+  copy.className = 'topic-copy';
+  const title = document.createElement('h3');
+  title.textContent = topicDisplayTitle(topic);
+  const excerpt = document.createElement('p');
+  excerpt.textContent = topic.body.slice(0, 170) || '打开主题查看正文和讨论。';
+  const meta = createMeta([topic.author || '社区成员', formatDate(topic.updatedAt), section.name]);
+  copy.append(title, excerpt, meta);
+
+  const replies = document.createElement('span');
+  replies.className = 'reply-count';
+  const replyNumber = document.createElement('strong');
+  replyNumber.textContent = String(topic.comments || 0);
+  const replyLabel = document.createElement('span');
+  replyLabel.textContent = '回复';
+  replies.append(replyNumber, replyLabel);
+
+  link.append(avatar, copy, replies);
+  return link;
+}
+
+function renderStats() {
+  topicTotal.textContent = String(state.data.topics.length);
+  replyTotal.textContent = String(state.data.topics.reduce((sum, topic) => sum + Number(topic.comments || 0), 0));
+}
+
 function renderList(section) {
   topicView.dataset.open = 'false';
   topicView.hidden = true;
   listView.hidden = false;
   forumTitle.textContent = section.name;
   forumDescription.textContent = section.description;
+  document.title = `${section.name} - 金钱豹AI社区`;
   topicList.replaceChildren();
-  const topics = state.data.topics.filter((item) => item.section === section.key);
+
+  const needle = state.query.toLocaleLowerCase('zh-CN');
+  const sectionTopics = state.data.topics.filter((item) => item.section === section.key);
+  const topics = sectionTopics.filter((topic) => {
+    if (!needle) return true;
+    return `${topic.title}\n${topic.body}\n${topic.author}`.toLocaleLowerCase('zh-CN').includes(needle);
+  });
+
   if (!topics.length) {
     const empty = document.createElement('div');
-    empty.className = 'empty';
-    empty.textContent = '这个版块还没有内容，可以在下方发表第一条留言。';
+    empty.className = state.query ? 'search-empty' : 'empty';
+    const heading = document.createElement('strong');
+    heading.textContent = state.query ? '没有找到匹配主题' : '这个版块还没有主题';
+    const detail = document.createElement('span');
+    detail.textContent = state.query ? '换一个关键词，或清除搜索后查看全部内容。' : '可以在下方发表第一条内容。';
+    empty.append(heading, detail);
     topicList.appendChild(empty);
+  } else {
+    topics.forEach((topic) => topicList.appendChild(createTopicRow(topic, section)));
   }
-  for (const topic of topics) {
-    const link = document.createElement('a');
-    link.href = topic.internalUrl;
-    link.dataset.topic = String(topic.number);
-    link.className = 'topic-card';
-    const title = document.createElement('h2');
-    title.textContent = topicDisplayTitle(topic);
-    const excerpt = document.createElement('p');
-    excerpt.textContent = topic.body.slice(0, 150) || '打开查看主题内容与评论。';
-    const meta = document.createElement('div');
-    meta.className = 'topic-card-meta';
-    meta.textContent = `${topic.author} · ${formatDate(topic.updatedAt)} · ${topic.comments} 条回复 · ${topic.upvotes} 赞`;
-    link.append(title, excerpt, meta);
-    topicList.appendChild(link);
-  }
+
   boardHeading.textContent = `在“${section.name}”版块发言`;
   loadGiscus(boardComments, section, section.boardTopic);
 }
@@ -131,14 +199,22 @@ function renderTopic(section, number) {
     renderList(section);
     return;
   }
+  const topicSection = sectionByKey(topic.section);
   listView.hidden = true;
   topicView.hidden = false;
   topicView.dataset.open = 'true';
   topicTitle.textContent = topicDisplayTitle(topic);
-  topicMeta.textContent = `${topic.category} · ${topic.author} · ${formatDate(topic.updatedAt)} · ${topic.comments} 条回复 · ${topic.upvotes} 赞`;
+  topicSectionName.textContent = topicSection.name;
+  topicMeta.replaceChildren(...createMeta([
+    topic.author || '社区成员',
+    formatDate(topic.updatedAt),
+    `${topic.comments || 0} 条回复`,
+    `${topic.upvotes || 0} 赞`,
+  ], 'topic-detail-meta').childNodes);
   topicBody.textContent = topic.body;
   topicBack.dataset.section = topic.section;
-  loadGiscus(topicComments, sectionByKey(topic.section), topic.number);
+  document.title = `${topicDisplayTitle(topic)} - 金钱豹AI社区`;
+  loadGiscus(topicComments, topicSection, topic.number);
   scrollTo({ top: 0, behavior: 'instant' });
 }
 
@@ -152,6 +228,8 @@ function render() {
 
 function navigate(href) {
   history.pushState({}, '', href);
+  state.query = '';
+  forumSearch.value = '';
   render();
 }
 
@@ -163,14 +241,33 @@ document.addEventListener('click', (event) => {
 });
 topicBack.addEventListener('click', () => navigate(`forum.html?section=${topicBack.dataset.section || 'daily'}`));
 window.addEventListener('popstate', render);
+forumSearch.addEventListener('input', () => {
+  state.query = forumSearch.value.trim();
+  const route = params();
+  if (route.topic) history.replaceState({}, '', `forum.html?section=${route.section}`);
+  renderList(sectionByKey(route.section));
+});
 
 fetch('forum-data.json', { cache: 'no-store' })
   .then((response) => {
     if (!response.ok) throw new Error(`forum-data ${response.status}`);
     return response.json();
   })
-  .then((data) => { state.data = data; render(); })
+  .then((data) => {
+    state.data = data;
+    renderStats();
+    render();
+  })
   .catch(() => {
-    forumTitle.textContent = '暂时无法加载论坛';
-    forumDescription.textContent = '请稍后刷新页面。';
+    topicList.replaceChildren();
+    const error = document.createElement('div');
+    error.className = 'error-state';
+    const heading = document.createElement('strong');
+    heading.textContent = '社区暂时无法加载';
+    const detail = document.createElement('span');
+    detail.textContent = '请检查网络后刷新页面。';
+    error.append(heading, detail);
+    topicList.appendChild(error);
+    forumTitle.textContent = '加载失败';
+    forumDescription.textContent = '稍后再试';
   });
