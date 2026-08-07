@@ -1,3 +1,5 @@
+const API_BASE = 'https://jinqianbao-forum-api.jinqianbao-forum-worker.workers.dev';
+const SESSION_KEY = 'forum_session';
 const REPO = 'jinqianbao-ai/jinqianbao-ai.github.io';
 const REPO_ID = 'R_kgDOTwz2XA';
 const CATEGORY_IDS = {
@@ -9,7 +11,7 @@ const CATEGORY_IDS = {
   general: ['General', 'DIC_kwDOTwz2XM4DC2H4'],
 };
 
-const state = { data: null, query: '' };
+const state = { data: null, query: '', session: localStorage.getItem(SESSION_KEY) || '', user: null, activeTopic: null };
 const sectionNav = document.getElementById('section-nav');
 const forumTitle = document.getElementById('forum-title');
 const forumDescription = document.getElementById('forum-description');
@@ -33,11 +35,78 @@ const recentTopicList = document.getElementById('recent-topic-list');
 const recentTitle = document.getElementById('recent-title');
 const recentDescription = document.getElementById('recent-description');
 const mastheadAction = document.getElementById('masthead-action');
+const authStatus = document.getElementById('auth-status');
+const loginButton = document.getElementById('login-button');
+const shareSystem = document.getElementById('share-system');
+const shareCopy = document.getElementById('share-copy');
+const shareForum = document.getElementById('share-forum');
+const shareStatus = document.getElementById('share-status');
+const composeLink = document.querySelector('.compose-link');
 const giscusCleanup = new WeakMap();
 
 function params() {
   const p = new URLSearchParams(location.search);
   return { section: p.get('section'), topic: Number(p.get('topic') || 0) };
+}
+
+function consumeSessionFromHash() {
+  if (!location.hash) return;
+  const hashParams = new URLSearchParams(location.hash.slice(1));
+  const session = hashParams.get('forum_session');
+  if (!session) return;
+  state.session = session;
+  localStorage.setItem(SESSION_KEY, session);
+  hashParams.delete('forum_session');
+  const nextHash = hashParams.toString();
+  history.replaceState({}, '', `${location.pathname}${location.search}${nextHash ? `#${nextHash}` : ''}`);
+}
+
+function currentReturnUrl() {
+  const url = new URL(location.href);
+  const hashParams = new URLSearchParams(url.hash.slice(1));
+  hashParams.delete('forum_session');
+  const nextHash = hashParams.toString();
+  url.hash = nextHash ? `#${nextHash}` : '';
+  return url.href;
+}
+
+function updateLoginHref() {
+  loginButton.href = `${API_BASE}/auth/github?return=${encodeURIComponent(currentReturnUrl())}`;
+}
+
+function renderAuthStatus(message) {
+  updateLoginHref();
+  if (state.user) {
+    const name = state.user.name || state.user.login || '已登录用户';
+    authStatus.textContent = `已登录：${name}`;
+    loginButton.textContent = '切换账号';
+    loginButton.hidden = false;
+    return;
+  }
+  authStatus.textContent = message || (state.session ? '正在确认登录状态…' : '未登录');
+  loginButton.textContent = '登录';
+  loginButton.hidden = false;
+}
+
+async function loadCurrentUser() {
+  consumeSessionFromHash();
+  renderAuthStatus();
+  if (!state.session) return;
+  try {
+    const response = await fetch(`${API_BASE}/api/me`, {
+      headers: { Authorization: `Bearer ${state.session}` },
+      cache: 'no-store',
+    });
+    if (!response.ok) throw new Error(`me ${response.status}`);
+    const data = await response.json();
+    state.user = data.user || data;
+    renderAuthStatus();
+  } catch (error) {
+    state.user = null;
+    state.session = '';
+    localStorage.removeItem(SESSION_KEY);
+    renderAuthStatus('登录状态已失效，请重新登录');
+  }
 }
 
 function sectionByKey(key) {
@@ -188,6 +257,208 @@ function createMeta(values, className = 'topic-meta') {
   return meta;
 }
 
+const composer = createComposer();
+
+function appendLabeledControl(parent, labelText, control, hintText) {
+  const label = document.createElement('label');
+  label.className = 'composer-field';
+  const text = document.createElement('span');
+  text.textContent = labelText;
+  label.append(text, control);
+  if (hintText) {
+    const hint = document.createElement('small');
+    hint.textContent = hintText;
+    label.appendChild(hint);
+  }
+  parent.appendChild(label);
+}
+
+function createComposer() {
+  const dialog = document.createElement('dialog');
+  dialog.id = 'composer-dialog';
+  dialog.className = 'composer-dialog';
+  const form = document.createElement('form');
+  form.className = 'composer-form';
+  form.method = 'dialog';
+
+  const head = document.createElement('div');
+  head.className = 'composer-head';
+  const headCopy = document.createElement('div');
+  const heading = document.createElement('h2');
+  heading.id = 'composer-heading';
+  heading.textContent = '发起讨论';
+  const lead = document.createElement('p');
+  lead.textContent = '内容会发布到论坛站内主题，评论仍在当前页面继续。';
+  headCopy.append(heading, lead);
+  const cancelTop = document.createElement('button');
+  cancelTop.type = 'button';
+  cancelTop.className = 'composer-cancel';
+  cancelTop.textContent = '关闭';
+  head.append(headCopy, cancelTop);
+
+  const grid = document.createElement('div');
+  grid.className = 'composer-grid';
+  const type = document.createElement('select');
+  type.id = 'composer-type';
+  [['post', '普通帖子'], ['article', '长文章']].forEach(([value, text]) => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = text;
+    type.appendChild(option);
+  });
+  const section = document.createElement('select');
+  section.id = 'composer-section';
+  appendLabeledControl(grid, '内容类型', type);
+  appendLabeledControl(grid, '版块', section);
+
+  const title = document.createElement('input');
+  title.id = 'composer-title';
+  title.required = true;
+  title.maxLength = 120;
+  title.placeholder = '用一句话说明主题';
+  appendLabeledControl(form, '标题', title);
+
+  const body = document.createElement('textarea');
+  body.id = 'composer-body';
+  body.required = true;
+  body.placeholder = '写下背景、链接、步骤或你的观点。';
+  appendLabeledControl(form, '正文', body, '普通帖子建议提供必要背景和可复现信息。');
+  const bodyHint = form.querySelector('.composer-field small');
+  bodyHint.id = 'composer-body-hint';
+
+  const status = document.createElement('div');
+  status.id = 'composer-status';
+  status.className = 'composer-status';
+  status.setAttribute('aria-live', 'polite');
+  const actions = document.createElement('div');
+  actions.className = 'composer-actions';
+  const cancel = document.createElement('button');
+  cancel.type = 'button';
+  cancel.className = 'composer-cancel';
+  cancel.textContent = '取消';
+  const submit = document.createElement('button');
+  submit.type = 'submit';
+  submit.id = 'composer-submit';
+  submit.className = 'composer-submit';
+  submit.textContent = '发布';
+  actions.append(cancel, submit);
+
+  form.prepend(head, grid);
+  form.append(status, actions);
+  dialog.appendChild(form);
+  document.body.appendChild(dialog);
+
+  const close = () => dialog.close();
+  cancel.addEventListener('click', close);
+  cancelTop.addEventListener('click', close);
+  type.addEventListener('change', () => updateComposerHint());
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    submitComposer();
+  });
+  return { dialog, form, heading, type, section, title, body, bodyHint, status, submit };
+}
+
+function updateComposerSections() {
+  if (!state.data) return;
+  const current = composer.section.value;
+  composer.section.replaceChildren();
+  for (const item of state.data.sections) {
+    const option = document.createElement('option');
+    option.value = item.key;
+    option.textContent = item.name;
+    composer.section.appendChild(option);
+  }
+  if (current && state.data.sections.some((item) => item.key === current)) composer.section.value = current;
+}
+
+function updateComposerHint() {
+  if (composer.type.value === 'article') {
+    composer.body.placeholder = '适合长文章：先写摘要，再展开背景、步骤、案例、结论和参考链接。';
+    composer.bodyHint.textContent = '长文章可以写得更完整：建议包含小标题、来源和可执行步骤。';
+    return;
+  }
+  composer.body.placeholder = '写下背景、链接、步骤或你的观点。';
+  composer.bodyHint.textContent = '普通帖子建议提供必要背景和可复现信息。';
+}
+
+function openComposer({ section = 'general', title = '', body = '', type = 'post', mode = 'compose' } = {}) {
+  updateComposerSections();
+  composer.heading.textContent = mode === 'share' ? '分享到论坛' : '发起讨论';
+  composer.type.value = type;
+  if (state.data?.sections.some((item) => item.key === section)) composer.section.value = section;
+  composer.title.value = title;
+  composer.body.value = body;
+  composer.status.textContent = '';
+  composer.status.className = 'composer-status';
+  composer.submit.disabled = false;
+  updateComposerHint();
+  if (typeof composer.dialog.showModal === 'function') composer.dialog.showModal();
+  else composer.dialog.setAttribute('open', '');
+  composer.title.focus();
+}
+
+function showComposerError(message) {
+  composer.status.textContent = message;
+  composer.status.className = 'composer-status error';
+  renderAuthStatus();
+}
+
+function normalizeTopic(topic) {
+  const section = topic.section || composer.section.value || 'general';
+  const number = Number(topic.number || topic.id || Date.now());
+  return {
+    number,
+    title: String(topic.title || composer.title.value || '未命名主题'),
+    body: String(topic.body || composer.body.value || ''),
+    bodyMarkdown: topic.bodyMarkdown || topic.body || composer.body.value || '',
+    section,
+    author: topic.author || state.user?.login || state.user?.name || '社区成员',
+    comments: Number(topic.comments || 0),
+    upvotes: Number(topic.upvotes || 0),
+    updatedAt: topic.updatedAt || new Date().toISOString(),
+    internalUrl: topic.internalUrl || `forum.html?section=${section}&topic=${number}`,
+  };
+}
+
+async function submitComposer() {
+  const title = composer.title.value.trim();
+  const body = composer.body.value.trim();
+  const section = composer.section.value;
+  if (!title || !body) {
+    showComposerError('请填写标题和正文后再发布。');
+    return;
+  }
+  if (!state.session) {
+    showComposerError('请先登录 GitHub 后再发布，未登录不会创建主题。');
+    return;
+  }
+  composer.submit.disabled = true;
+  composer.status.textContent = '正在发布…';
+  composer.status.className = 'composer-status';
+  try {
+    const response = await fetch(`${API_BASE}/api/topics`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${state.session}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ section, title, body }),
+    });
+    if (response.status === 401 || response.status === 403) throw new Error('请重新登录后再发布。');
+    if (!response.ok) throw new Error('发布失败，请稍后重试。');
+    const data = await response.json();
+    const topic = normalizeTopic(data.topic || data);
+    state.data.topics = [topic, ...state.data.topics.filter((item) => item.number !== topic.number)];
+    composer.dialog.close();
+    renderStats();
+    navigate(topic.internalUrl);
+  } catch (error) {
+    composer.submit.disabled = false;
+    showComposerError(error.message || '发布失败，请稍后重试。');
+  }
+}
+
 function appendInlineLinks(parent, text) {
   const pattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s]+)/g;
   let cursor = 0;
@@ -272,6 +543,7 @@ function renderStats() {
 
 function renderDashboard() {
   dashboardView.hidden = false;
+  state.activeTopic = null;
   listView.hidden = true;
   topicView.hidden = true;
   topicView.dataset.open = 'false';
@@ -327,6 +599,7 @@ function renderDashboard() {
 
 function renderList(section) {
   dashboardView.hidden = true;
+  state.activeTopic = null;
   topicView.dataset.open = 'false';
   topicView.hidden = true;
   listView.hidden = false;
@@ -368,6 +641,7 @@ function renderTopic(section, number) {
     return;
   }
   const topicSection = sectionByKey(topic.section);
+  state.activeTopic = topic;
   dashboardView.hidden = true;
   listView.hidden = true;
   topicView.hidden = false;
@@ -404,20 +678,103 @@ function navigate(href) {
   history.pushState({}, '', href);
   state.query = '';
   forumSearch.value = '';
+  updateLoginHref();
   render();
   if (location.hash === '#board') {
     requestAnimationFrame(() => document.getElementById('board')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   }
 }
 
+function routeSectionKey() {
+  const route = params();
+  return route.section || 'general';
+}
+
+function openRouteComposer() {
+  openComposer({ section: routeSectionKey() });
+}
+
+function topicSharePayload() {
+  const topic = state.activeTopic;
+  return {
+    title: topic ? topicDisplayTitle(topic) : document.title,
+    text: topic ? `${topicDisplayTitle(topic)} - 金钱豹AI论坛` : '金钱豹AI论坛',
+    url: location.href,
+  };
+}
+
+async function copyText(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const area = document.createElement('textarea');
+  area.value = text;
+  area.style.position = 'fixed';
+  area.style.opacity = '0';
+  document.body.appendChild(area);
+  area.select();
+  document.execCommand('copy');
+  area.remove();
+}
+
+shareSystem.addEventListener('click', async () => {
+  const payload = topicSharePayload();
+  shareStatus.textContent = '';
+  try {
+    if (navigator.share) {
+      await navigator.share(payload);
+      shareStatus.textContent = '已打开系统分享';
+    } else {
+      await copyText(payload.url);
+      shareStatus.textContent = '已复制链接';
+    }
+  } catch (error) {
+    shareStatus.textContent = '分享已取消或不可用';
+  }
+});
+
+shareCopy.addEventListener('click', async () => {
+  try {
+    await copyText(location.href);
+    shareStatus.textContent = '链接已复制';
+  } catch (error) {
+    shareStatus.textContent = '复制失败，请手动复制地址栏链接';
+  }
+});
+
+shareForum.addEventListener('click', () => {
+  const payload = topicSharePayload();
+  openComposer({
+    section: 'share',
+    title: payload.title,
+    body: `分享一个论坛主题：\n${payload.url}\n\n推荐理由：`,
+    mode: 'share',
+  });
+});
+
+mastheadAction.addEventListener('click', (event) => {
+  event.preventDefault();
+  openRouteComposer();
+});
+
+composeLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  openRouteComposer();
+});
+
 document.addEventListener('click', (event) => {
+  if (event.defaultPrevented) return;
   const link = event.target.closest('a[href="forum.html"], a[href^="forum.html?"]');
   if (!link) return;
   event.preventDefault();
   navigate(link.getAttribute('href'));
 });
 topicBack.addEventListener('click', () => navigate(`forum.html?section=${topicBack.dataset.section || 'daily'}`));
-window.addEventListener('popstate', render);
+window.addEventListener('popstate', () => {
+  updateLoginHref();
+  render();
+});
 forumSearch.addEventListener('input', () => {
   state.query = forumSearch.value.trim();
   const route = params();
@@ -426,6 +783,8 @@ forumSearch.addEventListener('input', () => {
   else renderDashboard();
 });
 
+loadCurrentUser();
+
 fetch('forum-data.json', { cache: 'no-store' })
   .then((response) => {
     if (!response.ok) throw new Error(`forum-data ${response.status}`);
@@ -433,6 +792,7 @@ fetch('forum-data.json', { cache: 'no-store' })
   })
   .then((data) => {
     state.data = data;
+    updateComposerSections();
     renderStats();
     render();
   })
