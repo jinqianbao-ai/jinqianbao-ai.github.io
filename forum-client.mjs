@@ -27,6 +27,7 @@ const topicBack = document.getElementById('topic-back');
 const forumSearch = document.getElementById('forum-search');
 const topicTotal = document.getElementById('topic-total');
 const replyTotal = document.getElementById('reply-total');
+const giscusCleanup = new WeakMap();
 
 function params() {
   const p = new URLSearchParams(location.search);
@@ -43,12 +44,38 @@ function formatDate(value) {
 }
 
 function clearGiscus(host) {
+  const cleanup = giscusCleanup.get(host);
+  if (cleanup) cleanup();
+  giscusCleanup.delete(host);
   host.replaceChildren();
+}
+
+function showGiscusError(host, section, number) {
+  clearGiscus(host);
+  const error = document.createElement('div');
+  error.className = 'comment-error';
+  const content = document.createElement('div');
+  const title = document.createElement('strong');
+  title.textContent = '评论暂时无法加载';
+  const detail = document.createElement('p');
+  detail.textContent = '请检查网络后重试，正文内容不受影响。';
+  const retry = document.createElement('button');
+  retry.className = 'comment-retry';
+  retry.type = 'button';
+  retry.textContent = '重新加载评论';
+  retry.addEventListener('click', () => loadGiscus(host, section, number));
+  content.append(title, detail, retry);
+  error.appendChild(content);
+  host.appendChild(error);
 }
 
 function loadGiscus(host, section, number) {
   clearGiscus(boardComments);
   clearGiscus(topicComments);
+  const loading = document.createElement('div');
+  loading.className = 'comment-loading';
+  loading.textContent = '正在加载评论…';
+  host.appendChild(loading);
   const [category, categoryId] = CATEGORY_IDS[section.key];
   const script = document.createElement('script');
   const attrs = {
@@ -70,6 +97,34 @@ function loadGiscus(host, section, number) {
   };
   Object.entries(attrs).forEach(([key, value]) => script.setAttribute(key, value));
   script.async = true;
+  let finished = false;
+  let timer;
+  const observer = new MutationObserver(() => {
+    if (!host.querySelector('iframe.giscus-frame')) return;
+    finished = true;
+    loading.remove();
+    clearTimeout(timer);
+    observer.disconnect();
+    giscusCleanup.delete(host);
+  });
+  const cleanup = () => {
+    clearTimeout(timer);
+    observer.disconnect();
+  };
+  giscusCleanup.set(host, cleanup);
+  observer.observe(host, { childList: true, subtree: true });
+  script.addEventListener('error', () => {
+    if (finished) return;
+    finished = true;
+    cleanup();
+    showGiscusError(host, section, number);
+  }, { once: true });
+  timer = setTimeout(() => {
+    if (finished || host.querySelector('iframe.giscus-frame')) return;
+    finished = true;
+    cleanup();
+    showGiscusError(host, section, number);
+  }, 12000);
   host.appendChild(script);
 }
 
