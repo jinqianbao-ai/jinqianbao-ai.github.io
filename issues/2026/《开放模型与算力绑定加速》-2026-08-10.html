@@ -1,0 +1,342 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>《开放模型与算力绑定加速》-2026-08-10</title><style>
+:root{--bg:#f7f3eb;--card:#fffdf8;--ink:#202326;--muted:#59616a;--line:#e2d8ca;--warm:#b65f32;--warmbg:#faeee5;--edu:#087b96;--edubg:#eaf7fa;--judge:#7552a3;--judgebg:#f3edf9;--nav:#211d1a;--navink:#ddd5ca;--nav-w:16.6667%;--fold-w:44px}
+@media(prefers-color-scheme:dark){:root{--bg:#151719;--card:#1d2023;--ink:#eeeae4;--muted:#b7b1a9;--line:#35383d;--warm:#e69a6c;--warmbg:#2b201a;--edu:#66c7de;--edubg:#14282e;--judge:#c39be9;--judgebg:#261d30;--nav:#0d0f11;--navink:#d3cec7}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.8 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;overflow-wrap:anywhere}#navtoggle{position:fixed;opacity:0;pointer-events:none}.fold{position:fixed;z-index:80;top:8px;left:calc(var(--nav-w) - 36px);width:30px;height:30px;border-radius:8px;background:#ffffff22;color:#fff;display:grid;place-items:center;cursor:pointer;transition:.25s}.fold:after{content:'≪'}#toc{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;overflow-y:auto;background:var(--nav);color:var(--navink);z-index:60;padding:48px 7px 24px;transition:width .25s}#toc .brand{padding:0 10px 14px;border-bottom:1px solid #ffffff18;margin-bottom:8px}#toc .brand b{display:block;color:#fff;font-size:14px;line-height:1.45}#toc .brand span{font-size:10.5px;color:#a89f94}#toc a{display:block;color:var(--navink);text-decoration:none;border-left:3px solid transparent;line-height:1.32;white-space:normal;overflow:visible;padding:5px 5px 5px 8px;letter-spacing:-.2px}#toc a.lv1{font-size:12.5px;font-weight:750;color:#fff;margin-top:6px}#toc a.lv2{font-size:11.5px;padding-left:13px;color:#c0b8ad}#toc a.lv3{font-size:11.5px;padding-left:20px;color:#aaa196}#toc a.active{color:#ffb37d;border-left-color:#ff9b59;background:#ffffff0c}#main{margin-left:var(--nav-w);transition:margin-left .25s;min-height:100vh}.inner{max-width:980px;margin:auto;padding:30px 36px 70px}#navtoggle:checked~#toc{width:var(--fold-w);padding-left:0;padding-right:0}#navtoggle:checked~#toc>*{visibility:hidden}#navtoggle:checked~.fold{left:7px}#navtoggle:checked~.fold:after{content:'≫'}#navtoggle:checked~#main{margin-left:var(--fold-w)}header{border-bottom:3px double var(--warm);padding-bottom:18px;margin-bottom:25px}h1{font-size:34px;line-height:1.3;color:var(--warm);margin:0 0 8px}header .issue{color:var(--muted);font-size:14px}.byline{margin-top:12px;line-height:1.5}.byline strong{display:block}.byline a,footer a{display:block;color:var(--warm);word-break:break-all}h2,h3,h4{scroll-margin-top:22px;line-height:1.45}h2{margin:42px 0 18px;border-left:5px solid var(--warm);padding-left:12px;font-size:23px}h3{margin:28px 0 12px;font-size:20px}h4{margin:24px 0 9px;font-size:18.5px}.card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 19px;margin:14px 0}.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid}.ok{color:#287247;background:#edf7f0}.media{color:#a16c13;background:#fff6df}.why{background:var(--warmbg);border-left:4px solid var(--warm);padding:10px 13px;border-radius:0 8px 8px 0}.source{font-size:13px;color:var(--muted);word-break:break-all}#edu{color:var(--edu);border-left-color:var(--edu)}.edu-card{background:var(--edubg);border:1px solid #8fd0df;border-radius:14px;padding:18px 20px;margin:18px 0}.edu-card h3{color:var(--edu)}#judge{color:var(--judge);border-left-color:var(--judge)}.judge{background:var(--judgebg);border:1px solid var(--judge);border-radius:14px;padding:18px 20px}pre{overflow-x:auto;background:#101318;color:#eceff2;border-radius:10px;padding:14px 16px;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}code{overflow-wrap:normal}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;min-width:145px}a{color:#8f4d29}footer{margin-top:38px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted)}.top{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;background:var(--warm);color:#fff;text-decoration:none;display:grid;place-items:center;z-index:50}
+@media(max-width:900px){body{font-size:16px}#toc{position:relative;width:100%;height:auto;max-height:38vh;padding:45px 10px 12px}.fold{position:absolute;left:auto!important;right:10px;top:8px}#navtoggle:checked~#toc{width:100%;height:44px;padding:0}#navtoggle:checked~#main,#main{margin-left:0}.inner{padding:20px 15px 60px}h1{font-size:27px}#toc a{font-size:12px!important}.top{width:44px;height:44px}}
+@media(max-width:340px){.inner{padding-left:11px;padding-right:11px}h1{font-size:23px}pre{font-size:12px}}
+@media print{#toc,.fold,.top{display:none!important}#main{margin-left:0!important}.inner{max-width:none;padding:0}body{background:#fff}.card,.edu-card,.judge{break-inside:avoid}}
+</style><style id="site-mobile-override">
+:root{color-scheme:light;--page:#f4f6f8;--surface:#fff;--surface-soft:#f7f9fb;--ink:#1f2328;--ink-2:#4b5563;--line:#d8dee4;--blue:#0969da;--blue-hover:#0758b8;--blue-soft:#ddf4ff;--radius:12px;--radius-sm:8px;--bg:var(--page);--paper:var(--surface);--text:var(--ink);--muted:var(--ink-2)}
+body{margin:0;background:var(--page)!important;color:var(--ink)!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif!important;-webkit-font-smoothing:antialiased}.article-site-header~main{background-color:var(--surface);border-radius:var(--radius)}a{color:var(--blue)}
+.article-site-header{position:relative;z-index:850;background:var(--surface);border-bottom:1px solid var(--line);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.article-site-header-inner{max-width:1240px;min-height:64px;margin:auto;padding:0 20px;display:flex;align-items:center;gap:18px}.article-site-header a{min-height:44px;display:inline-flex;align-items:center;text-decoration:none;border-radius:var(--radius-sm)}.article-site-header-brand{color:var(--ink)!important;font-size:17px;font-weight:760}.article-site-header-section{color:var(--ink-2);font-size:14px;font-weight:650}.article-site-header-back{margin-left:auto;padding:0 12px;color:var(--blue)!important;font-weight:680}.article-site-header-back:hover{background:var(--surface-soft)}
+.site-actions{position:fixed;right:12px;bottom:14px;z-index:900;display:flex;gap:6px;padding:6px;background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 24px rgba(31,35,40,.14);backdrop-filter:blur(12px)}
+.site-actions a,.site-actions button{appearance:none;border:0;background:transparent;color:var(--blue)!important;text-decoration:none;padding:8px 10px;border-radius:var(--radius-sm);font:650 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;justify-content:center}.site-actions a:hover,.site-actions button:hover{background:var(--blue-soft)}.share-status{position:fixed;right:14px;bottom:74px;z-index:1000;background:var(--ink);color:var(--surface);padding:8px 11px;border-radius:var(--radius-sm);font:13px/1.3 sans-serif;display:none}
+.annotation-trigger{position:fixed;z-index:1100;border:0;border-radius:var(--radius-sm);background:var(--ink);color:var(--surface);padding:9px 12px;min-height:44px;font:650 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 5px 18px rgba(31,35,40,.22);cursor:pointer}.annotation-trigger[hidden]{display:none}.annotation-panel{position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.34);display:flex;justify-content:flex-end}.annotation-panel[hidden]{display:none}.annotation-sheet{width:min(500px,100%);height:100%;background:var(--surface);color:var(--ink);display:flex;flex-direction:column;box-shadow:-10px 0 35px rgba(31,35,40,.2)}.annotation-head{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.annotation-head strong{font:700 17px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-close{border:0;border-radius:var(--radius-sm);background:transparent;color:var(--ink);font-size:24px;line-height:1;min-width:44px;min-height:44px;cursor:pointer}.annotation-close:hover{background:var(--surface-soft)}.annotation-quote{margin:14px 17px 5px;padding:13px 14px;background:var(--surface-soft);border-radius:var(--radius-sm);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-note{margin:0 17px 10px;color:var(--ink-2);font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-giscus{padding:0 14px 20px;overflow:auto}.annotation-tip{position:fixed;left:50%;bottom:76px;z-index:1050;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:10px 13px;border-radius:var(--radius-sm);font:14px/1.4 sans-serif;white-space:nowrap}.annotation-tip[hidden]{display:none}mark.annotation-pending,mark.annotation-existing{background:#fff0a8;color:inherit;border-radius:3px;padding:0 1px;cursor:pointer;border-bottom:2px solid #d59a00}mark.annotation-existing[data-comments]:after{content:attr(data-comments);display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;margin-left:3px;padding:0 4px;border-radius:999px;background:#7d5d00;color:#fff;font:10px/1 sans-serif}
+@media(max-width:900px){#toc,.fold,#navtoggle{display:none!important}#main,#navtoggle:checked~#main{margin-left:0!important}.inner{max-width:680px!important;padding:18px 14px 72px!important}.masthead h1{font-size:26px!important}.card,.mainline,.judge{border-radius:12px!important;padding:15px!important}h2.sec{font-size:21px!important;margin-top:30px!important}pre{font-size:12px!important}.site-actions{left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));justify-content:space-around}.site-actions a,.site-actions button{min-height:44px;flex:1}.share-status{left:50%;right:auto;transform:translateX(-50%);bottom:70px}.annotation-sheet{height:min(82vh,720px);margin-top:auto;border-radius:var(--radius) var(--radius) 0 0}.annotation-panel{align-items:flex-end}.annotation-trigger{position:fixed!important;left:50%!important;top:auto!important;bottom:72px;transform:translateX(-50%)}}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--page:#0d1117;--surface:#161b22;--surface-soft:#21262d;--ink:#f0f3f6;--ink-2:#c9d1d9;--line:#30363d;--blue:#58a6ff;--blue-hover:#79b8ff;--blue-soft:#1d3348}.site-actions{box-shadow:none}.annotation-sheet{background:var(--surface);color:var(--ink)}.annotation-head{border-color:var(--line)}.annotation-quote{background:var(--surface-soft);color:var(--ink)}.annotation-note{color:var(--ink-2)}mark.annotation-pending,mark.annotation-existing{background:#66530e;color:#fff0b0;border-bottom-color:#f1c84c}}
+</style></head><body id="page"><header class="article-site-header"><nav class="article-site-header-inner" aria-label="站点导航"><a class="article-site-header-brand" href="../../forum.html">金钱豹AI论坛</a><span class="article-site-header-section" aria-current="page">AI日报</span><a class="article-site-header-back" href="../../forum.html?section=daily">返回AI日报版块</a></nav></header><input type="checkbox" id="navtoggle"><label class="fold" for="navtoggle" aria-label="折叠或展开目录"></label><aside id="toc"><div class="brand"><b>《开放模型与算力绑定加速》</b><span>2026-08-10 · 创刊第5期</span></div><nav id="tocnav"><a class="lv1" href="#top" title="卷首语">卷首语</a>
+<a class="lv2" href="#mainline" title="今日主线：开放模型不再只是权重发布，而是与终端、工具链和专属算力一起交付">今日主线：开放模型不再只是权重发布，而是与终端、工具链和专属算力一起交付</a>
+<a class="lv3" href="#m1" title="重点一：Meta 推出可本地运行的 Muse Glimmer 30B 多模态开放模型">重点一：Meta 推出可本地运行的 Muse Glimmer 30B 多模态开放模型</a>
+<a class="lv3" href="#m2" title="重点二：Meta 把个人超级智能、免费层与算力竞价机制写进长期路线">重点二：Meta 把个人超级智能、免费层与算力竞价机制写进长期路线</a>
+<a class="lv3" href="#m3" title="重点三：Anthropic 联合 Macquarie 与 GIC 建立专属数据中心平台">重点三：Anthropic 联合 Macquarie 与 GIC 建立专属数据中心平台</a>
+<a class="lv1" href="#news" title="今日要闻">今日要闻</a>
+<a class="lv3" href="#n1" title="1. Muse Glimmer 把本地多模态智能体推到 300 亿参数档">1. Muse Glimmer 把本地多模态智能体推到 300 亿参数档</a>
+<a class="lv3" href="#n2" title="2. GitHub Copilot 强化并行会话、费用可见性与本地语音">2. GitHub Copilot 强化并行会话、费用可见性与本地语音</a>
+<a class="lv3" href="#n3" title="3. Anthropic 用长期锚定租约吸引基础设施资本建设专属算力">3. Anthropic 用长期锚定租约吸引基础设施资本建设专属算力</a>
+<a class="lv3" href="#n4" title="4. Intel 据报拟发行 150 亿美元普通股，为 AI 周期中的增长投入筹资">4. Intel 据报拟发行 150 亿美元普通股，为 AI 周期中的增长投入筹资</a>
+<a class="lv3" href="#n5" title="5. AI 活动推动全球并购交易升至纪录水平">5. AI 活动推动全球并购交易升至纪录水平</a>
+<a class="lv3" href="#n6" title="6. 韩国拟以特别法加速 AI、半导体与数据中心超级项目审批">6. 韩国拟以特别法加速 AI、半导体与数据中心超级项目审批</a>
+<a class="lv3" href="#n7" title="7. INTERPOL：AI 已关联非洲 55% 的已报告网络犯罪">7. INTERPOL：AI 已关联非洲 55% 的已报告网络犯罪</a>
+<a class="lv3" href="#n8" title="8. Claude Code 与 Gemini CLI 漏洞暴露：风险常在模型外层执行框架">8. Claude Code 与 Gemini CLI 漏洞暴露：风险常在模型外层执行框架</a>
+<a class="lv3" href="#n9" title="9. 论文显示：一张纸上的文字就可能劫持视觉语言模型控制的机器人">9. 论文显示：一张纸上的文字就可能劫持视觉语言模型控制的机器人</a>
+<a class="lv3" href="#n10" title="10. “AI 科学家”综述指出：代码能运行，不等于研究结论可核验">10. “AI 科学家”综述指出：代码能运行，不等于研究结论可核验</a>
+<a class="lv2" href="#rumor" title="行业风声">行业风声</a>
+<a class="lv1" href="#edu" title="📚 AI实用教程">📚 AI实用教程</a>
+<a class="lv3" href="#e1" title="① Claude Code 系列第 5 期：让“测试”和“安全审查”各司其职">① Claude Code 系列第 5 期：让“测试”和“安全审查”各司其职</a>
+<a class="lv3" href="#e2" title="② Hermes Agent 系列第 5 期：用“多技能 + 预检”串起采集、核验、归档">② Hermes Agent 系列第 5 期：用“多技能 + 预检”串起采集、核验、归档</a>
+<a class="lv3" href="#e3" title="③ Claude 模型系列第 5 期：按任务、模型与线路做每日成本对账">③ Claude 模型系列第 5 期：按任务、模型与线路做每日成本对账</a>
+<a class="lv1" href="#judge" title="🤖 AI独立研判（非新闻事实）">🤖 AI独立研判（非新闻事实）</a>
+<a class="lv2" href="#roadmap" title="连载路线图">连载路线图</a>
+<a class="lv1" href="#end" title="编后与核验说明">编后与核验说明</a></nav></aside><main id="main"><div class="inner"><header><h1>《开放模型与算力绑定加速》</h1><div class="issue">每日全球 AI 情报报纸 · 创刊第 5 期 · 北京时间 2026 年 8 月 10 日</div><div class="byline"><strong>金钱豹Ai中转</strong><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a></div></header><h2 id="top">卷首语</h2>
+<p>本期先用“开放模型与专属算力同时提速”这一条主线，解释模型发布、个人智能体愿景和数据中心融资为什么正在合流；随后按模型产品、算力基建、资本政策、安全研究五类列出 10 条实质要闻。每条均标明信源强度；事实与分析严格分区，未经官方证实的内容不会写成结论。</p>
+<h2 id="mainline">今日主线：开放模型不再只是权重发布，而是与终端、工具链和专属算力一起交付</h2>
+<section class="card"><h3 id="m1">重点一：Meta 推出可本地运行的 Muse Glimmer 30B 多模态开放模型</h3>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>Hugging Face 8 月 10 日发布首日适配说明：Meta 的 Muse Glimmer 是一个 300 亿参数的稠密多模态模型，由约 20 亿参数视觉编码器和 280 亿参数文本解码器组成，采用 Apache 2.0 许可，面向本地智能体、编程、文档分析、个人助手和隐私敏感场景。模型首日获得 Transformers、llama.cpp、vLLM 与推理端点支持；官方示例显示它可处理文本、图片和无音频视频，并可选用推测解码模块加速结构化生成。</p>
+<p class="why"><strong>为什么重要：</strong> “开放权重”开始从下载文件升级为一整套可运行交付：明确许可、主流推理框架首日支持、消费级或单机部署目标、多模态输入和智能体工具使用。模型能否快速进入现有工程栈，正变得与榜单分数同样重要。</p>
+<p class="source">来源：Hugging Face 官方博客（2026-08-10）<br />
+<a href="https://huggingface.co/blog/muse-glimmer" target="_blank" rel="noopener">https://huggingface.co/blog/muse-glimmer</a></p>
+</section><section class="card"><h3 id="m2">重点二：Meta 把个人超级智能、免费层与算力竞价机制写进长期路线</h3>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>Meta 首席执行官 Mark Zuckerberg（马克·扎克伯格）8 月 10 日发表长文，主张把“个人超级智能”广泛分发，而不是集中在少数机构。他提出个人代理 24 小时工作、眼镜等终端接入、免费或低价基础版本，以及让愿意购买更多算力的用户通过动态竞价获得资源；同时承认就业替代、数据中心社区影响、网络与生物风险、政府监控及人类控制权等问题。</p>
+<p class="why"><strong>为什么重要：</strong> 这不仅是价值宣言，也勾勒出 Meta 的产品与商业闭环：开放模型扩大开发者供给，眼镜和应用占据入口，免费层扩大覆盖，稀缺算力则被单独计价。开放路线并不等于算力免费，反而可能形成新的算力分配市场。</p>
+<p class="source">来源：Meta 官方（2026-08-10）<br />
+<a href="https://about.fb.com/news/2026/08/the-future-is-for-everyone/" target="_blank" rel="noopener">https://about.fb.com/news/2026/08/the-future-is-for-everyone/</a></p>
+</section><section class="card"><h3 id="m3">重点三：Anthropic 联合 Macquarie 与 GIC 建立专属数据中心平台</h3>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>Anthropic、Macquarie Asset Management（麦格理资产管理）与新加坡政府投资公司 GIC 宣布成立 Theseus Infrastructure（忒修斯基础设施）平台，为 Anthropic 开发、运营并长期出租专用数据中心，初期重点在美国。Macquarie 管理的基金与 GIC 将持有平台并为项目提供大部分股权资本，Anthropic 作为锚定租户签署长期协议，并承诺承担这些设施可能给当地消费者带来的电价上涨。</p>
+<p class="why"><strong>为什么重要：</strong> 模型公司正在从“租云算力”走向“用长期租约绑定资本与土地”。基础设施投资者承担建设和资产持有，模型公司用长期需求锁定融资，这种结构可能成为万亿级 AI 基建的主流融资模板。</p>
+<p class="source">来源：三方联合新闻稿，经 Business Wire 发布（2026-08-10 05:04 PDT）<br />
+<a href="https://finance.yahoo.com/technology/ai/articles/anthropic-macquarie-asset-management-gic-120400841.html" target="_blank" rel="noopener">https://finance.yahoo.com/technology/ai/articles/anthropic-macquarie-asset-management-gic-120400841.html</a></p>
+</section><h2 id="news">今日要闻</h2>
+<h3>模型与产品发布</h3>
+<section class="card"><h4 id="n1">1. Muse Glimmer 把本地多模态智能体推到 300 亿参数档</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>Muse Glimmer 使用统一视觉编码器处理图片和视频，视频默认按每秒约 2 帧采样、最多 96 帧；文本侧采用滑动窗口与全局注意力交替结构，并通过分组查询注意力降低 KV 缓存压力。Hugging Face 给出的加载类为 <code>AutoModelForMultimodalLM</code> 与 <code>AutoProcessor</code>，并说明同一段加载代码可由 <code>device_map="auto"</code> 自动适配 NVIDIA CUDA、AMD ROCm 或 Intel XPU。</p>
+<p class="why"><strong>为什么重要：</strong> 本地模型的竞争焦点正在从“能聊天”转到“能看、能规划、能调用工具且能被主流框架直接加载”。这会压缩封闭 API 在隐私敏感助手、离线文档与边缘智能体上的独占空间。</p>
+<p class="source">来源：Hugging Face 官方博客（2026-08-10）<br />
+<a href="https://huggingface.co/blog/muse-glimmer" target="_blank" rel="noopener">https://huggingface.co/blog/muse-glimmer</a></p>
+</section><section class="card"><h4 id="n2">2. GitHub Copilot 强化并行会话、费用可见性与本地语音</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>GitHub 8 月 7 日周更显示，Copilot 应用会标明每次请求实际使用的模型，并在可用时显示 AI 额度与缓存细节；Copilot CLI 增加并发会话侧栏、隔离工作树实验命令和不依赖 Git 的会话恢复能力。VS Code 1.132 还加入网页元素逐项批注、共享主对话上下文的侧边问答，以及默认使用设备端多语种模型的语音输入。</p>
+<p class="why"><strong>为什么重要：</strong> 编码代理的产品竞争正在转向“多任务不互相污染、成本能追踪、上下文可复用、隐私功能本地化”。这些工程能力会直接决定智能体能否进入日常开发流程，而不只是偶尔生成代码。</p>
+<p class="source">来源：GitHub Changelog（2026-08-07）<br />
+<a href="https://github.blog/changelog/2026-08-07-github-copilot-weekly-releases-august-3/" target="_blank" rel="noopener">https://github.blog/changelog/2026-08-07-github-copilot-weekly-releases-august-3/</a></p>
+</section><h3>算力、芯片与基础设施</h3>
+<section class="card"><h4 id="n3">3. Anthropic 用长期锚定租约吸引基础设施资本建设专属算力</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>Theseus Infrastructure 将寻找并开发新站点，由 Anthropic 作为锚定租户，Macquarie 与 GIC 提供大部分项目股权资金。公告没有披露总投资额、首批站点和功率规模，只确认项目需要显著资本投入，并将创造建设与长期运营岗位。</p>
+<p class="why"><strong>为什么重要：</strong> 长期租约能把未来模型需求转化为今天可融资的现金流，但也把利用率、模型需求和电力价格风险锁进多年合同。行业开始用房地产和能源项目融资逻辑解决算力扩张。</p>
+<p class="source">来源：联合新闻稿（2026-08-10）<br />
+<a href="https://finance.yahoo.com/technology/ai/articles/anthropic-macquarie-asset-management-gic-120400841.html" target="_blank" rel="noopener">https://finance.yahoo.com/technology/ai/articles/anthropic-macquarie-asset-management-gic-120400841.html</a></p>
+</section><section class="card"><h4 id="n4">4. Intel 据报拟发行 150 亿美元普通股，为 AI 周期中的增长投入筹资</h4>
+<p><span class="badge media">媒体报道｜待官方完整确认</span></p>
+<p>Bloomberg 8 月 10 日报道称，Intel 计划发行 150 亿美元普通股，利用 AI 数据中心热潮带来的市场兴趣为增长融资。截至本期核验时，Intel 投资者关系页面尚未出现可直接打开的本次发行公告或对应 SEC 文件，因此发行规模、定价、承销安排和资金用途仍需等待正式文件。</p>
+<p class="why"><strong>为什么重要：</strong> 即使 AI 需求推高芯片行业预期，追赶先进制程、封装和数据中心产品仍然需要巨额资本。股权融资会改善现金弹性，但也可能稀释现有股东，真实条款比标题数字更重要。</p>
+<p class="source">来源：Bloomberg（2026-08-10 11:55 UTC）<br />
+<a href="https://www.bloomberg.com/news/articles/2026-08-10/intel-selling-15-billion-in-common-stock-to-fund-growth" target="_blank" rel="noopener">https://www.bloomberg.com/news/articles/2026-08-10/intel-selling-15-billion-in-common-stock-to-fund-growth</a></p>
+</section><h3>资本、组织与商业</h3>
+<section class="card"><h4 id="n5">5. AI 活动推动全球并购交易升至纪录水平</h4>
+<p><span class="badge media">媒体报道｜待官方完整确认</span></p>
+<p>J.P. Morgan 的 Rohit Chatterji 在 CNBC 8 月 10 日访谈中表示，AI 活动正在推动全球并购交易达到纪录水平，带动范围不仅包括软件与模型公司，还扩展到电力、可再生能源、医疗、房地产和基础设施。公开视频能确认其核心判断，但节目页面未提供完整交易数据库与可复算口径。</p>
+<p class="why"><strong>为什么重要：</strong> AI 的资本影响已从“收购一家模型创业公司”扩展到能源、土地、网络和专业服务。未来大型交易更可能围绕完整算力供应链，而不是单一算法资产。</p>
+<p class="source">来源：CNBC 访谈（2026-08-10）<br />
+<a href="https://www.cnbc.com/video/2026/08/10/ai-activity-fuels-global-ma-deals-to-records-jp-morgan.html" target="_blank" rel="noopener">https://www.cnbc.com/video/2026/08/10/ai-activity-fuels-global-ma-deals-to-records-jp-morgan.html</a></p>
+</section><h3>监管、安全与治理</h3>
+<section class="card"><h4 id="n6">6. 韩国拟以特别法加速 AI、半导体与数据中心超级项目审批</h4>
+<p><span class="badge media">媒体报道｜待官方完整确认</span></p>
+<p>韩国总统秘书室负责人表示，政府计划年内制定特别法，为 AI 投资项目设立特别区域，简化许可、环境影响评估以及电力、供水、交通、住房和教育配套。报道将该法案与半导体集群、物理 AI 和区域 AI 数据中心三类超级项目相连；其中三星电子与 SK 海力士在芯片集群部分承诺合计投资 800 万亿韩元，但法案文本尚未公开。</p>
+<p class="why"><strong>为什么重要：</strong> 国家级 AI 竞争正在从补贴模型研发，转向压缩数据中心和芯片园区的建设周期。审批提速能改善落地速度，也会提高环境、电网、地方财政与社区利益分配的治理压力。</p>
+<p class="source">来源：UPI 转引韩联社（2026-08-10）<br />
+<a href="https://www.upi.com/Top_News/World-News/2026/08/10/korea-South-Korea-special-zone-AI-investment-projects-special-law/8531786357219/" target="_blank" rel="noopener">https://www.upi.com/Top_News/World-News/2026/08/10/korea-South-Korea-special-zone-AI-investment-projects-special-law/8531786357219/</a></p>
+</section><section class="card"><h4 id="n7">7. INTERPOL：AI 已关联非洲 55% 的已报告网络犯罪</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>国际刑警组织（INTERPOL）发布《2026 年非洲网络威胁评估报告》，称 AI 正在助推非洲 55% 的已报告网络犯罪，使攻击更快、更易规模化，也更难被受害者和平台识别。成员国调查还显示，72% 的非洲国家报告存在诈骗中心，南部和西部非洲最集中。</p>
+<p class="why"><strong>为什么重要：</strong> AI 风险已经从“未来模型可能被滥用”转为现实犯罪规模问题。语音、图像、文本自动化与跨境诈骗中心结合后，执法、身份验证、支付风控和平台内容审核必须协同升级。</p>
+<p class="source">来源：INTERPOL 官方（2026）<br />
+<a href="https://www.interpol.int/News-and-Events/News/2026/INTERPOL-report-finds-AI-linked-to-more-than-half-of-cybercrime-in-Africa" target="_blank" rel="noopener">https://www.interpol.int/News-and-Events/News/2026/INTERPOL-report-finds-AI-linked-to-more-than-half-of-cybercrime-in-Africa</a></p>
+</section><section class="card"><h4 id="n8">8. Claude Code 与 Gemini CLI 漏洞暴露：风险常在模型外层执行框架</h4>
+<p><span class="badge media">媒体报道｜待官方完整确认</span></p>
+<p>The Hacker News 8 月 7 日汇总 Black Hat 公开研究称，Gemini CLI 的 CVE-2026-12537 可在沙箱启动前通过构造配置触发宿主机命令执行，已在 Gemini CLI 0.39.1 与 run-gemini-cli 0.1.22 修复；Claude Code 的 CVE-2026-54316 可借公开下载计数通道逐字符外泄密钥，报道建议升级到 2.1.163 或更高版本。CISA 记录当时未显示已被现实攻击利用，报道中的攻击均依赖不可信内容进入自动化工作流。</p>
+<p class="why"><strong>为什么重要：</strong> 智能体安全不能只测模型是否“听话”，还要审查从外部输入、配置解析、工具白名单到 CI 权限的整条执行链。一个低权限 GitHub Issue 也可能通过工作流获得远高于提交者的权限。</p>
+<p class="source">来源：The Hacker News（2026-08-07）；漏洞细节仍应以厂商公告与 CVE 记录为准<br />
+<a href="https://thehackernews.com/2026/08/claude-code-and-gemini-cli-flaws-let.html" target="_blank" rel="noopener">https://thehackernews.com/2026/08/claude-code-and-gemini-cli-flaws-let.html</a></p>
+</section><h3>开源社区与研究</h3>
+<section class="card"><h4 id="n9">9. 论文显示：一张纸上的文字就可能劫持视觉语言模型控制的机器人</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>arXiv:2608.05715 对视觉语言模型控制的机器人进行了 5,670 次物理提示注入试验，攻击文字被直接放进机器人视野。作者报告 GPT-4o、Gemini 2.5 Flash、Qwen3-VL-32B 的攻击成功率分别为 27.0%、29.4% 和 5.0%；提示防御、两阶段复核和文字遮罩在其基准中可显著降低风险，文字遮罩达到 100%，但可能伤害必须读取现场标签的任务。</p>
+<p class="why"><strong>为什么重要：</strong> 机器人看到的标牌、包装、屏幕和便签都可能成为间接指令。物理 AI 的安全边界必须把视觉内容视为不可信输入，并在动作执行前加入独立规则或二次验证。</p>
+<p class="source">来源：arXiv:2608.05715v1（提交于 2026-08-06 07:52 UTC）<br />
+<a href="https://arxiv.org/abs/2608.05715" target="_blank" rel="noopener">https://arxiv.org/abs/2608.05715</a></p>
+</section><section class="card"><h4 id="n10">10. “AI 科学家”综述指出：代码能运行，不等于研究结论可核验</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>arXiv:2608.05179 调查 35 项自主研究智能体工作，并对其中 26 项进行全文编码。作者称，24 个可运行系统中有 83% 发布代码，但只有 38% 发布随机种子或执行轨迹，只有 38% 报告任何新颖性核验方法；九个闭环高自治系统中，没有一个满足其“外部验证的环内判定器”标准。</p>
+<p class="why"><strong>为什么重要：</strong> AI 科研的瓶颈正从“能不能写出论文式结果”转向“审稿人能不能重建证据链”。未来高质量系统需要公开运行轨迹、失败实验、结果筛选规则与新颖性检查，而不只是仓库地址。</p>
+<p class="source">来源：arXiv:2608.05179v1（论文页面当前可核验；初次提交于 2026-06-29）<br />
+<a href="https://arxiv.org/abs/2608.05179" target="_blank" rel="noopener">https://arxiv.org/abs/2608.05179</a></p>
+</section><h2 id="rumor">行业风声</h2>
+<p>今日无高价值、可追踪的行业传闻。有关 Gemini 3.7 Flash、未公开模型跑分和所谓内部发布日期的传播主要来自二手汇总，缺少厂商公告、可核验接口或具名信源，本期不收录为要闻。</p>
+<h2 id="edu">📚 AI实用教程</h2>
+<section class="edu-card"><h3 id="e1">① Claude Code 系列第 5 期：让“测试”和“安全审查”各司其职</h3>
+<ul>
+<li><strong>难度：</strong> 进阶</li>
+<li><strong>预计动手时间：</strong> 25—35 分钟</li>
+<li><strong>成本：</strong> 配置免费；调用子代理按所选 Claude 模型计费</li>
+<li><strong>环境版本：</strong> Claude Code v2.1.205+；项目已有可运行测试</li>
+<li><strong>适用场景：</strong> 上一期已经用 PostToolUse 自动跑最小测试，希望再增加只读安全审查，但不让审查代理直接改代码。</li>
+</ul>
+<p>把确定性测试留给 Hook，把开放式判断交给只读子代理。项目内创建 <code>.claude/agents/security-reviewer.md</code>：</p>
+<pre><code class="language-markdown">---
+name: security-reviewer
+description: 修改完成且测试通过后，主动审查安全、权限边界和输入验证
+tools: Read, Glob, Grep
+model: sonnet
+permissionMode: plan
+maxTurns: 8
+---
+
+你是只读安全审查员。只检查本次改动及其直接调用链，不修改文件。
+必须依次检查：
+1. 外部输入是否在进入 shell、SQL、模板、文件路径前被约束；
+2. 密钥、令牌、个人信息是否可能写入日志或错误信息；
+3. 新增工具调用是否扩大权限、网络访问或持久化范围；
+4. 失败分支是否会绕过鉴权、重试边界或幂等控制；
+5. 测试是否覆盖至少一个拒绝路径。
+
+输出固定为：严重问题、一般问题、缺失测试、可以合并的理由。
+没有发现问题时也要明确写“未发现阻断合并的问题”，并列出仍未覆盖的风险。
+</code></pre>
+<p>然后在 Claude Code 中直接发出完整任务：</p>
+<pre><code class="language-text">请先完成当前功能修改并运行项目现有测试。测试通过后，调用 security-reviewer 子代理做只读审查。主线程不得根据猜测宣称安全；必须把子代理发现的问题逐条列出。若存在严重问题，先停止合并并给出最小修复方案；若无严重问题，再给出测试结果和合并建议。
+</code></pre>
+<p><strong>验证方法：</strong> 子代理只应拥有 Read、Glob、Grep；输出中应出现四个固定栏目，且不会调用 Write 或 Edit。Claude Code 官方说明，项目子代理位于 <code>.claude/agents/</code>，YAML 中 <code>tools</code> 是允许工具清单，<code>permissionMode: plan</code> 为只读规划模式，<code>maxTurns</code> 可限制代理回合数。</p>
+<p><strong>常见坑：</strong> 首次在会话中创建 <code>.claude/agents/</code> 目录后，官方文档提示可能需要重启一次会话；不要给安全审查员 Bash、Write、Edit，否则“审查”可能变成未经批准的修复；模型名应使用账户可用别名或完整模型 ID。</p>
+<p><strong>什么情况下不该用：</strong> 涉及正式渗透测试、合规认证或高危生产变更时，子代理审查不能替代专业安全人员和独立测试环境。</p>
+<p>参考：Claude Code 自定义子代理官方文档<br />
+<a href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener">https://code.claude.com/docs/en/sub-agents</a></p>
+<p><strong>下期预告：</strong> 第 6 期将把子代理放进隔离工作树，让高风险重构与主分支彻底分开，并讲清自动清理与合并边界。</p>
+</section><section class="edu-card"><h3 id="e2">② Hermes Agent 系列第 5 期：用“多技能 + 预检”串起采集、核验、归档</h3>
+<ul>
+<li><strong>难度：</strong> 进阶</li>
+<li><strong>预计动手时间：</strong> 20—30 分钟</li>
+<li><strong>成本：</strong> 技能文件免费；定时运行按固定模型计费</li>
+<li><strong>环境版本：</strong> 以 Hermes Agent 当前官方 Skills 与 Cron 文档为准</li>
+<li><strong>适用场景：</strong> 已经有三个可用技能，希望无人值守任务按固定顺序执行，并在密钥、技能依赖或投递配置缺失时不烧词元。</li>
+</ul>
+<p>Hermes 的 Cron 可以在任务开始前加载一个或多个技能，并按声明顺序叠加；调度器还会在构造智能体前检查服务商密钥、技能依赖和投递目标。下面用自然语言创建，避免依赖不同版本可能变化的长参数组合：</p>
+<pre><code class="language-text">请创建一个名为“每日项目情报链”的定时任务，每天北京时间 09:00 运行，工作目录固定为 C:/work/my-project，固定使用我已经配置并核验的低成本模型和服务商。
+
+运行前依次加载以下三个已安装技能：
+1. collect-changes：采集过去24小时提交、发行版和持续集成变化；
+2. verify-sources：打开原始链接，区分官方信息、媒体报道和未经证实内容；
+3. archive-report：把最终中文报告写入工作目录下 reports/当天日期.md。
+
+任务要求：
+- 任一步失败都停止后续步骤，并用中文说明失败位置；
+- 没有变化时只输出 [SILENT]；
+- 不创建新的定时任务，不修改三个技能；
+- 先执行 Cron 预检，密钥、技能依赖或投递配置缺失时不得调用模型；
+- 创建后立即显示任务摘要，但不要立刻触发正式运行。
+</code></pre>
+<p>技能说明文件需要明确声明依赖。一个最小 <code>~/.hermes/skills/verify-sources/SKILL.md</code> 可写为：</p>
+<pre><code class="language-markdown">---
+name: verify-sources
+description: 打开原始来源，核验日期、事实与可信度分层
+---
+
+# 来源核验
+
+1. 优先打开公司、监管机构、论文或代码仓库原页。
+2. 搜索摘要只能用于发现线索，不能作为最终证据。
+3. 每条输出：中文标题、事实摘要、来源、原始链接、发布时间、可信度。
+4. 无法打开原页时降级为“媒体报道｜待官方完整确认”。
+5. 匿名爆料必须写“行业风声｜未经证实”，并说明证据弱点。
+</code></pre>
+<p><strong>验证方法：</strong> 创建后查看任务摘要，确认工作目录、模型固定项和三个技能顺序正确。首次试运行应观察三种结果之一：成功完成、业务失败、<code>blocked_config</code>；官方文档说明预检失败时只报警一次且不会发起模型调用。</p>
+<p><strong>常见坑：</strong> 技能名称必须与已安装技能一致；Cron 在全新会话运行，任务提示必须写全 URL、目录和输出要求；有工作目录的任务会按调度 tick 串行执行；定时任务内不能递归创建新 Cron。</p>
+<p><strong>什么情况下不该用：</strong> 需要强事务、秒级触发或必须保证外部写入恰好一次时，不应只依赖普通 Cron，应在业务系统增加队列与幂等键。</p>
+<p>参考：Hermes Agent Skills 与 Cron 官方文档<br />
+<a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/skills" target="_blank" rel="noopener">https://hermes-agent.nousresearch.com/docs/user-guide/features/skills</a><br />
+<a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron" target="_blank" rel="noopener">https://hermes-agent.nousresearch.com/docs/user-guide/features/cron</a></p>
+<p><strong>下期预告：</strong> 第 6 期将把这条链拆成多个可观测节点，用看板记录输入、产物、失败出口和人工复核状态。</p>
+</section><section class="edu-card"><h3 id="e3">③ Claude 模型系列第 5 期：按任务、模型与线路做每日成本对账</h3>
+<ul>
+<li><strong>难度：</strong> 进阶</li>
+<li><strong>预计动手时间：</strong> 20—30 分钟</li>
+<li><strong>成本：</strong> 对账脚本免费；模型请求按真实用量计费</li>
+<li><strong>环境版本：</strong> Python 3.10+，延续上期生成的 <code>claude_usage.jsonl</code></li>
+<li><strong>适用场景：</strong> 已经记录每次调用的输入、缓存与输出词元，希望按任务和中转线路汇总，并在月度预算接近上限时报警。</li>
+</ul>
+<p>将上期账本每行补充 <code>task</code>、<code>provider</code> 和各项单价；价格必须来自你的实际合同或官方价格页。保存为 <code>claude_cost_report.py</code>：</p>
+<pre><code class="language-python">import json
+import os
+from collections import defaultdict
+from datetime import datetime
+from pathlib import Path
+
+LEDGER = Path(os.getenv(&quot;CLAUDE_LEDGER&quot;, &quot;claude_usage.jsonl&quot;))
+MONTH = os.getenv(&quot;REPORT_MONTH&quot;, datetime.now().strftime(&quot;%Y-%m&quot;))
+BUDGET_USD = float(os.getenv(&quot;MONTHLY_BUDGET_USD&quot;, &quot;100&quot;))
+
+# 单位均为“美元/百万词元”。请按你的真实线路填写，不要照抄示例。
+PRICES = {
+    &quot;official/claude-sonnet-5&quot;: {
+        &quot;input&quot;: 2.00,
+        &quot;cache_read&quot;: 0.20,
+        &quot;cache_write&quot;: 2.50,
+        &quot;output&quot;: 10.00,
+    },
+    &quot;relay/claude-sonnet-5&quot;: {
+        &quot;input&quot;: 2.20,
+        &quot;cache_read&quot;: 0.22,
+        &quot;cache_write&quot;: 2.75,
+        &quot;output&quot;: 11.00,
+    },
+}
+
+def usd(tokens, price):
+    return float(tokens or 0) / 1_000_000 * price
+
+rows = defaultdict(lambda: {&quot;calls&quot;: 0, &quot;usd&quot;: 0.0})
+with LEDGER.open(encoding=&quot;utf-8&quot;) as f:
+    for line in f:
+        item = json.loads(line)
+        if not str(item.get(&quot;time&quot;, &quot;&quot;)).startswith(MONTH):
+            continue
+        route = f&quot;{item.get('provider', 'unknown')}/{item['model']}&quot;
+        if route not in PRICES:
+            raise SystemExit(f&quot;缺少价格配置：{route}&quot;)
+        p = PRICES[route]
+        cost = (
+            usd(item.get(&quot;input_tokens&quot;), p[&quot;input&quot;])
+            + usd(item.get(&quot;cache_read_input_tokens&quot;), p[&quot;cache_read&quot;])
+            + usd(item.get(&quot;cache_creation_input_tokens&quot;), p[&quot;cache_write&quot;])
+            + usd(item.get(&quot;output_tokens&quot;), p[&quot;output&quot;])
+        )
+        key = (item.get(&quot;task&quot;, &quot;未分类&quot;), route)
+        rows[key][&quot;calls&quot;] += 1
+        rows[key][&quot;usd&quot;] += cost
+
+total = sum(v[&quot;usd&quot;] for v in rows.values())
+print(f&quot;月份：{MONTH}  总成本：${total:.2f}  预算：${BUDGET_USD:.2f}&quot;)
+for (task, route), value in sorted(rows.items(), key=lambda x: -x[1][&quot;usd&quot;]):
+    print(f&quot;{task:16} {route:32} {value['calls']:4d} 次  ${value['usd']:.2f}&quot;)
+
+ratio = total / BUDGET_USD if BUDGET_USD else 1
+if ratio &gt;= 1:
+    raise SystemExit(&quot;预算已超限：请暂停非必要任务或切换低成本模型。&quot;)
+elif ratio &gt;= 0.8:
+    print(&quot;警告：本月预算已使用 80% 以上。&quot;)
+</code></pre>
+<p>运行：</p>
+<pre><code class="language-bash">export CLAUDE_LEDGER=&quot;claude_usage.jsonl&quot;
+export REPORT_MONTH=&quot;2026-08&quot;
+export MONTHLY_BUDGET_USD=&quot;100&quot;
+python claude_cost_report.py
+</code></pre>
+<p>账本中的单行示例：</p>
+<pre><code class="language-json">{&quot;time&quot;:&quot;2026-08-10T01:00:00+00:00&quot;,&quot;task&quot;:&quot;代码审查&quot;,&quot;provider&quot;:&quot;official&quot;,&quot;model&quot;:&quot;claude-sonnet-5&quot;,&quot;input_tokens&quot;:12000,&quot;cache_read_input_tokens&quot;:8000,&quot;cache_creation_input_tokens&quot;:0,&quot;output_tokens&quot;:900}
+</code></pre>
+<p><strong>验证方法：</strong> 先用一行示例账本运行，应看到月份、总成本、任务、线路和调用次数。把预算临时改成 <code>0.01</code>，应触发中文超限退出。Anthropic 当前定价页显示 Claude Sonnet 5 在 2026 年 8 月 31 日前采用介绍价，9 月 1 日起价格变化，因此价格表必须按月份维护。</p>
+<p><strong>常见坑：</strong> 中转线路可能把缓存词元合并进普通输入，需按它真实返回字段调整；新分词器可能让同一文本产生更多词元，不能用字符数反推费用；示例中的中转加价只是演示，不代表任何服务商报价。</p>
+<p><strong>什么情况下不该用：</strong> 需要财务审计、发票对账或税务入账时，本地估算不能替代服务商账单、合同和发票。</p>
+<p>参考：Claude 官方定价与 Messages API 文档<br />
+<a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">https://platform.claude.com/docs/en/about-claude/pricing</a><br />
+<a href="https://platform.claude.com/docs/en/api/messages" target="_blank" rel="noopener">https://platform.claude.com/docs/en/api/messages</a></p>
+<p><strong>下期预告：</strong> 第 6 期将加入按日预测、预算耗尽日期和自动降级建议，并区分“模型更贵”与“上下文变长”两类成本异常。</p>
+</section><h2 id="judge">🤖 AI独立研判（非新闻事实）</h2><div class="judge">
+<blockquote>
+<p>以下内容是基于本期已收集事实作出的分析，不是任何公司、监管机构或媒体的官方消息。</p>
+</blockquote>
+<ol>
+<li><strong>【AI独立研判】开放模型的竞争单位正在从“一个权重文件”变成“模型 + 终端 + 框架 + 算力市场”。</strong> Muse Glimmer 首日接入多个推理框架，Meta 同时谈个人代理、眼镜和算力竞价，说明开放权重只是分发入口，真正的商业闭环仍在终端、服务和计算资源。</li>
+<li><strong>【AI独立研判】专属数据中心平台会让模型公司更像航空公司。</strong> 它们不一定拥有全部资产，却会用长期租约锁定巨额基础设施；需求预测一旦错误，固定承诺会成为沉重负担，利用率管理将与模型能力同样关键。</li>
+<li><strong>【AI独立研判】智能体安全的核心对象正在从模型扩大到“外层执行框架”。</strong> CI 漏洞与机器人纸面提示注入共同说明，不可信信息可以从代码仓库、配置文件或摄像头进入系统，再借工具权限放大。安全评测必须覆盖输入来源、权限传播和最终动作。</li>
+<li><strong>【AI独立研判】未来 1—4 周值得观察：</strong> Muse Glimmer 的真实显存需求、速度与独立评测；Theseus 首批站点和功率规模；Intel 是否提交正式发行文件；韩国特别法文本是否包含电网、用水与地方补偿约束。</li>
+<li><strong>【AI独立研判】我可能判断错的地方：</strong> 300 亿参数本地模型未必能在大众设备上提供可接受速度；Meta 的算力竞价可能只停留在长期设想；专属数据中心平台也可能只是现有云租赁的融资重包装，而非结构性变化。</li>
+</ol>
+</div><h2 id="roadmap">连载路线图</h2>
+<table>
+<thead>
+<tr>
+<th>系列</th>
+<th>第 3 期（已发）</th>
+<th>第 4 期（已发）</th>
+<th>第 5 期（本期）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① Claude Code</td>
+<td>PreToolUse 保护敏感文件</td>
+<td>PostToolUse 自动跑最小测试集</td>
+<td>测试 Hook + 只读安全审查子代理</td>
+</tr>
+<tr>
+<td>② Hermes Agent</td>
+<td>多子代理审计与失败分支</td>
+<td>可恢复、可审计、只报变化的 Cron</td>
+<td>多技能串联 + Cron 预检</td>
+</tr>
+<tr>
+<td>③ Claude 模型</td>
+<td>限流退避、主备模型</td>
+<td>词元预检、上下文压缩与用量账本</td>
+<td>按任务、模型与线路做成本对账</td>
+</tr>
+</tbody>
+</table>
+<h2 id="end">编后与核验说明</h2>
+<p>本期按北京时间 2026-08-10 归档。Meta、Hugging Face、GitHub、INTERPOL、Claude 官方文档与 arXiv 页面均已直接打开核验；Anthropic 基建合作采用三方联合新闻稿；韩国特别法采用 UPI 转引韩联社，法案文本尚未公开；Intel 发股消息仅见 Bloomberg 报道且未找到公司公告，已降级；漏洞报道可核验到 CVE 与修复版本，但未发现现实利用证据。行业风声区未收录缺乏一手证据的模型发布日期猜测。</p><footer><strong>金钱豹Ai中转</strong><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a><p>信源分层：正式信息为可直接核验的一手来源；媒体报道为具名媒体但仍缺部分官方文件；行业风声为未经证实线索。本期未收录高价值传闻。</p><a href="#top">回到顶部</a></footer></div></main><a class="top" href="#top" aria-label="回到顶部">↑</a><script>(function(){var a=[...document.querySelectorAll('#tocnav a')],t=a.map(x=>document.querySelector(x.getAttribute('href')));function s(){var p=scrollY+80,i=0;t.forEach((x,n)=>{if(x&&x.offsetTop<=p)i=n});a.forEach((x,n)=>x.classList.toggle('active',n===i))}addEventListener('scroll',s,{passive:true});s()})();</script><button id="annotation-trigger" class="annotation-trigger" type="button" hidden>评论这句话</button><div class="annotation-panel" id="annotation-panel" data-open="false" hidden><section class="annotation-sheet" role="dialog" aria-modal="true" aria-label="文内批注"><header class="annotation-head"><strong>评论选中的内容</strong><button class="annotation-close" id="annotation-close" type="button" aria-label="关闭">×</button></header><blockquote class="annotation-quote" id="annotation-quote"></blockquote><p class="annotation-note">评论会留在这段文字旁边，其他读者之后也能看到对应批注。</p><div class="annotation-giscus" id="annotation-giscus"></div></section></div><div class="annotation-tip" id="annotation-tip" hidden>长按或拖选一句话，再点击“评论这句话”</div><div class="site-actions"><a href="../../forum.html?section=daily">返回AI日报版块</a><button type="button" id="issue-share">系统分享</button><button type="button" id="issue-copy-link">复制链接</button><a id="issue-forum-share" class="forum-share" href="../../forum.html?compose=share">分享到论坛</a><button type="button" id="annotation-help">文内批注</button></div><div class="share-status" id="issue-share-status" aria-live="polite">链接已复制</div><script>
+(function(){var share=document.getElementById('issue-share'),copy=document.getElementById('issue-copy-link'),forum=document.getElementById('issue-forum-share'),status=document.getElementById('issue-share-status');function done(){status.style.display='block';setTimeout(function(){status.style.display='none'},1600)}share.addEventListener('click',async function(){try{if(navigator.share){await navigator.share({title:document.title,url:location.href});return}await navigator.clipboard.writeText(location.href);done()}catch(e){}});copy.addEventListener('click',async function(){try{await navigator.clipboard.writeText(location.href);done()}catch(e){}});forum.addEventListener('click',function(e){e.preventDefault();location.href='../../forum.html?compose=share&title='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href)})})();
+</script><script type="module" src="../../annotation-client.mjs"></script></body></html>
