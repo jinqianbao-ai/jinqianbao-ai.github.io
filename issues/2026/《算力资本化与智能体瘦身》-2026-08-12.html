@@ -126,7 +126,7 @@ body{margin:0;background:var(--page)!important;color:var(--ink)!important;font-f
 <li><strong>环境：</strong> Claude Code 当前官方版本、Git 仓库</li>
 <li><strong>场景：</strong> 上期已建立测试与只读审查，现在把高风险重构与主工作区隔离。</li>
 </ul>
-<pre><code class="bash">printf n.claude/worktrees/n &gt;&gt; .gitignore
+<pre><code class="bash">printf &#x27;%s\n&#x27; &#x27;.claude/worktrees/&#x27; &gt;&gt; .gitignore
 git add .gitignore &amp;&amp; git commit -m &quot;忽略 Claude Code 工作树目录&quot;
 claude --worktree auth-refactor</code></pre>
 <p>进入隔离会话后发送： </p>
