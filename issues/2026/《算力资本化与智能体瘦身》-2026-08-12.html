@@ -122,60 +122,36 @@ body{margin:0;background:var(--page)!important;color:var(--ink)!important;font-f
 <section id="edu"><h2 class="sec edu">📚 AI实用教程</h2><div class="edubody">
 <h3 id="e1">① Claude Code 系列第 6 期：用 Git Worktree 隔离高风险重构</h3>
 <ul>
-<li><strong>难度：</strong> 进阶</li>
-<li><strong>预计动手时间：</strong> 20—30 分钟</li>
-<li><strong>成本：</strong> 功能免费；模型调用按账户方案计费</li>
-<li><strong>环境版本：</strong> Claude Code 官方文档当前版本；Git 仓库</li>
-<li><strong>适用场景：</strong> 上期已建立测试与只读安全审查，希望让重构不触碰主工作区。</li>
+<li><strong>难度：</strong> 进阶｜<strong>动手：</strong> 20—30 分钟｜<strong>成本：</strong> 功能免费，模型调用计费</li>
+<li><strong>环境：</strong> Claude Code 当前官方版本、Git 仓库</li>
+<li><strong>场景：</strong> 上期已建立测试与只读审查，现在把高风险重构与主工作区隔离。</li>
 </ul>
-<p>在仓库根目录先把 Claude Code 工作树目录加入忽略文件，然后启动隔离会话： </p>
-<pre><code class="bash">printf &#x27;\n.claude/worktrees/\n&#x27; &gt;&gt; .gitignore
-git add .gitignore
-git commit -m &quot;忽略 Claude Code 工作树目录&quot;
+<pre><code class="bash">printf n.claude/worktrees/n &gt;&gt; .gitignore
+git add .gitignore &amp;&amp; git commit -m &quot;忽略 Claude Code 工作树目录&quot;
 claude --worktree auth-refactor</code></pre>
-<p>Claude Code 会在 <code>.claude/worktrees/auth-refactor/</code> 创建独立工作目录，并使用 <code>worktree-auth-refactor</code> 分支。进入后直接发送完整任务： </p>
-<pre><code class="text">请只在当前工作树中重构认证模块。先运行现有测试建立基线，再做最小改动；不得修改主工作区。完成后运行全部相关测试，调用只读安全审查子代理，最后列出提交、测试、未解决风险和建议合并方式。若测试失败，不要合并或删除工作树。</code></pre>
-<p>验证： </p>
+<p>进入隔离会话后发送： </p>
+<pre><code class="text">请只在当前工作树重构认证模块。先运行测试建立基线，再做最小改动；完成后运行相关测试并调用只读安全审查子代理。若测试失败，不得合并或删除工作树。最后列出提交、测试、风险和建议合并方式。</code></pre>
 <pre><code class="bash">git worktree list
 git -C .claude/worktrees/auth-refactor status --short
 git status --short</code></pre>
-<p>第一条应看到独立工作树；第二条显示隔离分支改动；主工作区不应出现同一批业务文件。退出交互会话时，Claude 会检查未提交改动和新提交，避免误删有价值工作。 </p>
-<p><strong>常见坑：</strong> Worktree 只适用于 Git；新工作树不会自动带入被忽略的 <code>.env</code>，不要复制真实密钥进教程或仓库；首次交互使用可能需要先在仓库接受工作区信任。非交互 <code>-p</code> 会跳过该信任检查，自动化前应先确认目录和权限。 </p>
-<p><strong>什么情况下不该用：</strong> 只有一个极小改动、没有并行任务，或项目不使用 Git 时，不必增加工作树复杂度。 </p>
-<p>参考：Claude Code 官方 Worktree 文档   </p>
-<p><a href="https://code.claude.com/docs/en/worktrees">https://code.claude.com/docs/en/worktrees</a> </p>
-<p><strong>下期预告：</strong> 第 7 期将把两个工作树交给不同子代理并行实现，再由第三个只读代理统一审查差异与合并顺序。 </p>
+<p><strong>验证：</strong> 第一条出现独立工作树，第二条显示隔离分支改动，主工作区不出现同一批业务文件。<strong>常见坑：</strong> Worktree 仅适用于 Git；被忽略的 <code>.env</code> 不会自动带入；首次交互可能需要接受工作区信任。<strong>不该用：</strong> 极小改动、无并行任务或非 Git 项目。 </p>
+<p>参考：https://code.claude.com/docs/en/worktrees </p>
+<p><strong>下期预告：</strong> 第 7 期让两个工作树并行实现，再由第三个只读代理统一审查。 </p>
 <h3 id="e2">② Hermes Agent 系列第 6 期：用 Kanban 把长期任务变成可恢复工作流</h3>
 <ul>
-<li><strong>难度：</strong> 进阶</li>
-<li><strong>预计动手时间：</strong> 20—35 分钟</li>
-<li><strong>成本：</strong> 看板本身免费；工作代理按所选模型计费</li>
-<li><strong>环境版本：</strong> 以 Hermes Agent 当前 Kanban 官方文档为准</li>
-<li><strong>适用场景：</strong> 上期的多技能 Cron 已能定时运行，但需要把采集、核验、写作、复核拆成可追踪节点。</li>
+<li><strong>难度：</strong> 进阶｜<strong>动手：</strong> 20—35 分钟｜<strong>成本：</strong> 看板免费，工作代理计费</li>
+<li><strong>环境：</strong> Hermes Agent 当前 Kanban 官方文档</li>
+<li><strong>场景：</strong> 把上期多技能 Cron 拆成可追踪、可阻塞、可恢复的节点。</li>
 </ul>
-<p>直接在 Hermes 对话中发送： </p>
-<pre><code class="text">请为“每日产品情报”建立一个持久 Kanban 工作流，共四个任务：
-1. 采集：收集过去24小时官方发布与代码仓库更新；
-2. 核验：逐条打开原始链接并标注可信度；
-3. 写作：只使用已核验材料生成中文简报；
-4. 复核：检查数字、日期、死链与事实/分析分区。
-
-依赖关系必须是：采集完成后才能核验，核验完成后才能写作，写作完成后才能复核。
-每个任务都要写明输入、预期产物、失败出口和完成标准；任何任务被阻塞时保留原因，不得静默跳过。复核通过后才标记整条工作流完成。</code></pre>
-<p>Hermes Kanban 是持久任务板：任务、交接、评论和附件写入同一 SQLite 看板，工作代理是独立进程，失败后可阻塞、解除阻塞并重跑。它与短期 <code>delegate_task</code> 不同：后者像函数调用，Kanban 更像可恢复队列。 </p>
-<p><strong>验证方法：</strong> 在看板或 <code>/kanban</code> 入口检查四个任务是否都有状态、依赖和完成标准；故意让“核验”缺少一个来源，确认它进入阻塞而不是直接放行；补充链接后再解除阻塞。 </p>
-<p><strong>常见坑：</strong> 不要让模型在工作代理内用 shell 调 <code>hermes kanban</code>，官方设计是代理使用 <code>kanban_*</code> 工具，人和自动化才使用 CLI／斜杠命令；任务粒度不要大到一次执行数小时，也不要细到每个链接一个任务；跨代理交接必须附产物或 URL。 </p>
-<p><strong>什么情况下不该用：</strong> 父代理只需要一个几分钟内返回的简单答案时，使用普通子代理更轻；需要严格金融级恰好一次事务时，还应使用业务队列与幂等键。 </p>
-<p>参考：Hermes Agent Kanban 官方文档   </p>
-<p><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban">https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban</a> </p>
-<p><strong>下期预告：</strong> 第 7 期将配置研究、写作、审查三条 Worker Lane（工作代理通道），加入失败重试与人工批准门。 </p>
+<p>在 Hermes 对话中发送： </p>
+<pre><code class="text">请为“每日产品情报”建立持久 Kanban 工作流：采集→核验→写作→复核。每个任务必须写明输入、产物、失败出口和完成标准；前一任务完成后才能解锁下一任务。缺少来源时把“核验”标记为阻塞并保留原因，补充来源后再解除阻塞。复核通过后才能标记整条工作流完成。</code></pre>
+<p><strong>验证：</strong> 在看板或 <code>/kanban</code> 检查四个任务的依赖与状态；故意缺一个来源，应进入阻塞而不是放行。<strong>常见坑：</strong> 工作代理应使用 <code>kanban_*</code> 工具，不要让模型用 shell 调 <code>hermes kanban</code>；交接必须附产物或 URL。<strong>不该用：</strong> 父代理只等一个几分钟内返回的简单答案时，普通子代理更轻。 </p>
+<p>参考：https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban </p>
+<p><strong>下期预告：</strong> 第 7 期配置研究、写作、审查三条工作代理通道，并加入重试和人工批准门。 </p>
 <h3 id="e3">③ Claude 模型系列第 6 期：预测预算耗尽日期并给出降级建议</h3>
 <ul>
-<li><strong>难度：</strong> 进阶</li>
-<li><strong>预计动手时间：</strong> 20—30 分钟</li>
-<li><strong>成本：</strong> 脚本免费；请求按真实模型价格计费</li>
-<li><strong>环境版本：</strong> Python 3.10+；延续上期 <code>claude_usage.jsonl</code></li>
-<li><strong>适用场景：</strong> 已能按任务与线路对账，希望提前知道预算何时耗尽。</li>
+<li><strong>难度：</strong> 进阶｜<strong>动手：</strong> 20—30 分钟｜<strong>成本：</strong> 脚本免费，请求计费</li>
+<li><strong>环境：</strong> Python 3.10+、上期 <code>claude_usage.jsonl</code></li>
 </ul>
 <p>保存为 <code>claude_budget_forecast.py</code>： </p>
 <pre><code class="python">import json, os
@@ -183,62 +159,32 @@ from collections import defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
-LEDGER = Path(os.getenv(&quot;CLAUDE_LEDGER&quot;, &quot;claude_usage.jsonl&quot;))
-BUDGET = float(os.getenv(&quot;MONTHLY_BUDGET_USD&quot;, &quot;100&quot;))
-TODAY = date.fromisoformat(os.getenv(&quot;REPORT_DATE&quot;, date.today().isoformat()))
+LEDGER=Path(os.getenv(&quot;CLAUDE_LEDGER&quot;,&quot;claude_usage.jsonl&quot;))
+BUDGET=float(os.getenv(&quot;MONTHLY_BUDGET_USD&quot;,&quot;100&quot;))
+TODAY=date.fromisoformat(os.getenv(&quot;REPORT_DATE&quot;,date.today().isoformat()))
+PRICES={
+ &quot;claude-sonnet-5&quot;:{&quot;input&quot;:2,&quot;cache_read&quot;:.2,&quot;cache_write&quot;:2.5,&quot;output&quot;:10},
+ &quot;claude-haiku-4-5&quot;:{&quot;input&quot;:1,&quot;cache_read&quot;:.1,&quot;cache_write&quot;:1.25,&quot;output&quot;:5}}
+def usd(n,p): return float(n or 0)*p/1_000_000
 
-# 这里填写你的真实结算价，单位：美元/百万词元。
-PRICES = {
-    &quot;claude-sonnet-5&quot;: {&quot;input&quot;: 2.0, &quot;cache_read&quot;: 0.2, &quot;cache_write&quot;: 2.5, &quot;output&quot;: 10.0},
-    &quot;claude-haiku-4-5&quot;: {&quot;input&quot;: 1.0, &quot;cache_read&quot;: 0.1, &quot;cache_write&quot;: 1.25, &quot;output&quot;: 5.0},
-}
-
-def part(tokens, price):
-    return float(tokens or 0) * price / 1_000_000
-
-daily = defaultdict(float)
-with LEDGER.open(encoding=&quot;utf-8&quot;) as f:
-    for line in f:
-        x = json.loads(line)
-        day = datetime.fromisoformat(x[&quot;time&quot;]).date()
-        if day.year != TODAY.year or day.month != TODAY.month:
-            continue
-        p = PRICES[x[&quot;model&quot;]]
-        daily[day] += (
-            part(x.get(&quot;input_tokens&quot;), p[&quot;input&quot;])
-            + part(x.get(&quot;cache_read_input_tokens&quot;), p[&quot;cache_read&quot;])
-            + part(x.get(&quot;cache_creation_input_tokens&quot;), p[&quot;cache_write&quot;])
-            + part(x.get(&quot;output_tokens&quot;), p[&quot;output&quot;])
-        )
-
-spent = sum(daily.values())
-window = [TODAY - timedelta(days=i) for i in range(7)]
-avg7 = sum(daily.get(d, 0) for d in window) / 7
-remaining = max(BUDGET - spent, 0)
-days_left = remaining / avg7 if avg7 else float(&quot;inf&quot;)
-exhaust = TODAY + timedelta(days=int(days_left)) if avg7 else None
-
-print(f&quot;本月已用：${spent:.2f} / ${BUDGET:.2f}&quot;)
-print(f&quot;近7日平均：${avg7:.2f}/天&quot;)
-print(&quot;预计耗尽：&quot;, exhaust.isoformat() if exhaust else &quot;暂无足够用量&quot;)
-
-if exhaust and exhaust.month == TODAY.month:
-    print(&quot;建议：把检索、分类和格式整理降级到 Haiku；保留 Sonnet 处理最终推理与审查。&quot;)
-elif spent &gt; BUDGET * 0.8:
-    print(&quot;建议：预算已超过80%，优先压缩上下文并提高缓存命中率。&quot;)
-else:
-    print(&quot;建议：当前预算轨迹可控，继续监测输出词元和上下文增长。&quot;)</code></pre>
-<p>运行： </p>
+daily=defaultdict(float)
+for line in LEDGER.read_text(encoding=&quot;utf-8&quot;).splitlines():
+ x=json.loads(line); d=datetime.fromisoformat(x[&quot;time&quot;]).date()
+ if (d.year,d.month)!=(TODAY.year,TODAY.month): continue
+ p=PRICES[x[&quot;model&quot;]]
+ daily[d]+=usd(x.get(&quot;input_tokens&quot;),p[&quot;input&quot;])+usd(x.get(&quot;cache_read_input_tokens&quot;),p[&quot;cache_read&quot;])+usd(x.get(&quot;cache_creation_input_tokens&quot;),p[&quot;cache_write&quot;])+usd(x.get(&quot;output_tokens&quot;),p[&quot;output&quot;])
+spent=sum(daily.values()); avg7=sum(daily.get(TODAY-timedelta(days=i),0) for i in range(7))/7
+exhaust=TODAY+timedelta(days=int(max(BUDGET-spent,0)/avg7)) if avg7 else None
+print(f&quot;本月已用：${spent:.2f}/${BUDGET:.2f}；近7日：${avg7:.2f}/天&quot;)
+print(&quot;预计耗尽：&quot;,exhaust.isoformat() if exhaust else &quot;暂无足够用量&quot;)
+print(&quot;建议：&quot;, &quot;检索分类降级到 Haiku，Sonnet 只做最终推理&quot; if exhaust and exhaust.month==TODAY.month else &quot;轨迹可控，继续监测&quot;)</code></pre>
 <pre><code class="bash">export CLAUDE_LEDGER=&quot;claude_usage.jsonl&quot;
 export MONTHLY_BUDGET_USD=&quot;100&quot;
 export REPORT_DATE=&quot;2026-08-12&quot;
 python claude_budget_forecast.py</code></pre>
-<p><strong>验证方法：</strong> 把预算临时设得略高于已用金额，应输出本月内的预计耗尽日期和降级建议；预算足够时应显示“轨迹可控”。Claude 官方当前价格页显示 Sonnet 5 标准价为输入 2 美元／百万词元、输出 10 美元／百万词元，5 分钟缓存写入 2.5 美元、缓存命中 0.2 美元；同时提醒新版分词器对同一文本可能产生约 30% 更多词元。 </p>
-<p><strong>常见坑：</strong> 七日均值会被一次性大任务放大；中转站可能改变字段或价格；预测是运行率估算，不等于发票。若账本跨时区，先统一到同一日期口径。 </p>
-<p><strong>什么情况下不该用：</strong> 调用量极少、每月只有一两次大任务时，七日均值没有预测意义。 </p>
-<p>参考：Claude 官方定价   </p>
-<p><a href="https://platform.claude.com/docs/en/about-claude/pricing">https://platform.claude.com/docs/en/about-claude/pricing</a> </p>
-<p><strong>下期预告：</strong> 第 7 期将把异常拆成“价格变化、上下文膨胀、输出变长、缓存失效”四类，并生成逐日告警。 </p></div></section>
+<p><strong>验证：</strong> 把预算改为略高于已用金额，应输出本月内耗尽日期和降级建议。<strong>常见坑：</strong> 七日均值会被一次性大任务放大；中转站字段与价格可能不同；跨时区账本要先统一。<strong>不该用：</strong> 每月仅一两次大任务时均值无意义。 </p>
+<p>参考：https://platform.claude.com/docs/en/about-claude/pricing </p>
+<p><strong>下期预告：</strong> 第 7 期区分价格变化、上下文膨胀、输出变长和缓存失效四类异常。 </p></div></section>
 <section id="judge"><h2 class="sec judge">🤖 AI独立研判（非新闻事实）</h2><div class="judgebox"><blockquote>以下内容是基于本期已收集事实作出的分析，不是任何公司、监管机构或媒体的官方消息。</blockquote>
 <ol>
 <li><strong>【AI独立研判】AI 基建的下一轮竞争会先发生在资产负债表，而不是模型榜单。</strong> 当 5000 亿美元级融资平台、2.4 亿美元专属推理合同和电力预测放在一起看，决定扩张速度的是谁能拿到低成本长期资本与真实电力。</li>
