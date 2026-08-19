@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>《前沿竞赛踩下安全刹车》-2026-08-19</title><style>
+:root{--bg:#f7f3eb;--card:#fffdf8;--ink:#202326;--muted:#596168;--line:#e3d9ca;--warm:#b65e30;--warmbg:#fbede3;--blue:#08748f;--bluebg:#eaf7fa;--purple:#7250a6;--purplebg:#f3edfa;--green:#24724a;--nav:#211d1a;--navtext:#ddd5ca;--nav-w:16.6667%;--fold:44px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.82 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;overflow-wrap:anywhere}#navtoggle{position:fixed;opacity:0;pointer-events:none}.fold{position:fixed;left:calc(var(--nav-w) - 25px);top:14px;width:36px;height:36px;border-radius:50%;background:#c86f3e;color:#fff;z-index:90;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s}.fold:after{content:"‹";font-size:26px}.toc{position:fixed;inset:0 auto 0 0;width:var(--nav-w);height:100vh;overflow-y:auto;background:var(--nav);color:var(--navtext);z-index:80;transition:width .25s}.brand{padding:18px 14px;border-bottom:1px solid #ffffff18}.brand b{display:block;color:#fff;font-size:14px}.brand span{font-size:11px;color:#aaa}.toc nav{padding:8px 0 28px}.toc a{display:block;color:var(--navtext);text-decoration:none;border-left:3px solid transparent;white-space:normal;overflow:visible;text-overflow:clip;line-height:1.35}.toc a.lv1{font-weight:700;font-size:12.5px;padding:7px 10px 7px 13px;margin-top:5px;color:#fff}.toc a.lv2{font-size:11.5px;letter-spacing:-.15px;padding:5px 8px 5px 18px}.toc a.lv3{font-size:11px;padding:4px 7px 4px 26px;color:#aaa}.toc a.active{color:#ffb17d;border-left-color:#ff9b60;background:#ffffff0d}#main{margin-left:var(--nav-w);transition:margin-left .25s}.inner{max-width:920px;margin:auto;padding:30px 34px 70px}#navtoggle:checked~.toc{width:var(--fold)}#navtoggle:checked~.toc .brand,#navtoggle:checked~.toc nav{display:none}#navtoggle:checked~.fold{left:4px}#navtoggle:checked~.fold:after{content:"›"}#navtoggle:checked~#main{margin-left:var(--fold)}h1,h2,h3{scroll-margin-top:22px;line-height:1.45}h1{font-size:35px;color:var(--warm);margin:0;border-bottom:3px double var(--warm);padding-bottom:14px}h2{margin:42px 0 16px;font-size:24px;border-left:6px solid var(--warm);padding-left:12px}h3{margin:28px 0 10px;font-size:19px}.signature{margin:12px 0 22px;color:var(--muted);line-height:1.5}.signature a{word-break:break-all}.dek,blockquote{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--warm);border-radius:0 12px 12px 0;padding:13px 17px;margin:14px 0;color:var(--muted)}p{margin:9px 0}.layer{display:inline-block;background:#edf6ef;color:var(--green);border:1px solid #8ac29e;border-radius:999px;padding:2px 10px;font-size:13px;font-weight:700}.why{background:var(--warmbg);border-left:4px solid var(--warm);padding:9px 12px;border-radius:0 8px 8px 0}.source{font-size:13px;color:#747b81;word-break:break-all}.source a,a{color:#086f98}.edu-title{color:var(--blue);border-color:var(--blue)!important}.edu-title~p,.edu-title~pre{}h3.edu-title{background:var(--bluebg);border:1px solid #b8e0e8;border-radius:12px;padding:13px 15px}.judge-title{color:var(--purple);border-color:var(--purple)!important}.judge-title~blockquote{background:var(--purplebg);border-left-color:var(--purple)}pre{background:#12161d;color:#eef3f7;border-radius:10px;padding:14px 16px;overflow-x:auto;font:13px/1.65 ui-monospace,Consolas,monospace}code.inl{background:#eee6db;color:#87451e;padding:1px 5px;border-radius:4px}.pit{background:#fdecea;border-left:4px solid #b63e35;padding:10px 13px;border-radius:0 8px 8px 0}.success{background:#eaf6ee;border-left:4px solid var(--green);padding:10px 13px;border-radius:0 8px 8px 0}.preview{background:var(--bluebg);border:1px dashed var(--blue);padding:10px 13px;border-radius:9px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;background:var(--card);font-size:14px}th,td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}footer{margin-top:42px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted)}.toplink{display:inline-block;margin-top:16px;padding:9px 14px;background:var(--warm);color:white;border-radius:8px;text-decoration:none}@media(prefers-color-scheme:dark){:root{--bg:#141619;--card:#1d2024;--ink:#e8e5df;--muted:#b7b2aa;--line:#34383d;--warm:#df9367;--warmbg:#2b211b;--blue:#67c9df;--bluebg:#14272d;--purple:#c19ae8;--purplebg:#281f31}.layer{background:#17261e}.pit{background:#311c1b}.success{background:#17271e}code.inl{background:#33271f;color:#f1b38d}}@media(max-width:900px){.fold{display:none}.toc{position:relative;width:100%;height:auto;max-height:34vh}.toc .brand{padding:12px 14px}.toc nav{max-height:25vh;overflow-y:auto}.toc a.lv1,.toc a.lv2,.toc a.lv3{font-size:12px;padding:6px 14px;white-space:nowrap;overflow-x:auto}#main,#navtoggle:checked~#main{margin-left:0}.inner{padding:20px 15px 55px}h1{font-size:27px}}@media(max-width:340px){body{font-size:16px}.inner{padding:16px 11px}h1{font-size:23px}pre{font-size:12px}}@media print{.toc,.fold{display:none!important}#main{margin-left:0!important}.inner{max-width:none}body{background:#fff;color:#111}pre{white-space:pre-wrap}}
+</style><style id="site-mobile-override">
+:root{color-scheme:light;--page:#f4f6f8;--surface:#fff;--surface-soft:#f7f9fb;--ink:#1f2328;--ink-2:#4b5563;--line:#d8dee4;--blue:#0969da;--blue-hover:#0758b8;--blue-soft:#ddf4ff;--radius:12px;--radius-sm:8px;--bg:var(--page);--paper:var(--surface);--text:var(--ink);--muted:var(--ink-2)}
+body{margin:0;background:var(--page)!important;color:var(--ink)!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif!important;-webkit-font-smoothing:antialiased}.article-site-header~main{background-color:var(--surface);border-radius:var(--radius)}a{color:var(--blue)}
+.article-site-header{position:relative;z-index:850;background:var(--surface);border-bottom:1px solid var(--line);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.article-site-header-inner{max-width:1240px;min-height:64px;margin:auto;padding:0 20px;display:flex;align-items:center;gap:18px}.article-site-header a{min-height:44px;display:inline-flex;align-items:center;text-decoration:none;border-radius:var(--radius-sm)}.article-site-header-brand{color:var(--ink)!important;font-size:17px;font-weight:760}.article-site-header-section{color:var(--ink-2);font-size:14px;font-weight:650}.article-site-header-back{margin-left:auto;padding:0 12px;color:var(--blue)!important;font-weight:680}.article-site-header-back:hover{background:var(--surface-soft)}
+.site-actions{position:fixed;right:12px;bottom:14px;z-index:900;display:flex;gap:6px;padding:6px;background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 24px rgba(31,35,40,.14);backdrop-filter:blur(12px)}
+.site-actions a,.site-actions button{appearance:none;border:0;background:transparent;color:var(--blue)!important;text-decoration:none;padding:8px 10px;border-radius:var(--radius-sm);font:650 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;justify-content:center}.site-actions a:hover,.site-actions button:hover{background:var(--blue-soft)}.share-status{position:fixed;right:14px;bottom:74px;z-index:1000;background:var(--ink);color:var(--surface);padding:8px 11px;border-radius:var(--radius-sm);font:13px/1.3 sans-serif;display:none}
+.annotation-trigger{position:fixed;z-index:1100;border:0;border-radius:var(--radius-sm);background:var(--ink);color:var(--surface);padding:9px 12px;min-height:44px;font:650 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 5px 18px rgba(31,35,40,.22);cursor:pointer}.annotation-trigger[hidden]{display:none}.annotation-panel{position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.34);display:flex;justify-content:flex-end}.annotation-panel[hidden]{display:none}.annotation-sheet{width:min(500px,100%);height:100%;background:var(--surface);color:var(--ink);display:flex;flex-direction:column;box-shadow:-10px 0 35px rgba(31,35,40,.2)}.annotation-head{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.annotation-head strong{font:700 17px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-close{border:0;border-radius:var(--radius-sm);background:transparent;color:var(--ink);font-size:24px;line-height:1;min-width:44px;min-height:44px;cursor:pointer}.annotation-close:hover{background:var(--surface-soft)}.annotation-quote{margin:14px 17px 5px;padding:13px 14px;background:var(--surface-soft);border-radius:var(--radius-sm);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-note{margin:0 17px 10px;color:var(--ink-2);font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-giscus{padding:0 14px 20px;overflow:auto}.annotation-tip{position:fixed;left:50%;bottom:76px;z-index:1050;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:10px 13px;border-radius:var(--radius-sm);font:14px/1.4 sans-serif;white-space:nowrap}.annotation-tip[hidden]{display:none}mark.annotation-pending,mark.annotation-existing{background:#fff0a8;color:inherit;border-radius:3px;padding:0 1px;cursor:pointer;border-bottom:2px solid #d59a00}mark.annotation-existing[data-comments]:after{content:attr(data-comments);display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;margin-left:3px;padding:0 4px;border-radius:999px;background:#7d5d00;color:#fff;font:10px/1 sans-serif}
+@media(max-width:900px){#toc,.fold,#navtoggle{display:none!important}#main,#navtoggle:checked~#main{margin-left:0!important}.inner{max-width:680px!important;padding:18px 14px 72px!important}.masthead h1{font-size:26px!important}.card,.mainline,.judge{border-radius:12px!important;padding:15px!important}h2.sec{font-size:21px!important;margin-top:30px!important}pre{font-size:12px!important}.site-actions{left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));justify-content:space-around}.site-actions a,.site-actions button{min-height:44px;flex:1}.share-status{left:50%;right:auto;transform:translateX(-50%);bottom:70px}.annotation-sheet{height:min(82vh,720px);margin-top:auto;border-radius:var(--radius) var(--radius) 0 0}.annotation-panel{align-items:flex-end}.annotation-trigger{position:fixed!important;left:50%!important;top:auto!important;bottom:72px;transform:translateX(-50%)}}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--page:#0d1117;--surface:#161b22;--surface-soft:#21262d;--ink:#f0f3f6;--ink-2:#c9d1d9;--line:#30363d;--blue:#58a6ff;--blue-hover:#79b8ff;--blue-soft:#1d3348}.site-actions{box-shadow:none}.annotation-sheet{background:var(--surface);color:var(--ink)}.annotation-head{border-color:var(--line)}.annotation-quote{background:var(--surface-soft);color:var(--ink)}.annotation-note{color:var(--ink-2)}mark.annotation-pending,mark.annotation-existing{background:#66530e;color:#fff0b0;border-bottom-color:#f1c84c}}
+</style></head><body><header class="article-site-header"><nav class="article-site-header-inner" aria-label="站点导航"><a class="article-site-header-brand" href="../../forum.html">金钱豹AI论坛</a><span class="article-site-header-section" aria-current="page">AI日报</span><a class="article-site-header-back" href="../../forum.html?section=daily">返回AI日报版块</a></nav></header>
+<input type="checkbox" id="navtoggle"><label class="fold" for="navtoggle" aria-label="折叠或展开目录"></label>
+<aside id="toc" class="toc"><div class="brand"><b>《前沿竞赛踩下安全刹车》</b><span>2026-08-19 · 创刊第11期</span></div><nav id="tocnav"><a class="lv1" href="#top">《前沿竞赛踩下安全刹车》-2026-08-19</a>
+<a class="lv1" href="#intro">卷首语</a>
+<a class="lv1" href="#mainline">今日主线：能力越过临界点后，训练速度开始服从安全证据</a>
+<a class="lv2" href="#重点一-OpenAI-为-Astra-暂停最大规模强化学习训练">重点一：OpenAI 为 Astra 暂停最大规模强化学习训练</a>
+<a class="lv2" href="#重点二-全工具调用监控增加约-20-推理算力开销">重点二：全工具调用监控增加约 20% 推理算力开销</a>
+<a class="lv2" href="#重点三-8-吉瓦俄亥俄项目把模型扩张绑定到长期基础设施">重点三：8 吉瓦俄亥俄项目把模型扩张绑定到长期基础设施</a>
+<a class="lv1" href="#news">今日要闻</a>
+<a class="lv2" href="#模型与产品发布">模型与产品发布</a>
+<a class="lv2" href="#算力-芯片与基础设施">算力、芯片与基础设施</a>
+<a class="lv2" href="#资本-组织与商业">资本、组织与商业</a>
+<a class="lv2" href="#监管-安全与治理">监管、安全与治理</a>
+<a class="lv2" href="#开源社区-机器人与研究">开源社区、机器人与研究</a>
+<a class="lv1" href="#rumor">行业风声</a>
+<a class="lv1" href="#tutorial">📚 AI实用教程</a>
+<a class="lv2" href="#Claude-Code-系列第-11-期-用-SubagentStart-与-Sub">① Claude Code 系列第 11 期：用 SubagentStart 与 SubagentStop 留下子代理审计账本</a>
+<a class="lv2" href="#Hermes-Agent-系列第-11-期-用独立-worker-lanes-给研究">② Hermes Agent 系列第 11 期：用独立 worker lanes 给研究、写作、复核设并发边界</a>
+<a class="lv2" href="#Claude-模型系列第-11-期-把-429-529-与网络超时分开重试">③ Claude 模型系列第 11 期：把 429、529 与网络超时分开重试</a>
+<a class="lv1" href="#analysis">🤖 AI独立研判（非新闻事实）</a>
+<a class="lv1" href="#roadmap">连载路线图</a>
+<a class="lv1" href="#verify">编后与核验说明</a>
+<a class="lv1" href="#sources">来源链接总表</a></nav></aside>
+<div id="main"><main class="inner"><h1 id="top">《前沿竞赛踩下安全刹车》-2026-08-19</h1>
+<blockquote>每日全球 AI 情报报纸 · 创刊第 11 期 · 北京时间 2026 年 8 月 19 日  </blockquote>
+<blockquote>金钱豹Ai中转  </blockquote>
+<blockquote><a href="https://api.jinqianbao.icu/" target="_blank" rel="noopener">打开原始链接</a></blockquote>
+<h2 id="intro">卷首语</h2>
+<p>本期帮助读者看清一条主线：前沿模型的网络攻击能力，已经反过来约束模型训练速度、研究网络边界和监控成本。先读“今日主线”理解安全为何从发布前评测升级为训练期基础设施，再按五类阅读 10 条要闻；“正式信息、媒体报道、行业风声”只表示证据强弱，不代表新闻价值高低。</p>
+<h2 id="mainline">今日主线：能力越过临界点后，训练速度开始服从安全证据</h2>
+<h3 id="重点一-OpenAI-为-Astra-暂停最大规模强化学习训练">重点一：OpenAI 为 Astra 暂停最大规模强化学习训练</h3>
+<p class="layer"><strong>信息分层：正式信息｜已确认</strong></p>
+<p>OpenAI 8 月 18 日披露，内部初步证据显示其待发布模型 Astra 可能达到公司准备框架中的“关键网络安全能力”阈值。公司因此把最新待部署模型的强化学习训练暂停两周；最大规模的前沿强化学习运行目前仍保持暂停，只进行较小规模训练和评估。</p>
+<p class="why"><strong>为什么重要：</strong> 这是“安全门槛直接改变训练排期”的明确案例。前沿实验室的发布速度不再只受芯片、数据和算法制约，还受隔离环境、监控覆盖与对齐证据是否充分制约。</p>
+<p class="source">来源：OpenAI；发布时间：2026-08-18  </p>
+<p class="source"><a href="https://openai.com/index/pacing-model-development-cyber-capabilities/" target="_blank" rel="noopener">https://openai.com/index/pacing-model-development-cyber-capabilities/</a></p>
+<h3 id="重点二-全工具调用监控增加约-20-推理算力开销">重点二：全工具调用监控增加约 20% 推理算力开销</h3>
+<p class="layer"><strong>信息分层：正式信息｜已确认</strong></p>
+<p>OpenAI 新监控系统从每个采样词元的激活分类器开始，逐级升级到高算力自动调查器，检查工具动作、可见推理与完整轨迹；目标是在异常浮现后 30 分钟内报警。该机制已要求覆盖 Sol 能力及以上模型的工具型强化学习训练和评估，并覆盖 Astra 的全部工具推理；公司估算监控开销约为被监控推理算力的 20%。</p>
+<p class="why"><strong>为什么重要：</strong> 安全第一次被公开量化为持续算力成本。未来“每百万词元价格”之外，还要计算隔离、记录、调查和人工响应形成的安全附加费。</p>
+<p class="source">来源：OpenAI；发布时间：2026-08-18  </p>
+<p class="source"><a href="https://openai.com/index/pacing-model-development-cyber-capabilities/" target="_blank" rel="noopener">https://openai.com/index/pacing-model-development-cyber-capabilities/</a></p>
+<h3 id="重点三-8-吉瓦俄亥俄项目把模型扩张绑定到长期基础设施">重点三：8 吉瓦俄亥俄项目把模型扩张绑定到长期基础设施</h3>
+<p class="layer"><strong>信息分层：正式信息｜已确认</strong></p>
+<p>OpenAI 与 SB Energy、NVIDIA 及美国能源部相关项目达成协议，计划在俄亥俄州 PORTS-Pike 园区获取约 8 IT-GW 容量。SB Energy 将建设、持有并运营数据中心，OpenAI 签署 20 年租约；NVIDIA 为最初 4.25 IT-GW 提供土地、电力与厂房建设信用支持，并向 SB Energy 投资 15 亿美元。</p>
+<p class="why"><strong>为什么重要：</strong> 同一家实验室一边暂停高风险训练，一边锁定到 2030 年代的算力。竞争没有减速，而是变成“更大的物理扩张 + 更贵的安全控制”并行。</p>
+<p class="source">来源：OpenAI、NVIDIA；发布时间：2026-08-17  </p>
+<p class="source"><a href="https://openai.com/index/openai-joins-ports-pike-project/" target="_blank" rel="noopener">https://openai.com/index/openai-joins-ports-pike-project/</a></p>
+<p class="source"><a href="https://nvidianews.nvidia.com/news/nvidia-guarantees-sb-energy-s-ports-pike-technology-campus-in-ohio-to-exclusively-host-nvidia-ai-compute" target="_blank" rel="noopener">https://nvidianews.nvidia.com/news/nvidia-guarantees-sb-energy-s-ports-pike-technology-campus-in-ohio-to-exclusively-host-nvidia-ai-compute</a></p>
+<h2 id="news">今日要闻</h2>
+<h3 id="模型与产品发布">模型与产品发布</h3>
+<h3 id="1-OpenAI-推出-ChatGPT-青少年版-13-17-岁默认进入更强保护模式">1. OpenAI 推出 ChatGPT 青少年版，13—17 岁默认进入更强保护模式</h3>
+<p class="layer"><strong>信息分层：正式信息｜已确认</strong></p>
+<p>ChatGPT for Teens（ChatGPT 青少年版）会在用户自报 13—17 岁，或系统估计其未满 18 岁时自动启用。产品加入学习模式、作业提醒、测验、学习时段、安静时段、休息提醒和有限的高风险家长通知，并对自伤、暴力、饮食失调、危险活动及露骨内容施加更严格限制。</p>
+<p class="why"><strong>为什么重要：</strong> 生成式 AI 开始按年龄重做产品行为，而不是只增加一份使用条款。年龄预测、家长控制、情感依赖限制与学习引导可能成为面向未成年人的行业基线。</p>
+<p class="source">来源：OpenAI；发布时间：2026-08-18；可信度：高  </p>
+<p class="source"><a href="https://openai.com/index/chatgpt-for-teens/" target="_blank" rel="noopener">https://openai.com/index/chatgpt-for-teens/</a></p>
+<h3 id="2-Cursor-推出-Origin-向-GitHub-的代码托管入口延伸">2. Cursor 推出 Origin，向 GitHub 的代码托管入口延伸</h3>
+<p class="layer"><strong>信息分层：媒体报道｜产品页面可交叉核验</strong></p>
+<p>Cursor 本周推出 Origin（面向代理时代的代码托管平台），支持仓库、代码浏览编辑、协作和拉取请求，并可连接、同步现有 GitHub 仓库。Cursor 表示后续将加入“代理原生”能力，但现阶段公开细节有限。</p>
+<p class="why"><strong>为什么重要：</strong> AI 编码公司正从编辑器向代码存储、审查和协作入口扩张。若代理执行、仓库状态和审查数据在同一平台闭环，传统代码托管平台的控制点会被重新分配。</p>
+<p class="source">来源：TechCrunch、Cursor；发布时间：2026-08-18 22:14 UTC；可信度：中高  </p>
+<p class="source"><a href="https://techcrunch.com/2026/08/18/cursor-capitalizes-on-github-frustration-launches-rival-hosting-platform/" target="_blank" rel="noopener">https://techcrunch.com/2026/08/18/cursor-capitalizes-on-github-frustration-launches-rival-hosting-platform/</a></p>
+<p class="source"><a href="https://cursor.com/changelog/origin-code-hosting" target="_blank" rel="noopener">https://cursor.com/changelog/origin-code-hosting</a></p>
+<h3 id="3-Warp-Factories-把软件开发五阶段封装成可部署的-代理工厂">3. Warp Factories 把软件开发五阶段封装成可部署的“代理工厂”</h3>
+<p class="layer"><strong>信息分层：媒体报道｜产品发布已确认</strong></p>
+<p>Warp 推出 Warp Factories，把需求分流、规格说明、实现、审查和验证组织成统一代理环境，可选择 Codex、Claude Code 等模型与运行框架，并连接 Linear、Jira、Slack 和 Teams。系统还提供配置对比、词元成本观察与自我改进循环；Warp 称公司内部每周约 30%—35% 的任务已自动化。</p>
+<p class="why"><strong>为什么重要：</strong> 编码代理竞争开始从单次补全转向可观测、可评测、可管理的组织级生产线。真正的差异将来自流程状态、质量门禁和人类接管，而不只是模型跑分。</p>
+<p class="source">来源：TechCrunch、Warp；发布时间：2026-08-18 14:00 UTC；可信度：中高  </p>
+<p class="source"><a href="https://techcrunch.com/2026/08/18/warps-new-system-is-an-out-of-the-box-software-factory-for-ai-development/" target="_blank" rel="noopener">https://techcrunch.com/2026/08/18/warps-new-system-is-an-out-of-the-box-software-factory-for-ai-development/</a></p>
+<p class="source"><a href="https://www.warp.dev/factories/request-access" target="_blank" rel="noopener">https://www.warp.dev/factories/request-access</a></p>
+<h3 id="算力-芯片与基础设施">算力、芯片与基础设施</h3>
+<h3 id="4-OpenAI-NVIDIA-与-SB-Energy-锁定俄亥俄州-8-IT-GW">4. OpenAI、NVIDIA 与 SB Energy 锁定俄亥俄州 8 IT-GW 数据中心容量</h3>
+<p class="layer"><strong>信息分层：正式信息｜已确认</strong></p>
+<p>PORTS-Pike 计划分期建设，首批约 800 兆瓦预计 2028 年可用，完整建设期延续至 2032 年。项目方称将采用闭环风冷、由开发方承担电网升级成本，并预计创造 3.5 万个建设岗位和 2500 个长期岗位；后续仍取决于许可、环评、融资和新增发电及输电设施。</p>
+<p class="why"><strong>为什么重要：</strong> 8 IT-GW 已不是普通云区域，而是跨能源、金融、土地与芯片代际的长期工业项目。算力采购正在转化为资产负债表、社区协议与能源治理问题。</p>
+<p class="source">来源：OpenAI、NVIDIA；发布时间：2026-08-17；可信度：高  </p>
+<p class="source"><a href="https://openai.com/index/openai-joins-ports-pike-project/" target="_blank" rel="noopener">https://openai.com/index/openai-joins-ports-pike-project/</a></p>
+<p class="source"><a href="https://nvidianews.nvidia.com/news/nvidia-guarantees-sb-energy-s-ports-pike-technology-campus-in-ohio-to-exclusively-host-nvidia-ai-compute" target="_blank" rel="noopener">https://nvidianews.nvidia.com/news/nvidia-guarantees-sb-energy-s-ports-pike-technology-campus-in-ohio-to-exclusively-host-nvidia-ai-compute</a></p>
+<h3 id="5-AI-推理芯片公司-Etched-再融资-7-亿美元-估值升至-210-亿美元">5. AI 推理芯片公司 Etched 再融资 7 亿美元，估值升至 210 亿美元</h3>
+<p class="layer"><strong>信息分层：媒体报道｜公司公告可交叉核验</strong></p>
+<p>Etched 宣布获得 7 亿美元新融资，由量化交易公司 Jane Street 领投；后者称已测试并购买 Etched 硬件。公司估值一个月内从 103 亿美元升至 210 亿美元，产品方向从早期“为特定模型定制”转为可运行多种前沿模型的完整推理集群，并分别优化预填充与解码阶段。</p>
+<p class="why"><strong>为什么重要：</strong> 资本正在押注推理市场足以容纳 NVIDIA 之外的新架构。Etched 仍需证明量产、软件兼容、可靠性和真实单位经济性，估值增长明显快于公开部署证据。</p>
+<p class="source">来源：TechCrunch、Etched；发布时间：2026-08-18 17:21 UTC；可信度：中高  </p>
+<p class="source"><a href="https://techcrunch.com/2026/08/18/etcheds-valuation-doubles-to-21b-in-a-month/" target="_blank" rel="noopener">https://techcrunch.com/2026/08/18/etcheds-valuation-doubles-to-21b-in-a-month/</a></p>
+<p class="source"><a href="https://www.etched.com/progress/from-zero-to-one" target="_blank" rel="noopener">https://www.etched.com/progress/from-zero-to-one</a></p>
+<h3 id="资本-组织与商业">资本、组织与商业</h3>
+<h3 id="6-Reach-Capital-完成-2-65-亿美元新基金-押注学习-健康与工作场">6. Reach Capital 完成 2.65 亿美元新基金，押注学习、健康与工作场景</h3>
+<p class="layer"><strong>信息分层：媒体报道｜基金募集已确认</strong></p>
+<p>教育科技投资机构 Reach Capital 完成第五期 2.65 亿美元基金，计划三年内投资约 50 家从种子前到 A 轮的公司，单笔约 100 万至 1000 万美元。新策略把 AI 应用横跨学习、健康和工作，反映传统行业边界被生成式 AI 打散。</p>
+<p class="why"><strong>为什么重要：</strong> 应用层资本开始从“模型能力故事”转向能否改善具体人类活动。专注型基金仍能募资，也说明投资者更愿意押注清晰场景，而非泛化的 AI 标签。</p>
+<p class="source">来源：TechCrunch；发布时间：2026-08-18 11:00 UTC；可信度：中高  </p>
+<p class="source"><a href="https://techcrunch.com/2026/08/18/reach-capital-raises-265m-fund-v-to-back-ai-founders-building-to-expand-human-potential/" target="_blank" rel="noopener">https://techcrunch.com/2026/08/18/reach-capital-raises-265m-fund-v-to-back-ai-founders-building-to-expand-human-potential/</a></p>
+<h3 id="监管-安全与治理">监管、安全与治理</h3>
+<h3 id="7-OpenAI-将前沿训练安全改成-监控-对齐-隔离-三重门禁">7. OpenAI 将前沿训练安全改成“监控、对齐、隔离”三重门禁</h3>
+<p class="layer"><strong>信息分层：正式信息｜已确认</strong></p>
+<p>OpenAI 要求高风险工作负载强化沙箱和网络隔离，减少常驻权限、移除潜在脆弱共享服务，并扩展日志采集与持续攻击测试。对 Astra 和网络安全模型采用最严格标准；尚未完成迁移的训练与评估继续暂停，安全和对齐工作负载优先迁移。</p>
+<p class="why"><strong>为什么重要：</strong> 事故后整改不再局限于修补某个漏洞，而是重构研究集群的信任边界。模型训练环境正被当作关键基础设施，而不是普通内部开发网络。</p>
+<p class="source">来源：OpenAI；发布时间：2026-08-18；可信度：高  </p>
+<p class="source"><a href="https://openai.com/index/pacing-model-development-cyber-capabilities/" target="_blank" rel="noopener">https://openai.com/index/pacing-model-development-cyber-capabilities/</a></p>
+<h3 id="8-规则盲区-研究质疑合规检测器是否真的阅读了法规">8. “规则盲区”研究质疑合规检测器是否真的阅读了法规</h3>
+<p class="layer"><strong>信息分层：正式信息｜论文原文已核验</strong></p>
+<p>论文《合规检测器究竟读了什么？》报告：对多种守卫模型与激活探针删除、置换或替换规则文本，检测准确率几乎不变；甚至有模型能引用规则条款，却在换成相反许可条款后基本不改变判决。作者称这种现象为“规则盲区”，并指出逐步推理比快速检测器更能逃离该问题。</p>
+<p class="why"><strong>为什么重要：</strong> 企业不能因为检测器能“说出条款”就认定它按条款决策。合规评测需要加入反事实规则置换，验证判决是否真的受规则内容控制。</p>
+<p class="source">来源：arXiv:2608.16852；提交时间：2026-08-17 17:37 UTC；可信度：中高（作者结果待复现）  </p>
+<p class="source"><a href="https://arxiv.org/abs/2608.16852" target="_blank" rel="noopener">https://arxiv.org/abs/2608.16852</a></p>
+<h3 id="开源社区-机器人与研究">开源社区、机器人与研究</h3>
+<h3 id="9-BATON-用子任务探索与交接记忆提升长周期机器人操作">9. BATON 用子任务探索与交接记忆提升长周期机器人操作</h3>
+<p class="layer"><strong>信息分层：正式信息｜论文原文已核验</strong></p>
+<p>BATON（面向长周期操作的子任务探索与转移感知记忆方法）把整条任务的试错拆成短子任务探索，使理论探索成本从阶段数的乘法增长降为加法增长；它还记录前置条件、交接恢复和后续可继承状态。作者在 RoboMemArena 报告任务成功率提高 11.6%，累计成功提高 14.9%，且不更新模型参数。</p>
+<p class="why"><strong>为什么重要：</strong> 机器人长任务的关键瓶颈不是单个动作，而是动作之间能否安全交接。这个思路也适用于软件代理：每个子任务不仅要“完成”，还要给下一步留下可用状态。</p>
+<p class="source">来源：arXiv:2608.16889；提交时间：2026-08-17 17:59 UTC；可信度：中高（作者结果待复现）  </p>
+<p class="source"><a href="https://arxiv.org/abs/2608.16889" target="_blank" rel="noopener">https://arxiv.org/abs/2608.16889</a></p>
+<h3 id="10-模型催眠-显示多个弱提示可叠加成强行为控制">10. “模型催眠”显示多个弱提示可叠加成强行为控制</h3>
+<p class="layer"><strong>信息分层：正式信息｜论文原文已核验</strong></p>
+<p>论文《模型催眠》称，看似无关且单独作用很弱的提示线索，可以通过改写、错别字等方式叠加，强力控制不同模型家族和规模的行为，并可能跨模型迁移。论文目前公开摘要较短，尚需检查完整实验、攻击成功率和对照设计。</p>
+<p class="why"><strong>为什么重要：</strong> 安全审查不能只寻找单个明显恶意字符串。多个低显著性线索的组合效应，会挑战基于关键词、单段检测和静态提示注入规则的防线。</p>
+<p class="source">来源：arXiv:2608.16834；提交时间：2026-08-17 17:20 UTC；可信度：中（新论文，待独立复现）  </p>
+<p class="source"><a href="https://arxiv.org/abs/2608.16834" target="_blank" rel="noopener">https://arxiv.org/abs/2608.16834</a></p>
+<h2 id="rumor">行业风声</h2>
+<p><strong>行业风声｜未经证实</strong></p>
+<p>有二手汇总称 Apple 正开发带摄像头的 AirPods，以向 Siri 提供持续视觉上下文；目前主要证据是测试版系统代码与演示片段，未见 Apple 正式公告，产品形态、发布时间与隐私指示机制均不确定，置信度低。除该条外，<strong>今日无高价值、可追踪的行业传闻</strong>。</p>
+<p>参考来源：二手行业汇总（仅用于记录传闻存在）。</p>
+<h2 id="tutorial" class="edu-title">📚 AI实用教程</h2>
+<h3 id="Claude-Code-系列第-11-期-用-SubagentStart-与-Sub" class="edu-title">① Claude Code 系列第 11 期：用 SubagentStart 与 SubagentStop 留下子代理审计账本</h3>
+<ul>
+<li><strong>难度：</strong> 进阶｜<strong>动手时间：</strong> 25—35 分钟｜<strong>成本：</strong> 配置免费，Claude Code 调用按订阅或 API 计费</li>
+<li><strong>环境版本：</strong> Claude Code 当前官方文档；Python 3.9+；承接第 10 期 TeammateIdle 空闲门禁</li>
+<li><strong>适用场景：</strong> 团队需要知道哪个子代理何时启动、属于什么类型、何时停止，以及结束时是否留下可追踪记录。官方 Hook（生命周期钩子）文档确认 <code class="inl">SubagentStart</code> 和 <code class="inl">SubagentStop</code> 均属于代理循环事件。</li>
+</ul>
+<p>创建 <code class="inl">.claude/hooks/audit-subagent.py</code>：</p>
+<pre><code>#!/usr/bin/env python3
+import json
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+payload = json.load(sys.stdin)
+project = Path(payload.get(&quot;cwd&quot;, &quot;.&quot;))
+log_dir = project / &quot;artifacts&quot;
+log_dir.mkdir(parents=True, exist_ok=True)
+
+# 不假定未来字段永远不变：保留事件名与官方传入的可用标识。
+record = {
+    &quot;time_utc&quot;: datetime.now(timezone.utc).isoformat(),
+    &quot;event&quot;: payload.get(&quot;hook_event_name&quot;, &quot;unknown&quot;),
+    &quot;session_id&quot;: payload.get(&quot;session_id&quot;),
+    &quot;agent_id&quot;: payload.get(&quot;agent_id&quot;),
+    &quot;agent_type&quot;: payload.get(&quot;agent_type&quot;),
+    &quot;transcript_path&quot;: payload.get(&quot;transcript_path&quot;),
+}
+
+with (log_dir / &quot;subagent-audit.jsonl&quot;).open(&quot;a&quot;, encoding=&quot;utf-8&quot;) as f:
+    f.write(json.dumps(record, ensure_ascii=False) + &quot;\n&quot;)
+
+raise SystemExit(0)</code></pre>
+<p>在 <code class="inl">.claude/settings.json</code> 中加入完整配置：</p>
+<pre><code>{
+  &quot;hooks&quot;: {
+    &quot;SubagentStart&quot;: [
+      {
+        &quot;matcher&quot;: &quot;&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;python \&quot;$CLAUDE_PROJECT_DIR/.claude/hooks/audit-subagent.py\&quot;&quot;,
+            &quot;timeout&quot;: 20
+          }
+        ]
+      }
+    ],
+    &quot;SubagentStop&quot;: [
+      {
+        &quot;matcher&quot;: &quot;&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;python \&quot;$CLAUDE_PROJECT_DIR/.claude/hooks/audit-subagent.py\&quot;&quot;,
+            &quot;timeout&quot;: 20
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+<p>可直接复制给 Claude Code 的任务提示词：</p>
+<pre><code>请把任务拆成“资料定位、实现、测试、独立审查”四个子任务，并按依赖顺序启动子代理。不要绕过现有 Hook。结束后检查 artifacts/subagent-audit.jsonl：每个已启动子代理都应至少有一条 SubagentStart 和一条 SubagentStop 记录；如果记录不成对，列出缺失的 agent_id、可能原因和需要人工检查的 transcript_path。不得把“子代理停止”自动解释为“任务成功”。</code></pre>
+<p class="success"><strong>验证方法：</strong> 在 Claude Code 中用 <code class="inl">/hooks</code> 确认两个事件已注册；启动一次含子代理的任务后，<code class="inl">artifacts/subagent-audit.jsonl</code> 应出现逐行 JSON。<strong>常见坑：</strong> Hook 记录的是生命周期，不等于质量结论；字段可能因宿主或版本不同而为空，因此代码使用 <code class="inl">get</code>；Windows 原生环境使用 <code class="inl">python</code>，其他环境可改为 <code class="inl">python3</code>。<strong>什么情况下不该用：</strong> 项目包含高度敏感路径或会话信息、且审计文件没有访问控制时，不应记录完整 transcript 路径。</p>
+<p>参考：<a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener">打开原始链接</a>  </p>
+<p class="source"><a href="https://code.claude.com/docs/en/hooks-guide" target="_blank" rel="noopener">https://code.claude.com/docs/en/hooks-guide</a></p>
+<p class="preview"><strong>下期预告：</strong> 第 12 期把 <code class="inl">PostToolUseFailure</code> 与 <code class="inl">StopFailure</code> 接入失败分类，区分工具失败、权限拒绝和代理终止。</p>
+<h3 id="Hermes-Agent-系列第-11-期-用独立-worker-lanes-给研究" class="edu-title">② Hermes Agent 系列第 11 期：用独立 worker lanes 给研究、写作、复核设并发边界</h3>
+<ul>
+<li><strong>难度：</strong> 进阶｜<strong>动手时间：</strong> 25—40 分钟｜<strong>成本：</strong> 配置免费，多个工作代理会增加模型调用费</li>
+<li><strong>环境版本：</strong> Hermes Agent 当前官方文档；已启用 Kanban；承接第 10 期最大重试、超时与心跳熔断</li>
+<li><strong>适用场景：</strong> 调研、撰写和复核由不同档案负责，避免多个代理在同一工作区抢文件或把“写作者自审”当独立复核。</li>
+</ul>
+<p>按官方 Kanban 多档案模式，分别启动三个 worker；每条命令在独立终端或服务环境中执行：</p>
+<pre><code>hermes --profile researcher kanban worker --max-concurrent 2
+hermes --profile writer kanban worker --max-concurrent 1
+hermes --profile reviewer kanban worker --max-concurrent 1</code></pre>
+<p>创建带依赖关系的三项任务：</p>
+<pre><code>hermes kanban create &quot;收集并核验一手来源&quot; --assignee researcher --timeout-seconds 3600
+hermes kanban create &quot;依据已核验来源撰写中文报告&quot; --assignee writer --timeout-seconds 3600
+hermes kanban create &quot;独立复核事实、链接与风险标识&quot; --assignee reviewer --timeout-seconds 2400</code></pre>
+<p>给三个档案使用同一份交接规则：</p>
+<pre><code>你只能领取分配给本档案的 Kanban 任务。researcher 只提交来源、原文证据与不确定项，不写最终结论；writer 只使用 researcher 已提交的证据，不自行降低可信度标签；reviewer 不直接改正文，只按“事实错误、证据不足、表述越界、链接失效”提出变更。每个阶段完成时必须调用 kanban_request_review 或 kanban_complete，并在摘要中写清下游可依赖的产物路径。若共享工作区存在写入冲突，立即 kanban_block，不得覆盖其他档案文件。</code></pre>
+<p class="success"><strong>验证方法：</strong> 看板中应能看到任务由不同 profile 领取，研究最多并行 2 个，写作和复核各最多 1 个；reviewer 退回时任务应回到明确责任人。<strong>常见坑：</strong> <code class="inl">--max-concurrent</code> 的准确支持范围应以当前官方 CLI 参考为准；如果当前安装版本不支持该参数，请不要猜测替代参数，改用每个档案只启动一个 worker 的保守方案。工作区隔离可进一步配合 Git worktree。<strong>什么情况下不该用：</strong> 三十分钟内可由一个人完成的小任务，不值得承担多档案协调和额外调用成本。</p>
+<p>参考：<a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban" target="_blank" rel="noopener">打开原始链接</a>  </p>
+<p class="source"><a href="https://hermes-agent.nousresearch.com/docs/user-guide/git-worktrees" target="_blank" rel="noopener">https://hermes-agent.nousresearch.com/docs/user-guide/git-worktrees</a></p>
+<p class="preview"><strong>下期预告：</strong> 第 12 期为三条泳道加入 Git worktree 隔离和合并前人工批准，解决共享文件冲突。</p>
+<h3 id="Claude-模型系列第-11-期-把-429-529-与网络超时分开重试" class="edu-title">③ Claude 模型系列第 11 期：把 429、529 与网络超时分开重试</h3>
+<ul>
+<li><strong>难度：</strong> 高级｜<strong>动手时间：</strong> 35—50 分钟｜<strong>成本：</strong> 示例代码免费，Claude API 按实际词元计费</li>
+<li><strong>环境版本：</strong> Python 3.10+；<code class="inl">anthropic&gt;=0.60,&lt;1</code>；设置 <code class="inl">ANTHROPIC_API_KEY</code></li>
+<li><strong>适用场景：</strong> 承接第 10 期幂等账本。官方文档说明 SDK 默认会对连接错误、429 和 5xx 做两次指数退避重试，并在存在时遵循 <code class="inl">retry-after</code>；本期关闭 SDK 内置重试，显式区分限流、过载和网络超时，避免所有错误用同一策略。</li>
+</ul>
+<p>安装依赖：</p>
+<pre><code>python -m pip install &quot;anthropic&gt;=0.60,&lt;1&quot;</code></pre>
+<p>保存为 <code class="inl">claude_retry_policy.py</code>：</p>
+<pre><code>import os
+import random
+import time
+import anthropic
+
+MODEL = os.getenv(&quot;CLAUDE_MODEL&quot;, &quot;claude-sonnet-5&quot;)
+MAX_ATTEMPTS = 5
+
+client = anthropic.Anthropic(
+    api_key=os.environ[&quot;ANTHROPIC_API_KEY&quot;],
+    max_retries=0,  # 关闭内置重试，避免与本例重复叠加
+    timeout=60,
+)
+
+
+def wait_seconds(attempt: int, retry_after=None) -&gt; float:
+    if retry_after:
+        try:
+            return min(float(retry_after), 60.0)
+        except ValueError:
+            pass
+    # 指数退避 + 随机抖动，减少多个客户端同时重试。
+    return min(2 ** attempt + random.random(), 30.0)
+
+
+def ask_claude(prompt: str) -&gt; str:
+    for attempt in range(MAX_ATTEMPTS):
+        try:
+            message = client.messages.create(
+                model=MODEL,
+                max_tokens=500,
+                messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}],
+            )
+            return &quot;&quot;.join(b.text for b in message.content if b.type == &quot;text&quot;)
+
+        except anthropic.RateLimitError as exc:
+            # 429：先尊重服务端 Retry-After；持续发生时应降低并发或申请更高额度。
+            headers = getattr(getattr(exc, &quot;response&quot;, None), &quot;headers&quot;, {}) or {}
+            delay = wait_seconds(attempt, headers.get(&quot;retry-after&quot;))
+            reason = &quot;请求速率受限&quot;
+
+        except anthropic.InternalServerError as exc:
+            # 529 overloaded_error 与其他 5xx 都是暂时性服务端问题。
+            status = getattr(exc, &quot;status_code&quot;, None)
+            delay = wait_seconds(attempt)
+            reason = &quot;服务暂时过载&quot; if status == 529 else &quot;服务端暂时错误&quot;
+
+        except (anthropic.APITimeoutError, anthropic.APIConnectionError):
+            # 超时可能处于未知状态；本例只做无副作用问答。
+            delay = wait_seconds(attempt)
+            reason = &quot;网络超时或连接失败&quot;
+
+        except (anthropic.AuthenticationError, anthropic.PermissionDeniedError) as exc:
+            raise RuntimeError(&quot;密钥或权限配置错误，不应自动重试&quot;) from exc
+
+        if attempt == MAX_ATTEMPTS - 1:
+            raise RuntimeError(f&quot;连续失败：{reason}；已停止自动重试&quot;)
+        print(f&quot;第 {attempt + 1} 次失败：{reason}，{delay:.1f} 秒后重试&quot;)
+        time.sleep(delay)
+
+
+if __name__ == &quot;__main__&quot;:
+    print(ask_claude(&quot;用三句话解释为什么 API 重试需要随机抖动。&quot;))</code></pre>
+<p>运行：</p>
+<pre><code>export ANTHROPIC_API_KEY=&quot;你的环境变量密钥&quot;
+python claude_retry_policy.py</code></pre>
+<p class="success"><strong>成功标志：</strong> 正常时输出三句话；遇到 429、529 或网络问题时，控制台显示不同中文原因与等待时间；401/403 立即停止，不浪费调用。<strong>常见坑：</strong> 不要同时保留 SDK 默认重试和外层多次重试，否则次数会相乘；带副作用操作发生超时后，应先查询业务状态，不能直接重放；429 长期存在通常是并发或额度问题，不是多睡几秒就能解决。<strong>什么情况下不该用：</strong> 付款、发信、发布、删除等不可逆动作在没有幂等键和状态查询时，不得使用自动重试。</p>
+<p>参考：<a href="https://platform.claude.com/docs/en/api/errors" target="_blank" rel="noopener">打开原始链接</a>  </p>
+<p class="source"><a href="https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python" target="_blank" rel="noopener">https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python</a></p>
+<p class="preview"><strong>下期预告：</strong> 第 12 期加入客户端并发信号量和按分钟词元预算，让重试策略与成本上限联动。</p>
+<h2 id="analysis" class="judge-title">🤖 AI独立研判（非新闻事实）</h2>
+<blockquote>以下内容是基于本期已收集事实作出的分析，不是任何公司、监管机构或媒体的官方消息。</blockquote>
+<ol>
+<li><strong>【AI独立研判】前沿竞争没有减速，而是把安全成本资本化。</strong> OpenAI 暂停最大强化学习训练，同时签下 8 IT-GW 长租，说明实验室不是放弃扩张，而是在为更高能力模型补建隔离、监控和能源底座。</li>
+<li><strong>【AI独立研判】20% 监控算力会成为新定价层。</strong> 如果高风险模型必须持续进行词元级检测和轨迹调查，最便宜的裸推理价格不再代表真实交付成本；企业级“可信调用”可能形成更贵的服务层。</li>
+<li><strong>【AI独立研判】代理平台正在吞并传统软件开发入口。</strong> Cursor 向代码托管延伸、Warp 把全流程封装成代理工厂，意味着编辑器、仓库、工单、审查和评测可能重新组合，GitHub 的护城河会从托管规模转向可靠性与生态整合。</li>
+<li><strong>【AI独立研判】未来 1—4 周值得观察：</strong> OpenAI 最大强化学习运行何时恢复；Astra 是否正式达到关键网络能力阈值；PORTS-Pike 的许可与融资进度；Etched 是否披露可复现实测；Cursor Origin 的代理原生能力；青少年模式是否引发竞品跟进。</li>
+<li><strong>【AI独立研判】我可能判断错的地方：</strong> OpenAI 的暂停可能主要是短期工程整改而非行业范式变化；20% 开销会随优化迅速下降；Cursor 和 Warp 的新平台可能难以撼动既有工作流；论文结果均可能在独立复现中显著缩水。</li>
+</ol>
+<h2 id="roadmap">连载路线图</h2>
+<div class="table-wrap"><table><thead><tr><th>系列</th><th>第 9 期（已发）</th><th>第 10 期（已发）</th><th>第 11 期（本期）</th></tr></thead><tbody><tr><td>① Claude Code</td><td>TaskCompleted 测试门禁</td><td>TeammateIdle 空闲门禁</td><td>SubagentStart/Stop 审计账本</td></tr><tr><td>② Hermes Agent</td><td>独立 reviewer 复审闭环</td><td>重试、超时、心跳熔断</td><td>研究/写作/复核 worker lanes</td></tr><tr><td>③ Claude 模型</td><td>主备切换与请求 ID</td><td>幂等键与灰色状态查询</td><td>429/529/超时分类重试</td></tr></tbody></table></div>
+<h2 id="verify">编后与核验说明</h2>
+<p>本期按北京时间 2026-08-19 归档，共 10 条实质要闻。OpenAI、NVIDIA、Claude Code 文档、Hermes Agent 文档与三篇 arXiv 原文已直接核验；Etched、Cursor、Warp 与 Reach Capital 采用媒体报道并尽量链接产品或公司页面。论文性能数字均为作者报告，尚未独立复现。Apple 摄像头 AirPods 仅列入低置信度行业风声，不作为事实。公开网页正文不包含本地归档与运行机制信息。</p>
+<h2 id="sources">来源链接总表</h2>
+<ul>
+<li><a href="https://openai.com/index/pacing-model-development-cyber-capabilities/" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://openai.com/index/chatgpt-for-teens/" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://openai.com/index/openai-joins-ports-pike-project/" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://nvidianews.nvidia.com/news/nvidia-guarantees-sb-energy-s-ports-pike-technology-campus-in-ohio-to-exclusively-host-nvidia-ai-compute" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://techcrunch.com/2026/08/18/etcheds-valuation-doubles-to-21b-in-a-month/" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://www.etched.com/progress/from-zero-to-one" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://techcrunch.com/2026/08/18/cursor-capitalizes-on-github-frustration-launches-rival-hosting-platform/" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://cursor.com/changelog/origin-code-hosting" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://techcrunch.com/2026/08/18/warps-new-system-is-an-out-of-the-box-software-factory-for-ai-development/" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://www.warp.dev/factories/request-access" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://techcrunch.com/2026/08/18/reach-capital-raises-265m-fund-v-to-back-ai-founders-building-to-expand-human-potential/" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://arxiv.org/abs/2608.16852" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://arxiv.org/abs/2608.16889" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://arxiv.org/abs/2608.16834" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://code.claude.com/docs/en/hooks-guide" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/git-worktrees" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://platform.claude.com/docs/en/api/errors" target="_blank" rel="noopener">打开原始链接</a></li>
+<li><a href="https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python" target="_blank" rel="noopener">打开原始链接</a></li>
+</ul><footer id="footer-sign"><div class="signature"><strong>金钱豹Ai中转</strong><br><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a></div><a class="toplink" href="#top">回到顶部</a></footer></main></div>
+<script>(function(){var h=document.querySelector('h1');if(h)h.insertAdjacentHTML('afterend','<div class="signature"><strong>金钱豹Ai中转</strong><br><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a><br>北京时间 2026年8月19日 · 创刊第11期</div>');var a=[].slice.call(document.querySelectorAll('#tocnav a'));var t=a.map(x=>document.querySelector(x.getAttribute('href')));function s(){var p=scrollY+80,k=0;t.forEach((x,i)=>{if(x&&x.offsetTop<=p)k=i});a.forEach((x,i)=>x.classList.toggle('active',i===k))}addEventListener('scroll',s,{passive:true});s()})();</script><button id="annotation-trigger" class="annotation-trigger" type="button" hidden>评论这句话</button><div class="annotation-panel" id="annotation-panel" data-open="false" hidden><section class="annotation-sheet" role="dialog" aria-modal="true" aria-label="文内批注"><header class="annotation-head"><strong>评论选中的内容</strong><button class="annotation-close" id="annotation-close" type="button" aria-label="关闭">×</button></header><blockquote class="annotation-quote" id="annotation-quote"></blockquote><p class="annotation-note">评论会留在这段文字旁边，其他读者之后也能看到对应批注。</p><div class="annotation-giscus" id="annotation-giscus"></div></section></div><div class="annotation-tip" id="annotation-tip" hidden>长按或拖选一句话，再点击“评论这句话”</div><div class="site-actions"><a href="../../forum.html?section=daily">返回AI日报版块</a><button type="button" id="issue-share">系统分享</button><button type="button" id="issue-copy-link">复制链接</button><a id="issue-forum-share" class="forum-share" href="../../forum.html?compose=share">分享到论坛</a><button type="button" id="annotation-help">文内批注</button></div><div class="share-status" id="issue-share-status" aria-live="polite">链接已复制</div><script>
+(function(){var share=document.getElementById('issue-share'),copy=document.getElementById('issue-copy-link'),forum=document.getElementById('issue-forum-share'),status=document.getElementById('issue-share-status');function done(){status.style.display='block';setTimeout(function(){status.style.display='none'},1600)}share.addEventListener('click',async function(){try{if(navigator.share){await navigator.share({title:document.title,url:location.href});return}await navigator.clipboard.writeText(location.href);done()}catch(e){}});copy.addEventListener('click',async function(){try{await navigator.clipboard.writeText(location.href);done()}catch(e){}});forum.addEventListener('click',function(e){e.preventDefault();location.href='../../forum.html?compose=share&title='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href)})})();
+</script><script type="module" src="../../annotation-client.mjs"></script></body></html>
