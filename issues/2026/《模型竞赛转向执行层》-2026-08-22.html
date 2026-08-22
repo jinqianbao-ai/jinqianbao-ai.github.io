@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>《模型竞赛转向执行层》-2026-08-22</title><style>
+:root{--bg:#f7f3ec;--card:#fffdfa;--ink:#202326;--muted:#58616a;--line:#e2d8ca;--warm:#b75f32;--warmbg:#fbefe6;--edu:#08758f;--edubg:#eaf7fa;--eduline:#b9dfe7;--judge:#7b4699;--judgebg:#f5eef9;--nav:#211d1a;--navink:#f2ece4;--navmuted:#c2b8ab;--navact:#f2a56f;--nav-w:16.6667%;--nav-fold:44px}
+@media(prefers-color-scheme:dark){:root{--bg:#141619;--card:#1d2024;--ink:#ece8e2;--muted:#b7b0a8;--line:#34383e;--warm:#e29a6b;--warmbg:#2a211b;--edu:#66c7dc;--edubg:#14272d;--eduline:#31525c;--judge:#d2a2ee;--judgebg:#281f2e;--nav:#0d0f12;--navink:#eee9e2;--navmuted:#aaa39a}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.78 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;overflow-wrap:anywhere}a{color:#096b8a}#navtoggle{position:fixed;left:-9999px}.fold{position:fixed;z-index:90;left:calc(var(--nav-w) - 34px);top:10px;width:28px;height:30px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:#352e29;color:#fff;cursor:pointer;transition:.25s}.fold:after{content:"‹";font-size:24px;line-height:1}#toc{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;overflow-y:auto;background:var(--nav);color:var(--navink);z-index:80;border-right:1px solid rgba(255,255,255,.08);transition:width .25s}.brand{padding:18px 40px 14px 14px;border-bottom:1px solid rgba(255,255,255,.1)}.brand b{display:block;font-size:14px;line-height:1.55}.brand small{display:block;color:var(--navmuted);font-size:10.8px;margin-top:5px}.nav-author{font-size:11px;color:var(--navmuted);word-break:break-all}.nav-author a{color:var(--navmuted)}#toc nav{padding:8px 5px 28px}#toc a{display:block;color:var(--navink);text-decoration:none;border-left:3px solid transparent;border-radius:4px;padding:5px 5px;line-height:1.34;white-space:normal;overflow:visible;text-overflow:clip;transition:.15s}#toc a.lv1{font-size:12.3px;font-weight:800;margin-top:8px}#toc a.lv2{font-size:11.5px;padding-left:12px;color:#ded6cc;letter-spacing:-.15px}#toc a.lv3{font-size:11.5px;padding-left:20px;color:var(--navmuted);letter-spacing:-.2px}#toc a:hover,#toc a.active{color:var(--navact);background:rgba(255,255,255,.07);border-left-color:var(--navact)}#main{margin-left:var(--nav-w);min-height:100vh;transition:margin-left .25s}.inner{max-width:900px;margin:auto;padding:30px 30px 60px}#navtoggle:checked~#toc{width:var(--nav-fold)}#navtoggle:checked~#toc .brand,#navtoggle:checked~#toc nav{opacity:0;pointer-events:none}#navtoggle:checked~.fold{left:8px}#navtoggle:checked~.fold:after{content:"›"}#navtoggle:checked~#main{margin-left:var(--nav-fold)}h1{margin:0;color:var(--warm);font-size:34px;line-height:1.28;letter-spacing:1px}.mast{border-bottom:3px double var(--warm);padding-bottom:18px}.meta{color:var(--muted);font-size:13px;margin-top:8px}.author{margin-top:12px;font-size:14px;line-height:1.45}.author b{display:block}.author a{display:block;word-break:break-all}.lede{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--warm);padding:15px 17px;border-radius:0 12px 12px 0;margin:20px 0}.sec{scroll-margin-top:22px;margin:40px 0 16px;border-left:5px solid var(--warm);padding-left:12px;font-size:23px;line-height:1.35}.edu-sec{color:var(--edu);border-left-color:var(--edu)}.judge-sec{color:var(--judge);border-left-color:var(--judge)}h3,h4{scroll-margin-top:22px;line-height:1.5}h3{font-size:19px;margin:27px 0 12px}h4{font-size:18px;margin:0 0 10px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;margin:0 0 16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.lead-card{border-left:5px solid var(--warm)}.news-card{}.rumor-card{border-color:#df9a91;background:#fff4f1}.zone{border-radius:18px;padding:1px 16px 16px;margin:34px -8px 0}.edu-zone,.route-zone{background:var(--edubg);border:1px solid var(--eduline)}.edu-card{background:var(--card);border-color:var(--eduline)}.judge-zone{background:var(--judgebg);border:1px solid color-mix(in srgb,var(--judge) 35%,transparent)}.judge-zone li{margin:12px 0}.badge{display:inline-block;border-radius:99px;padding:3px 10px;font-size:12.5px;font-weight:700}.ok{color:#286f49;background:#eaf6ee;border:1px solid #72aa87}.mid{color:#8a641c;background:#fff5dc;border:1px solid #d4aa54}.bad{color:#a2342e;background:#fde9e6;border:1px solid #d77a70}p{margin:9px 0;color:var(--muted)}strong{color:var(--ink)}ul,ol{padding-left:25px;color:var(--muted)}li{margin:6px 0}blockquote{margin:14px 0;padding:10px 15px;background:var(--warmbg);border-left:4px solid var(--warm);color:var(--muted)}pre{overflow-x:auto;max-width:100%;background:#101318;color:#ecf2f4;border-radius:11px;padding:14px 15px;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}.codebox{margin:12px 0;border:1px solid var(--eduline);border-radius:10px;background:var(--card)}.codebox summary{cursor:pointer;padding:10px 12px;color:var(--edu);font-weight:700}.codebox[open] summary{border-bottom:1px solid var(--eduline)}.codebox pre{margin:0;border-radius:0 0 10px 10px}code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}p code,li code{background:var(--warmbg);color:var(--warm);padding:1px 5px;border-radius:4px;font-size:.9em}table{width:100%;border-collapse:collapse;background:var(--card);font-size:14px}th,td{border:1px solid var(--line);padding:9px;vertical-align:top}th{background:var(--edubg)}hr{border:0;border-top:1px solid var(--line)}footer{margin-top:40px;border-top:2px solid var(--line);padding-top:17px;color:var(--muted);font-size:13px}.toplink{display:inline-block;margin-top:18px;padding:10px 15px;border-radius:9px;background:var(--warm);color:#fff;text-decoration:none}.signature a{word-break:break-all}@media(max-width:900px){.fold{display:none}#toc{position:relative;width:100%;height:auto;max-height:42vh}.brand{padding-right:14px}#toc nav{display:flex;gap:4px;overflow-x:auto;padding:8px}#toc a{flex:0 0 auto;max-width:240px;border-left:0;border-bottom:2px solid transparent;white-space:normal}#toc a.lv2,#toc a.lv3{padding-left:8px}#main,#navtoggle:checked~#main{margin-left:0}.inner{padding:22px 15px 50px}h1{font-size:27px}.zone{margin-left:0;margin-right:0;padding-left:10px;padding-right:10px}}@media(max-width:360px){body{font-size:16px}.inner{padding-left:11px;padding-right:11px}h1{font-size:23px}.card{padding:14px 13px}pre{font-size:12px}table{font-size:12px}}@media print{#toc,.fold{display:none!important}#main{margin-left:0!important}.inner{max-width:none}.card,pre,table{break-inside:avoid}.zone{border:0;padding:0;background:#fff}a{color:#000;text-decoration:none}}
+</style><style id="site-mobile-override">
+:root{color-scheme:light;--page:#f4f6f8;--surface:#fff;--surface-soft:#f7f9fb;--ink:#1f2328;--ink-2:#4b5563;--line:#d8dee4;--blue:#0969da;--blue-hover:#0758b8;--blue-soft:#ddf4ff;--radius:12px;--radius-sm:8px;--bg:var(--page);--paper:var(--surface);--text:var(--ink);--muted:var(--ink-2)}
+body{margin:0;background:var(--page)!important;color:var(--ink)!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif!important;-webkit-font-smoothing:antialiased}.article-site-header~main{background-color:var(--surface);border-radius:var(--radius)}a{color:var(--blue)}
+.article-site-header{position:relative;z-index:850;background:var(--surface);border-bottom:1px solid var(--line);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.article-site-header-inner{max-width:1240px;min-height:64px;margin:auto;padding:0 20px;display:flex;align-items:center;gap:18px}.article-site-header a{min-height:44px;display:inline-flex;align-items:center;text-decoration:none;border-radius:var(--radius-sm)}.article-site-header-brand{color:var(--ink)!important;font-size:17px;font-weight:760}.article-site-header-section{color:var(--ink-2);font-size:14px;font-weight:650}.article-site-header-back{margin-left:auto;padding:0 12px;color:var(--blue)!important;font-weight:680}.article-site-header-back:hover{background:var(--surface-soft)}
+.site-actions{position:fixed;right:12px;bottom:14px;z-index:900;display:flex;gap:6px;padding:6px;background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 8px 24px rgba(31,35,40,.14);backdrop-filter:blur(12px)}
+.site-actions a,.site-actions button{appearance:none;border:0;background:transparent;color:var(--blue)!important;text-decoration:none;padding:8px 10px;border-radius:var(--radius-sm);font:650 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;justify-content:center}.site-actions a:hover,.site-actions button:hover{background:var(--blue-soft)}.share-status{position:fixed;right:14px;bottom:74px;z-index:1000;background:var(--ink);color:var(--surface);padding:8px 11px;border-radius:var(--radius-sm);font:13px/1.3 sans-serif;display:none}
+.annotation-trigger{position:fixed;z-index:1100;border:0;border-radius:var(--radius-sm);background:var(--ink);color:var(--surface);padding:9px 12px;min-height:44px;font:650 14px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;box-shadow:0 5px 18px rgba(31,35,40,.22);cursor:pointer}.annotation-trigger[hidden]{display:none}.annotation-panel{position:fixed;inset:0;z-index:1200;background:rgba(0,0,0,.34);display:flex;justify-content:flex-end}.annotation-panel[hidden]{display:none}.annotation-sheet{width:min(500px,100%);height:100%;background:var(--surface);color:var(--ink);display:flex;flex-direction:column;box-shadow:-10px 0 35px rgba(31,35,40,.2)}.annotation-head{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.annotation-head strong{font:700 17px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-close{border:0;border-radius:var(--radius-sm);background:transparent;color:var(--ink);font-size:24px;line-height:1;min-width:44px;min-height:44px;cursor:pointer}.annotation-close:hover{background:var(--surface-soft)}.annotation-quote{margin:14px 17px 5px;padding:13px 14px;background:var(--surface-soft);border-radius:var(--radius-sm);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-note{margin:0 17px 10px;color:var(--ink-2);font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.annotation-giscus{padding:0 14px 20px;overflow:auto}.annotation-tip{position:fixed;left:50%;bottom:76px;z-index:1050;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:10px 13px;border-radius:var(--radius-sm);font:14px/1.4 sans-serif;white-space:nowrap}.annotation-tip[hidden]{display:none}mark.annotation-pending,mark.annotation-existing{background:#fff0a8;color:inherit;border-radius:3px;padding:0 1px;cursor:pointer;border-bottom:2px solid #d59a00}mark.annotation-existing[data-comments]:after{content:attr(data-comments);display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;margin-left:3px;padding:0 4px;border-radius:999px;background:#7d5d00;color:#fff;font:10px/1 sans-serif}
+@media(max-width:900px){#toc,.fold,#navtoggle{display:none!important}#main,#navtoggle:checked~#main{margin-left:0!important}.inner{max-width:680px!important;padding:18px 14px 72px!important}.masthead h1{font-size:26px!important}.card,.mainline,.judge{border-radius:12px!important;padding:15px!important}h2.sec{font-size:21px!important;margin-top:30px!important}pre{font-size:12px!important}.site-actions{left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));justify-content:space-around}.site-actions a,.site-actions button{min-height:44px;flex:1}.share-status{left:50%;right:auto;transform:translateX(-50%);bottom:70px}.annotation-sheet{height:min(82vh,720px);margin-top:auto;border-radius:var(--radius) var(--radius) 0 0}.annotation-panel{align-items:flex-end}.annotation-trigger{position:fixed!important;left:50%!important;top:auto!important;bottom:72px;transform:translateX(-50%)}}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--page:#0d1117;--surface:#161b22;--surface-soft:#21262d;--ink:#f0f3f6;--ink-2:#c9d1d9;--line:#30363d;--blue:#58a6ff;--blue-hover:#79b8ff;--blue-soft:#1d3348}.site-actions{box-shadow:none}.annotation-sheet{background:var(--surface);color:var(--ink)}.annotation-head{border-color:var(--line)}.annotation-quote{background:var(--surface-soft);color:var(--ink)}.annotation-note{color:var(--ink-2)}mark.annotation-pending,mark.annotation-existing{background:#66530e;color:#fff0b0;border-bottom-color:#f1c84c}}
+</style></head>
+<body id="top"><header class="article-site-header"><nav class="article-site-header-inner" aria-label="站点导航"><a class="article-site-header-brand" href="../../forum.html">金钱豹AI论坛</a><span class="article-site-header-section" aria-current="page">AI日报</span><a class="article-site-header-back" href="../../forum.html?section=daily">返回AI日报版块</a></nav></header><input type="checkbox" id="navtoggle"><aside id="toc"><div class="brand"><b>《模型竞赛转向执行层》</b><small>2026-08-22 · 创刊第 14 期</small><div class="nav-author">金钱豹Ai中转<br><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a></div></div><nav id="tocnav"><a class="lv1" href="#top">报头与阅读说明</a><a class="lv1" href="#卷首语" title="卷首语">卷首语</a>
+<a class="lv1" href="#今日主线-模型能力-协作入口与基础设施被打包成同一套执行系统" title="今日主线：模型能力、协作入口与基础设施被打包成同一套执行系统">今日主线：模型能力、协作入口与基础设施被打包成同一套执行系统</a>
+<a class="lv2" href="#重点一-deepseek-发布实验性视觉模型-补齐多模态智能体入口" title="重点一：DeepSeek 发布实验性视觉模型，补齐多模态智能体入口">重点一：DeepSeek 发布实验性视觉模型，补齐多模态智能体入口</a>
+<a class="lv2" href="#重点二-github-copilot-进入-microsoft-teams-会议讨论可直接启动云端编码智能体" title="重点二：GitHub Copilot 进入 Microsoft Teams，会议讨论可直接启动云端编码智能体">重点二：GitHub Copilot 进入 Microsoft Teams，会议讨论可直接启动云端编码智能体</a>
+<a class="lv2" href="#重点三-英伟达被曝用许可-人才与数据中心投资同时锁定执行层资产" title="重点三：英伟达被曝用许可、人才与数据中心投资同时锁定执行层资产">重点三：英伟达被曝用许可、人才与数据中心投资同时锁定执行层资产</a>
+<a class="lv1" href="#今日要闻" title="今日要闻">今日要闻</a>
+<a class="lv2" href="#模型与产品发布" title="模型与产品发布">模型与产品发布</a>
+<a class="lv3" href="#sec-1-deepseek-v4-flash-vision-exp-上线-视觉代理能力进入实验阶段" title="1. DeepSeek-V4-Flash-Vision-Exp 上线，视觉代理能力进入实验阶段">1. DeepSeek-V4-Flash-Vision-Exp 上线，视觉代理能力进入实验阶段</a>
+<a class="lv3" href="#sec-2-github-copilot-在-teams-中开放多人共同指挥云端智能体" title="2. GitHub Copilot 在 Teams 中开放多人共同指挥云端智能体">2. GitHub Copilot 在 Teams 中开放多人共同指挥云端智能体</a>
+<a class="lv2" href="#算力-芯片与基础设施" title="算力、芯片与基础设施">算力、芯片与基础设施</a>
+<a class="lv3" href="#sec-3-英伟达入股-cloverleaf-芯片厂继续向数据中心项目上游延伸" title="3. 英伟达入股 Cloverleaf，芯片厂继续向数据中心项目上游延伸">3. 英伟达入股 Cloverleaf，芯片厂继续向数据中心项目上游延伸</a>
+<a class="lv2" href="#资本-组织与商业" title="资本、组织与商业">资本、组织与商业</a>
+<a class="lv3" href="#sec-4-英伟达据报以-60-亿美元许可-poolside-模型-并向百余名员工发出邀请" title="4. 英伟达据报以 60 亿美元许可 Poolside 模型，并向百余名员工发出邀请">4. 英伟达据报以 60 亿美元许可 Poolside 模型，并向百余名员工发出邀请</a>
+<a class="lv3" href="#sec-5-ai-会计公司-rillet-完成-1-亿美元-c-轮-估值达到-10-亿美元" title="5. AI 会计公司 Rillet 完成 1 亿美元 C 轮，估值达到 10 亿美元">5. AI 会计公司 Rillet 完成 1 亿美元 C 轮，估值达到 10 亿美元</a>
+<a class="lv2" href="#监管-安全与治理" title="监管、安全与治理">监管、安全与治理</a>
+<a class="lv3" href="#sec-6-openai-成立-strategic-futures-团队-把-权力集中-列为长期-ai-风险" title="6. OpenAI 成立 Strategic Futures 团队，把“权力集中”列为长期 AI 风险">6. OpenAI 成立 Strategic Futures 团队，把“权力集中”列为长期 AI 风险</a>
+<a class="lv2" href="#开源社区与研究" title="开源社区与研究">开源社区与研究</a>
+<a class="lv3" href="#sec-7-ai4ai-bench-测试-让-ai-改进训练算法-最佳系统仍只走完不足五分之一路程" title="7. AI4AI-Bench 测试“让 AI 改进训练算法”，最佳系统仍只走完不足五分之一路程">7. AI4AI-Bench 测试“让 AI 改进训练算法”，最佳系统仍只走完不足五分之一路程</a>
+<a class="lv3" href="#sec-8-midtool-工具使用不能只靠后训练-模型中期训练也需要真实-api-与-mcp-工作流" title="8. MidTool：工具使用不能只靠后训练，模型中期训练也需要真实 API 与 MCP 工作流">8. MidTool：工具使用不能只靠后训练，模型中期训练也需要真实 API 与 MCP 工作流</a>
+<a class="lv3" href="#sec-9-task-coevolve-把智能体执行框架优化成本降低约-80" title="9. Task-CoEvolve 把智能体执行框架优化成本降低约 80%">9. Task-CoEvolve 把智能体执行框架优化成本降低约 80%</a>
+<a class="lv3" href="#sec-10-机器人-证据门控-研究-找不到目标物体时-先探索或停手-而不是凭常识硬做" title="10. 机器人“证据门控”研究：找不到目标物体时，先探索或停手，而不是凭常识硬做">10. 机器人“证据门控”研究：找不到目标物体时，先探索或停手，而不是凭常识硬做</a>
+<a class="lv2" href="#行业风声-未经证实" title="行业风声｜未经证实">行业风声｜未经证实</a>
+<a class="lv3" href="#ox-alpha-匿名模型出现-号称百万词元上下文与视频输入" title="Ox Alpha 匿名模型出现，号称百万词元上下文与视频输入">Ox Alpha 匿名模型出现，号称百万词元上下文与视频输入</a>
+<a class="lv1" href="#ai实用教程" title="📚 AI实用教程">📚 AI实用教程</a>
+<a class="lv2" href="#claude-code-系列第-14-期-把三类失败事件合并成一条会话时间线" title="① Claude Code 系列第 14 期：把三类失败事件合并成一条会话时间线">① Claude Code 系列第 14 期：把三类失败事件合并成一条会话时间线</a>
+<a class="lv2" href="#hermes-agent-系列第-14-期-用-kanban-任务卡绑定工作树-验收清单与独立复核" title="② Hermes Agent 系列第 14 期：用 Kanban 任务卡绑定工作树、验收清单与独立复核">② Hermes Agent 系列第 14 期：用 Kanban 任务卡绑定工作树、验收清单与独立复核</a>
+<a class="lv2" href="#claude-模型系列第-14-期-把真实词元计数接入-rpm-itpm-otpm-三重预算队列" title="③ Claude 模型系列第 14 期：把真实词元计数接入 RPM、ITPM、OTPM 三重预算队列">③ Claude 模型系列第 14 期：把真实词元计数接入 RPM、ITPM、OTPM 三重预算队列</a>
+<a class="lv1" href="#ai独立研判-非新闻事实" title="🤖 AI独立研判（非新闻事实）">🤖 AI独立研判（非新闻事实）</a>
+<a class="lv1" href="#连载路线图" title="连载路线图">连载路线图</a>
+<a class="lv1" href="#编后与核验说明" title="编后与核验说明">编后与核验说明</a></nav></aside><label class="fold" for="navtoggle" aria-label="折叠或展开目录"></label>
+<main id="main"><div class="inner"><header class="mast"><h1>《模型竞赛转向执行层》</h1><div class="meta">每日全球 AI 情报报纸 · 创刊第 14 期 · 北京时间 2026 年 8 月 22 日</div><div class="author"><b>金钱豹Ai中转</b><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a></div></header><p class="lede">今天的核心变化是：模型、协作入口、执行框架、人才和数据中心正在被打包成一套系统。先读“今日主线”看懂格局，再按分类阅读 10 条要闻；可信度标签表示证据强弱。</p><h2 id="卷首语" class="sec">卷首语</h2>
+<p>本期帮助读者看懂一条主线：AI 竞争的价值中心正在从“谁有更强的单一模型”，移动到“谁能把模型接入真实协作入口、配好执行框架、掌握训练与推理资产，并为全过程保留审计证据”。阅读时先看“今日主线”理解格局变化，再按分类浏览 10 条“今日要闻”；“正式信息、媒体报道、行业风声”表示证据强弱，不代表新闻价值高低。</p>
+<p>过去一天，DeepSeek 为 V4-Flash 增加实验性视觉理解，GitHub 把 Copilot 云端智能体带进 Microsoft Teams，英伟达则被曝同时购买模型许可、吸纳人才并投资数据中心开发商。研究侧也在围绕同一问题收敛：工具能力要专门训练，执行框架可以单独优化，高风险机器人必须先获得证据再行动。模型仍然重要，但决定最终效果的已越来越是模型之外的“执行层”。</p>
+<h2 id="今日主线-模型能力-协作入口与基础设施被打包成同一套执行系统" class="sec">今日主线：模型能力、协作入口与基础设施被打包成同一套执行系统</h2>
+<article class="card lead-card"><h3 id="重点一-deepseek-发布实验性视觉模型-补齐多模态智能体入口">重点一：DeepSeek 发布实验性视觉模型，补齐多模态智能体入口</h3>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>DeepSeek 8 月 21 日在 API 更新日志中上线 <code>DeepSeek-V4-Flash-Vision-Exp</code>，这是面向视觉理解的实验模型，可通过 API 指定模型名称调用。官方称其纯文本代理、推理和知识能力与 V4-Flash 大体相当，在需要视觉理解的智能体评测上有明显提升；所有跑分均为厂商自报，尚待第三方复现。</p>
+<p><strong>与主线的关系：</strong> 这不是单纯增加“看图”功能，而是让编码、网页操作、图表分析和视频上下文进入同一代理循环。模型入口从文本扩展到视觉后，执行框架要同时处理附件、工具调用、状态恢复和证据追踪。</p>
+<p>来源：DeepSeek API 更新日志｜发布时间：2026-08-21｜可信度：高（能力数字为厂商评测）<br />
+<a href="https://api-docs.deepseek.com/updates/">https://api-docs.deepseek.com/updates/</a></p>
+</article><article class="card lead-card"><h3 id="重点二-github-copilot-进入-microsoft-teams-会议讨论可直接启动云端编码智能体">重点二：GitHub Copilot 进入 Microsoft Teams，会议讨论可直接启动云端编码智能体</h3>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>GitHub 宣布 Copilot 与 Microsoft Teams 的共享智能体协作进入公开预览。用户可在频道、讨论串或私聊中提及 <code>@GitHub</code> 启动云端智能体，会话参与者可共同补充上下文和调整方向；拥有仓库写权限的人可以触发代码变更。GitHub 同时允许仓库管理员要求 Copilot 集成身份创建的拉取请求增加一次额外批准。</p>
+<p><strong>与主线的关系：</strong> 编码代理不再只待在终端和编辑器，而是进入团队决策发生的地方。会议结论、仓库权限、云沙箱、AI 积分和合规审批被连成一条执行链，产品竞争因此转向跨入口编排能力。</p>
+<p>来源：GitHub Changelog｜发布时间：2026-08-21 09:03（美国太平洋时间）｜可信度：高<br />
+<a href="https://github.blog/changelog/2026-08-21-shared-agentic-work-with-github-copilot-in-microsoft-teams/">https://github.blog/changelog/2026-08-21-shared-agentic-work-with-github-copilot-in-microsoft-teams/</a></p>
+</article><article class="card lead-card"><h3 id="重点三-英伟达被曝用许可-人才与数据中心投资同时锁定执行层资产">重点三：英伟达被曝用许可、人才与数据中心投资同时锁定执行层资产</h3>
+<p><span class="badge mid">媒体报道｜待相关公司完整确认</span></p>
+<p>Bloomberg 报道，英伟达同意向 Poolside 支付 60 亿美元获取 AI 模型许可，并计划向 100 多名员工发出工作邀请；交易细节来自知情人士，尚未见双方完整公告。Reuters 与 TechCrunch 另称，英伟达已取得数据中心开发商 Cloverleaf Infrastructure 的少数股权，投资规模可能达到数亿美元。</p>
+<p><strong>与主线的关系：</strong> 英伟达的角色正从芯片供应商扩大到模型许可方、人才吸纳方、算力项目投资者和需求组织者。它既卖执行所需的硬件，也在直接塑造哪些模型、团队和数据中心能够进入市场。</p>
+<p>来源：Bloomberg、Reuters（经 TechCrunch 交叉核验）｜发布时间：2026-08-20 至 21｜可信度：中高<br />
+<a href="https://www.bloomberg.com/news/articles/2026-08-20/nvidia-to-pay-ai-startup-poolside-a-6-billion-license-newcomer-says">https://www.bloomberg.com/news/articles/2026-08-20/nvidia-to-pay-ai-startup-poolside-a-6-billion-license-newcomer-says</a>
+<a href="https://www.reuters.com/technology/nvidia-invests-data-center-developer-cloverleaf-infrastructure-2026-08-21/">https://www.reuters.com/technology/nvidia-invests-data-center-developer-cloverleaf-infrastructure-2026-08-21/</a>
+<a href="https://techcrunch.com/2026/08/21/nvidia-partners-with-data-center-developer-cloverleaf/">https://techcrunch.com/2026/08/21/nvidia-partners-with-data-center-developer-cloverleaf/</a></p>
+</article><h2 id="今日要闻" class="sec">今日要闻</h2>
+<h3 id="模型与产品发布">模型与产品发布</h3>
+<article class="card news-card"><h4 id="sec-1-deepseek-v4-flash-vision-exp-上线-视觉代理能力进入实验阶段">1. DeepSeek-V4-Flash-Vision-Exp 上线，视觉代理能力进入实验阶段</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>DeepSeek 新模型支持视觉理解，官方给出的评测覆盖 Terminal Bench、NL2Repo、DeepSWE、图表理解和多项代理基准。官方特别说明，纯文本能力与正式版 V4-Flash 接近，而视觉代理任务出现显著增益；模型名称中的 <code>Exp</code> 表明它仍是实验版本，不宜未经回归测试就替换生产模型。</p>
+<p>该发布还透露出新的产品路线：厂商不再把多模态只做成聊天界面的识图功能，而是把视觉信号直接接入代码、搜索、自动化和工具调用。对开发者而言，真正需要验证的是图片或视频输入能否稳定转成正确动作，而不只是回答是否流畅。</p>
+<p><strong>为什么重要：</strong> 多模态代理将扩大可自动化任务范围，也会增加输入体积、隐私、提示注入和错误动作风险。实验模型应采用独立配额、可撤销权限和生产回退线路。</p>
+<p>来源：DeepSeek API 更新日志｜发布时间：2026-08-21｜可信度：高（跑分为厂商报告）<br />
+<a href="https://api-docs.deepseek.com/updates/">https://api-docs.deepseek.com/updates/</a>
+<a href="https://api-docs.deepseek.com/guides/vision">https://api-docs.deepseek.com/guides/vision</a></p>
+</article><article class="card news-card"><h4 id="sec-2-github-copilot-在-teams-中开放多人共同指挥云端智能体">2. GitHub Copilot 在 Teams 中开放多人共同指挥云端智能体</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>GitHub Copilot 的 Teams 集成允许多人在同一个聊天上下文中观察调查过程、追加资料并调整任务，智能体随后在安全云沙箱中异步工作。任务产物还可继续在终端、GitHub Copilot 应用或集成开发环境中处理，形成从会议到代码的跨端接力。</p>
+<p>公开预览面向付费 Copilot 计划，云端智能体会消耗 AI 积分，云沙箱另行计费；组织可以设置用量预算。仓库写权限仍是触发修改的前提，并可对集成身份创建的拉取请求增加额外人工审批。</p>
+<p><strong>为什么重要：</strong> 团队协作入口会成为智能体分发的新战场，但“所有人都能说话”不等于“所有人都能改代码”。组织必须把聊天参与权、仓库写权限、合并批准和费用预算分开治理。</p>
+<p>来源：GitHub Changelog｜发布时间：2026-08-21｜可信度：高<br />
+<a href="https://github.blog/changelog/2026-08-21-shared-agentic-work-with-github-copilot-in-microsoft-teams/">https://github.blog/changelog/2026-08-21-shared-agentic-work-with-github-copilot-in-microsoft-teams/</a></p>
+</article><h3 id="算力-芯片与基础设施">算力、芯片与基础设施</h3>
+<article class="card news-card"><h4 id="sec-3-英伟达入股-cloverleaf-芯片厂继续向数据中心项目上游延伸">3. 英伟达入股 Cloverleaf，芯片厂继续向数据中心项目上游延伸</h4>
+<p><span class="badge mid">媒体报道｜交易存在，金额待完整披露</span></p>
+<p>Reuters 报道英伟达已取得 Cloverleaf Infrastructure 少数股权；TechCrunch 引述《华尔街日报》称，投资可能累计达到数亿美元。Cloverleaf 是数据中心与电力基础设施开发商，这笔交易延续英伟达以资本推动 AI 数据中心建设、再由项目采购其计算系统的循环。</p>
+<p>同一周，英伟达还宣布向与 OpenAI 项目有关的 SB Energy 投资 15 亿美元。单看每笔交易，它们是财务投资；合并观察，则能看到芯片供应商正主动介入土地、电力、融资和开发进度，降低未来 GPU 需求被基础设施瓶颈卡住的风险。</p>
+<p><strong>为什么重要：</strong> AI 芯片竞争越来越依赖谁能让数据中心按时通电并获得融资。供应商与客户、投资方和项目开发商之间的边界将继续模糊，也会增加关联交易和资产利用率风险。</p>
+<p>来源：Reuters、TechCrunch｜发布时间：2026-08-21｜可信度：中高<br />
+<a href="https://www.reuters.com/technology/nvidia-invests-data-center-developer-cloverleaf-infrastructure-2026-08-21/">https://www.reuters.com/technology/nvidia-invests-data-center-developer-cloverleaf-infrastructure-2026-08-21/</a>
+<a href="https://techcrunch.com/2026/08/21/nvidia-partners-with-data-center-developer-cloverleaf/">https://techcrunch.com/2026/08/21/nvidia-partners-with-data-center-developer-cloverleaf/</a></p>
+</article><h3 id="资本-组织与商业">资本、组织与商业</h3>
+<article class="card news-card"><h4 id="sec-4-英伟达据报以-60-亿美元许可-poolside-模型-并向百余名员工发出邀请">4. 英伟达据报以 60 亿美元许可 Poolside 模型，并向百余名员工发出邀请</h4>
+<p><span class="badge mid">媒体报道｜待双方完整确认</span></p>
+<p>Bloomberg 援引知情人士称，英伟达同意支付 60 亿美元许可 Poolside 的 AI 模型，并计划向该公司 100 多名员工提供职位。报道更新还提到额外投资与估值安排，但公开可读取内容不足以完整核验全部条款，因此本报只采用许可金额和人才邀请这两个可直接看到的核心信息。</p>
+<p>这类“许可＋人才”结构不同于传统收购：买方可以迅速获得模型技术与团队能力，同时避免直接接管全部公司资产和合同。近年大型科技公司频繁使用类似安排，监管机构也会关注它是否实质上形成控制或削弱市场独立竞争。</p>
+<p><strong>为什么重要：</strong> 前沿 AI 资产的交易单位已从“公司”拆分为模型许可、训练成果、关键员工和算力合同。英伟达若把模型能力纳入自身平台，将进一步强化硬件、软件和代理执行框架的一体化。</p>
+<p>来源：Bloomberg｜发布时间：2026-08-20，8 月 21 日更新｜可信度：中高<br />
+<a href="https://www.bloomberg.com/news/articles/2026-08-20/nvidia-to-pay-ai-startup-poolside-a-6-billion-license-newcomer-says">https://www.bloomberg.com/news/articles/2026-08-20/nvidia-to-pay-ai-startup-poolside-a-6-billion-license-newcomer-says</a></p>
+</article><article class="card news-card"><h4 id="sec-5-ai-会计公司-rillet-完成-1-亿美元-c-轮-估值达到-10-亿美元">5. AI 会计公司 Rillet 完成 1 亿美元 C 轮，估值达到 10 亿美元</h4>
+<p><strong>信息分层：正式信息｜融资已由公司及投资方确认</strong></p>
+<p>Rillet 宣布完成 1 亿美元 C 轮融资，由 ICONIQ 领投，Andreessen Horowitz 与 Sequoia 等继续参与，公司估值达到 10 亿美元。公司称客户已超过 600 家，最近三个月年化经常性收入翻倍；TechCrunch 进一步报道，本轮在既有投资人了解业务进展的基础上于约 48 小时内成形。</p>
+<p>Rillet 的重点不是在旧会计软件上增加聊天框，而是把总账和财务流程设计成适合智能体持续取数、计算、记忆与审计的系统。公司还提供决策审计功能，让会计人员查看代理使用了哪些数字、如何计算以及做过哪些历史动作。</p>
+<p><strong>为什么重要：</strong> AI 原生应用开始挑战 ERP（企业资源计划）和财务系统等高粘性软件。能否给每一笔代理操作保留人类可读证据，将直接决定它能否进入上市公司和受监管财务流程。</p>
+<p>来源：Rillet、ICONIQ、TechCrunch｜发布时间：2026-08-19 至 21｜可信度：高<br />
+<a href="https://www.businesswire.com/news/home/20260819978953/en/Rillet-Raises-%24100M-Series-C-at-%241B-Valuation-to-Build-Accounting-Superintelligence">https://www.businesswire.com/news/home/20260819978953/en/Rillet-Raises-%24100M-Series-C-at-%241B-Valuation-to-Build-Accounting-Superintelligence</a>
+<a href="https://www.iconiq.com/growth/insights/iconiq-leading-rillets-100m-series-c">https://www.iconiq.com/growth/insights/iconiq-leading-rillets-100m-series-c</a>
+<a href="https://techcrunch.com/2026/08/21/how-ai-accounting-startup-rillet-raised-100m-and-became-a-unicorn-in-48-hours/">https://techcrunch.com/2026/08/21/how-ai-accounting-startup-rillet-raised-100m-and-became-a-unicorn-in-48-hours/</a></p>
+</article><h3 id="监管-安全与治理">监管、安全与治理</h3>
+<article class="card news-card"><h4 id="sec-6-openai-成立-strategic-futures-团队-把-权力集中-列为长期-ai-风险">6. OpenAI 成立 Strategic Futures 团队，把“权力集中”列为长期 AI 风险</h4>
+<p><span class="badge ok">正式信息｜已确认</span></p>
+<p>OpenAI 推出 AI Futures（AI 未来）博客与 Strategic Futures（战略未来）团队，研究变革性 AI 出现后，社会如何保留个人权利与行动能力。首篇文章把权力集中称为长期最严重、最难处理的风险之一，并提出高风险行动应能追溯到负责任的人或人类控制组织，同时强调隐私和匿名表达不能被一并牺牲。</p>
+<p>文章还直接引用近期 Hugging Face 智能体事件，说明去中心化不能解决所有风险，失控智能体同样需要集体治理。它并非具体政策承诺或产品规则，而是一份研究议程和原则声明。</p>
+<p><strong>为什么重要：</strong> OpenAI 的安全讨论从模型能力、网络攻击和生物风险，进一步扩展到国家、公司和个人之间的权力结构。未来治理争论可能同时围绕“谁能使用 AI”和“谁对高风险动作负责”展开。</p>
+<p>来源：OpenAI｜发布时间：2026-08-20｜可信度：高<br />
+<a href="https://openai.com/index/introducing-ai-futures/">https://openai.com/index/introducing-ai-futures/</a></p>
+</article><h3 id="开源社区与研究">开源社区与研究</h3>
+<article class="card news-card"><h4 id="sec-7-ai4ai-bench-测试-让-ai-改进训练算法-最佳系统仍只走完不足五分之一路程">7. AI4AI-Bench 测试“让 AI 改进训练算法”，最佳系统仍只走完不足五分之一路程</h4>
+<p><strong>信息分层：正式信息｜论文原文可核验</strong></p>
+<p>AI4AI-Bench 提供 10 个冻结研究仓库，覆盖 10 类训练算法，要求智能体在单张 B300 上用 4 小时改写训练算法，再从头运行最多 12 小时并由隐藏评估器评分。作者测试 6 套系统的 29 种配置，平均标准化分数为 0.166，最佳为 0.250；作者解释，这意味着即使最强系统也只弥合了原始算法到任务最优值之间不到五分之一的差距。</p>
+<p>研究发现，很多提交根本没有改变模型如何学习；真正修改训练算法的少数方案表现更好。增加推理投入主要提高了系统“敢于动训练算法”的比例，而不是自动保证成功。</p>
+<p><strong>为什么重要：</strong> “递归自我改进”常被抽象讨论，这套基准把问题落到可重复实验：AI 能否真正设计更好的训练算法，而不只是调参数或堆数据。当前结果更像能力萌芽，而非自我改进已经失控。</p>
+<p>来源：arXiv:2608.20318｜提交时间：2026-08-20｜可信度：中高（作者报告，待独立复现）<br />
+<a href="https://arxiv.org/abs/2608.20318">https://arxiv.org/abs/2608.20318</a></p>
+</article><article class="card news-card"><h4 id="sec-8-midtool-工具使用不能只靠后训练-模型中期训练也需要真实-api-与-mcp-工作流">8. MidTool：工具使用不能只靠后训练，模型中期训练也需要真实 API 与 MCP 工作流</h4>
+<p><strong>信息分层：正式信息｜论文与数据入口可核验</strong></p>
+<p>MidTool 提出面向智能体工具使用的中期训练数据构建流程，把网页、PDF、代码、真实工具 API、MCP 技能和文档工作流组合成训练语料。作者用 MidTool-Mix 对 Qwen3-4B-Base 与 Qwen3-8B-Base 进行中期训练，再接监督微调和强化学习，报告称在 BFCL、tau2-Bench 与 MCP Universe 上持续优于对照方案。</p>
+<p>论文强调，模型需要专门学习识别工具用途、从上下文填写参数、组合调用流程，以及在信息不完整时恢复，而不能把这些能力全部留给后训练阶段临时补齐。</p>
+<p><strong>为什么重要：</strong> 工具调用正从“提示词技巧”变成基础模型训练目标。未来代理模型的差异可能更多来自训练数据是否覆盖真实工具约束，而不是只看通用问答跑分。</p>
+<p>来源：arXiv:2608.20314、Hugging Face 数据与模型集合｜提交时间：2026-08-20｜可信度：中高（作者报告）<br />
+<a href="https://arxiv.org/abs/2608.20314">https://arxiv.org/abs/2608.20314</a>
+<a href="https://hf.co/collections/MidTool/midtool-release">https://hf.co/collections/MidTool/midtool-release</a></p>
+</article><article class="card news-card"><h4 id="sec-9-task-coevolve-把智能体执行框架优化成本降低约-80">9. Task-CoEvolve 把智能体执行框架优化成本降低约 80%</h4>
+<p><strong>信息分层：正式信息｜论文原文可核验</strong></p>
+<p>Task-CoEvolve 研究的不是更新模型权重，而是反复改写 harness（智能体执行框架）代码，使同一模型在验证任务上表现更好。传统方法每轮都跑完整验证集，成本很高；新方法优先抽取候选框架表现分歧最大的任务，并用采样概率估计全量得分。</p>
+<p>作者在在线文本分类和 Terminal-Bench 2.1 上报告，Task-CoEvolve 在减少约 80% 评测次数的同时，最终性能可接近完整验证集搜索。代码仓库已给出，但论文结果仍需第三方复现。</p>
+<p><strong>为什么重要：</strong> 当模型能力接近时，执行框架可以成为单独优化的资产。降低框架搜索成本，会让更多团队在不训练新模型的情况下提升智能体效果，也会提高对验证集污染和过拟合的警惕。</p>
+<p>来源：arXiv:2608.20169、GitHub｜提交时间：2026-08-20｜可信度：中高（作者报告）<br />
+<a href="https://arxiv.org/abs/2608.20169">https://arxiv.org/abs/2608.20169</a>
+<a href="https://github.com/Agent4Science-UTokyo/Task-CoEvolve">https://github.com/Agent4Science-UTokyo/Task-CoEvolve</a></p>
+</article><article class="card news-card"><h4 id="sec-10-机器人-证据门控-研究-找不到目标物体时-先探索或停手-而不是凭常识硬做">10. 机器人“证据门控”研究：找不到目标物体时，先探索或停手，而不是凭常识硬做</h4>
+<p><strong>信息分层：正式信息｜论文原文可核验</strong></p>
+<p>EAFG（证据获取与可行性门控）框架面向部分可观测环境中的长流程机器人任务。视觉语言模型先提出探索子目标，任务与运动规划器执行并收集视觉证据，然后系统决定继续规划、进一步探索或停止；在需要的物体实际不存在时，框架会减少反复尝试和错误操作。</p>
+<p>论文以存在歧义的烹饪任务为例，报告称先发现任务相关物体再规划可提高完成率。该工作规模仍有限，但它把“看见证据再行动”做成了明确系统门槛。</p>
+<p><strong>为什么重要：</strong> 物理智能体不能把语言模型的常识当成环境事实。证据门控、可行性检查和允许停手，将是机器人进入家庭、工厂和公共空间前必须具备的安全能力。</p>
+<p>来源：arXiv:2608.20084｜提交时间：2026-08-20｜可信度：中高（作者报告）<br />
+<a href="https://arxiv.org/abs/2608.20084">https://arxiv.org/abs/2608.20084</a></p>
+</article><h3 id="行业风声-未经证实">行业风声｜未经证实</h3>
+<article class="card rumor-card"><h4 id="ox-alpha-匿名模型出现-号称百万词元上下文与视频输入">Ox Alpha 匿名模型出现，号称百万词元上下文与视频输入</h4>
+<p><span class="badge bad">行业风声｜未经证实｜置信度：低至中</span></p>
+<p>第三方模型路由平台出现名为 <code>stealth/ox-alpha</code> 的匿名模型，运营方声称它支持约 100 万词元上下文、文本／图片／视频输入、工具调用与结构化输出，并在一周内免费。当前没有开发公司认领、没有独立基准、没有公开架构和正式长期价格；关于其可能来自哪家中国实验室的猜测仅基于过去匿名模型的发布模式，不能当作事实。</p>
+<p>更需要警惕的是数据条款：宣传中的“零数据保留”与平台页面所述保留提示词和回答但不用于训练之间存在口径差异。匿名运营方、免费流量和超长上下文叠加时，不应上传私有代码、客户数据或机密文档。</p>
+<p>来源：OrcaRouter 跟踪文章与平台自述｜出现时间：2026-08-20｜可信度：低至中<br />
+<a href="https://www.orcarouter.ai/blog/ox-alpha-stealth-model-what-we-know">https://www.orcarouter.ai/blog/ox-alpha-stealth-model-what-we-know</a></p>
+<section class="zone edu-zone"></article><h2 id="ai实用教程" class="sec edu-sec">📚 AI实用教程</h2>
+<article class="card edu-card"><h3 id="claude-code-系列第-14-期-把三类失败事件合并成一条会话时间线">① Claude Code 系列第 14 期：把三类失败事件合并成一条会话时间线</h3>
+<p><strong>难度：进阶｜预计动手时间：30 分钟｜成本：免费｜环境：Claude Code 当前官方 Hooks 机制、Python 3.9+｜前置：能编辑项目 <code>.claude/settings.json</code></strong></p>
+<p><strong>适用场景：</strong> 上一期已用 <code>PermissionDenied</code> 记录自动模式拒绝。本期把 <code>PermissionDenied</code>、<code>PostToolUseFailure</code>（工具执行失败）和 <code>StopFailure</code>（API 错误导致回合终止）统一写入一个 JSONL 文件，便于判断一次会话到底是权限、工具还是模型服务出了问题。</p>
+<ol>
+<li>新建 <code>.claude/hooks/failure_timeline.py</code>：</li>
+</ol>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;把 Claude Code 三类失败 Hook 统一记录为 JSONL；不改变原始决策。&quot;&quot;&quot;
+import json
+import pathlib
+import sys
+from datetime import datetime, timezone
+
+payload = json.load(sys.stdin)
+event = str(payload.get(&quot;hook_event_name&quot;, &quot;未知事件&quot;))
+record = {
+    &quot;时间&quot;: datetime.now(timezone.utc).isoformat(),
+    &quot;事件&quot;: event,
+    &quot;会话ID&quot;: payload.get(&quot;session_id&quot;),
+    &quot;智能体ID&quot;: payload.get(&quot;agent_id&quot;),
+    &quot;工具&quot;: payload.get(&quot;tool_name&quot;),
+    &quot;工具输入&quot;: payload.get(&quot;tool_input&quot;),
+    &quot;错误&quot;: payload.get(&quot;error&quot;) or payload.get(&quot;error_type&quot;),
+    &quot;原始事件&quot;: payload,
+}
+path = pathlib.Path(&quot;.claude/failure-timeline.jsonl&quot;)
+path.parent.mkdir(parents=True, exist_ok=True)
+with path.open(&quot;a&quot;, encoding=&quot;utf-8&quot;) as file:
+    file.write(json.dumps(record, ensure_ascii=False) + &quot;\n&quot;)
+
+# 只记录，不批准、不拒绝、不要求重试。
+print(&quot;{}&quot;)
+</code></pre></details>
+<ol start="2">
+<li>在 <code>.claude/settings.json</code> 中配置三个事件：</li>
+</ol>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;PermissionDenied&quot;: [
+      {
+        &quot;matcher&quot;: &quot;*&quot;,
+        &quot;hooks&quot;: [
+          {&quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;python .claude/hooks/failure_timeline.py&quot;, &quot;timeout&quot;: 10}
+        ]
+      }
+    ],
+    &quot;PostToolUseFailure&quot;: [
+      {
+        &quot;matcher&quot;: &quot;*&quot;,
+        &quot;hooks&quot;: [
+          {&quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;python .claude/hooks/failure_timeline.py&quot;, &quot;timeout&quot;: 10}
+        ]
+      }
+    ],
+    &quot;StopFailure&quot;: [
+      {
+        &quot;matcher&quot;: &quot;rate_limit|overloaded|authentication_failed|billing_error|server_error|unknown&quot;,
+        &quot;hooks&quot;: [
+          {&quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;python .claude/hooks/failure_timeline.py&quot;, &quot;timeout&quot;: 10}
+        ]
+      }
+    ]
+  }
+}
+</code></pre></details>
+<ol start="3">
+<li>完成一次测试会话后，用下面脚本生成中文摘要，保存为 <code>summarize_failures.py</code>：</li>
+</ol>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-python">#!/usr/bin/env python3
+import json
+import pathlib
+from collections import Counter
+
+path = pathlib.Path(&quot;.claude/failure-timeline.jsonl&quot;)
+rows = [json.loads(line) for line in path.read_text(encoding=&quot;utf-8&quot;).splitlines() if line.strip()]
+counts = Counter(row.get(&quot;事件&quot;, &quot;未知事件&quot;) for row in rows)
+print(f&quot;失败记录总数：{len(rows)}&quot;)
+for name, count in counts.most_common():
+    print(f&quot;- {name}：{count} 次&quot;)
+print(&quot;最近三条：&quot;)
+for row in rows[-3:]:
+    print(f&quot;- {row.get('时间')}｜{row.get('事件')}｜工具={row.get('工具')}｜错误={row.get('错误')}&quot;)
+</code></pre></details>
+<p>运行：</p>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-bash">python summarize_failures.py
+</code></pre></details>
+<p><strong>成功标志：</strong> <code>.claude/failure-timeline.jsonl</code> 每次失败新增一行，摘要脚本能按事件统计。官方文档列出的 <code>StopFailure</code> 匹配值包括 <code>rate_limit</code>、<code>overloaded</code>、<code>authentication_failed</code>、<code>billing_error</code>、<code>server_error</code> 等。</p>
+<p><strong>常见坑：</strong> 三类事件的字段并不完全相同，所以脚本必须用 <code>get()</code>；<code>PermissionDenied</code> 的重试规则与上一期相同，本期脚本故意不返回 <code>retry</code>。项目级 Hook 会在子代理中同样触发，<code>agent_id</code> 可用于区分来源。</p>
+<p><strong>什么情况下不该用：</strong> 日志可能包含命令参数和文件路径；处理客户数据或密钥时，不要把原始 <code>tool_input</code> 长期保存，应先做脱敏。</p>
+<p>参考：Claude Code Hooks 官方文档<br />
+<a href="https://code.claude.com/docs/en/hooks">https://code.claude.com/docs/en/hooks</a>
+<strong>下期预告：</strong> 第 15 期在失败时间线上增加敏感字段脱敏与会话结束报告，并把可重试故障和必须人工处理的故障自动分栏。</p>
+</article><article class="card edu-card"><h3 id="hermes-agent-系列第-14-期-用-kanban-任务卡绑定工作树-验收清单与独立复核">② Hermes Agent 系列第 14 期：用 Kanban 任务卡绑定工作树、验收清单与独立复核</h3>
+<p><strong>难度：进阶｜预计动手时间：25 分钟｜成本：免费｜环境：Hermes Agent 当前官方 Kanban 与 Git worktree 机制、Git 仓库｜前置：已配置 <code>implementer</code> 与 <code>reviewer</code> 两个 Hermes profile</strong></p>
+<p><strong>适用场景：</strong> 上一期已经建立“工作树＋检查点”双层恢复。本期让每个工作树对应一张持久任务卡，把目标、验收条件、修改文件和测试结果作为结构化交接，再由独立 reviewer 决定通过或退回。</p>
+<ol>
+<li>初始化任务板并创建实现任务。下面命令由人或自动化运行，任务正文直接写清验收条件：</li>
+</ol>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-bash">hermes kanban init
+TASK_ID=$(hermes kanban create &quot;为订单接口增加幂等保护&quot; \
+  --assignee implementer \
+  --workspace worktree \
+  --branch &quot;hermes/order-idempotency&quot; \
+  --body &quot;目标：重复提交同一幂等键时只创建一笔订单。验收：1）新增并发重复请求测试；2）全部原有测试通过；3）不得记录完整支付令牌；4）完成后请求 reviewer 复核。&quot; \
+  --json | python -c &quot;import json,sys; print(json.load(sys.stdin)['id'])&quot;)
+printf '%s\n' &quot;$TASK_ID&quot;
+</code></pre></details>
+<ol start="2">
+<li>工作者被调度后，应先读取任务，再在独立工作树完成修改。模型侧使用的是 Kanban 工具，不是 shell 命令；交接时应调用：</li>
+</ol>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-text">kanban_request_review(
+  summary=&quot;已增加幂等键唯一约束与并发测试，候选变更等待复核&quot;,
+  metadata={
+    &quot;changed_files&quot;: [&quot;src/orders.py&quot;, &quot;tests/test_orders.py&quot;],
+    &quot;verification&quot;: [&quot;python -m pytest tests/test_orders.py -q：12项通过&quot;],
+    &quot;acceptance&quot;: {
+      &quot;重复请求只创建一笔订单&quot;: true,
+      &quot;原有测试通过&quot;: true,
+      &quot;未记录完整支付令牌&quot;: true
+    },
+    &quot;residual_risk&quot;: [&quot;尚未进行跨区域数据库延迟测试&quot;]
+  },
+  reviewer=&quot;reviewer&quot;
+)
+</code></pre></details>
+<ol start="3">
+<li>reviewer 读取同一任务卡、工作树差异与结构化证据。若不满足验收条件，调用：</li>
+</ol>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-text">kanban_request_changes(
+  reason=&quot;并发测试只覆盖单进程；请增加两个独立连接同时提交同一幂等键的用例。&quot;
+)
+</code></pre></details>
+<ol start="4">
+<li>实现者修正后再次 <code>kanban_request_review(...)</code>；复核通过时 reviewer 调用：</li>
+</ol>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-text">kanban_complete(
+  summary=&quot;独立复核通过：验收条件全部满足，并发重复提交测试稳定通过。&quot;,
+  metadata={
+    &quot;reviewed_files&quot;: [&quot;src/orders.py&quot;, &quot;tests/test_orders.py&quot;],
+    &quot;verification&quot;: [&quot;python -m pytest tests/test_orders.py -q：13项通过&quot;],
+    &quot;decision&quot;: &quot;通过&quot;
+  }
+)
+</code></pre></details>
+<ol start="5">
+<li>人工查看完整历史：</li>
+</ol>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-bash">hermes kanban show &quot;$TASK_ID&quot;
+hermes kanban runs &quot;$TASK_ID&quot;
+</code></pre></details>
+<p><strong>成功标志：</strong> 同一任务的运行历史应出现“请求复核 → 要求修改 → 再次请求复核 → 完成”，且每次都有不同角色、摘要和证据。<code>worktree</code> 工作区完成后会保留，便于合并前再次检查。</p>
+<p><strong>常见坑：</strong> 普通复核意见不要用 <code>kanban_block</code>，官方建议使用 <code>kanban_request_changes</code>，避免把正常审查计入阻塞循环；实现者不要直接 <code>complete</code> 跳过 reviewer；任务正文必须写可判断的验收条件，不能只写“做好一点”。</p>
+<p><strong>什么情况下不该用：</strong> 一次性、无文件变更、无需跨会话保存的短问题，使用 <code>delegate_task</code> 更轻；Kanban 适合会跨角色、重试或人工介入的工作。</p>
+<p>参考：Hermes Agent 官方文档<br />
+<a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban">https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban</a>
+<a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban-tutorial">https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban-tutorial</a>
+<a href="https://hermes-agent.nousresearch.com/docs/user-guide/git-worktrees">https://hermes-agent.nousresearch.com/docs/user-guide/git-worktrees</a>
+<strong>下期预告：</strong> 第 15 期为任务板加入父子依赖和失败熔断，演示“研究 → 实现 → 复核”任一环节失败时如何自动暂停而不是反复重跑。</p>
+</article><article class="card edu-card"><h3 id="claude-模型系列第-14-期-把真实词元计数接入-rpm-itpm-otpm-三重预算队列">③ Claude 模型系列第 14 期：把真实词元计数接入 RPM、ITPM、OTPM 三重预算队列</h3>
+<p><strong>难度：高级｜预计动手时间：35 分钟｜成本：词元计数不生成回答，正式请求按模型计费｜环境：Python 3.9+ 标准库、Claude API｜前置：设置 <code>ANTHROPIC_API_KEY</code>、<code>CLAUDE_MODEL</code> 和账号实际限额</strong></p>
+<p><strong>适用场景：</strong> 上一期已经用 Count Tokens API 拦截超大输入。本期在批量请求前同时控制 RPM（每分钟请求数）、ITPM（每分钟输入词元）和 OTPM（每分钟输出词元），避免短时突发触发 429。Claude 官方说明限流采用持续补充的令牌桶机制，429 通常会返回 <code>retry-after</code>。</p>
+<p>把下面代码保存为 <code>claude_rate_queue.py</code>：</p>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-python">#!/usr/bin/env python3
+&quot;&quot;&quot;Claude 批量队列：先真实计数，再按 RPM/ITPM/OTPM 令牌桶排队。&quot;&quot;&quot;
+import json
+import os
+import sys
+import time
+import urllib.error
+import urllib.request
+
+API_KEY = os.environ[&quot;ANTHROPIC_API_KEY&quot;]
+MODEL = os.environ[&quot;CLAUDE_MODEL&quot;]
+RPM = int(os.getenv(&quot;CLAUDE_RPM&quot;, &quot;30&quot;))
+ITPM = int(os.getenv(&quot;CLAUDE_ITPM&quot;, &quot;50000&quot;))
+OTPM = int(os.getenv(&quot;CLAUDE_OTPM&quot;, &quot;10000&quot;))
+MAX_OUTPUT = int(os.getenv(&quot;CLAUDE_MAX_OUTPUT&quot;, &quot;800&quot;))
+VERSION = &quot;2023-06-01&quot;
+
+class Bucket:
+    def __init__(self, capacity: int):
+        self.capacity = float(capacity)
+        self.tokens = float(capacity)
+        self.rate = float(capacity) / 60.0
+        self.updated = time.monotonic()
+
+    def wait_for(self, amount: int):
+        if amount &gt; self.capacity:
+            raise SystemExit(f&quot;单个任务需要 {amount}，超过该分钟桶容量 {int(self.capacity)}&quot;)
+        while True:
+            now = time.monotonic()
+            self.tokens = min(self.capacity, self.tokens + (now - self.updated) * self.rate)
+            self.updated = now
+            if self.tokens &gt;= amount:
+                self.tokens -= amount
+                return
+            time.sleep(max(0.05, (amount - self.tokens) / self.rate))
+
+requests_bucket = Bucket(RPM)
+input_bucket = Bucket(ITPM)
+output_bucket = Bucket(OTPM)
+
+def post(path: str, body: dict):
+    req = urllib.request.Request(
+        &quot;https://api.anthropic.com&quot; + path,
+        data=json.dumps(body, ensure_ascii=False).encode(&quot;utf-8&quot;),
+        headers={
+            &quot;x-api-key&quot;: API_KEY,
+            &quot;anthropic-version&quot;: VERSION,
+            &quot;content-type&quot;: &quot;application/json&quot;,
+        },
+        method=&quot;POST&quot;,
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            return json.loads(resp.read().decode(&quot;utf-8&quot;)), dict(resp.headers)
+    except urllib.error.HTTPError as exc:
+        retry_after = exc.headers.get(&quot;retry-after&quot;)
+        detail = exc.read().decode(&quot;utf-8&quot;, &quot;replace&quot;)
+        if exc.code == 429 and retry_after:
+            time.sleep(float(retry_after))
+            return post(path, body)
+        raise SystemExit(f&quot;请求失败，状态码 {exc.code}；请检查密钥、额度或请求格式。详情：{detail}&quot;)
+
+def run_job(text: str, number: int):
+    body = {&quot;model&quot;: MODEL, &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: text}]}
+    count, _ = post(&quot;/v1/messages/count_tokens&quot;, body)
+    input_tokens = int(count[&quot;input_tokens&quot;])
+
+    # 计数请求也占 RPM；正式生成前为请求、输入和最大输出预留预算。
+    requests_bucket.wait_for(1)
+    input_bucket.wait_for(input_tokens)
+    output_bucket.wait_for(MAX_OUTPUT)
+
+    result, headers = post(&quot;/v1/messages&quot;, {**body, &quot;max_tokens&quot;: MAX_OUTPUT})
+    answer = &quot;&quot;.join(block.get(&quot;text&quot;, &quot;&quot;) for block in result.get(&quot;content&quot;, []))
+    actual_output = int(result.get(&quot;usage&quot;, {}).get(&quot;output_tokens&quot;, 0))
+    request_id = headers.get(&quot;request-id&quot;, &quot;未返回&quot;)
+    print(json.dumps({
+        &quot;任务&quot;: number,
+        &quot;输入词元&quot;: input_tokens,
+        &quot;输出词元&quot;: actual_output,
+        &quot;请求ID&quot;: request_id,
+        &quot;回答&quot;: answer,
+    }, ensure_ascii=False))
+
+for index, line in enumerate(sys.stdin, 1):
+    if line.strip():
+        run_job(line.strip(), index)
+</code></pre></details>
+<p>准备 <code>jobs.txt</code>，每行一个完整请求，然后运行：</p>
+<details class="codebox"><summary>展开完整可复制代码／命令</summary><pre><code class="language-bash">export ANTHROPIC_API_KEY=&quot;你的密钥&quot;
+export CLAUDE_MODEL=&quot;你账号当前可用的模型ID&quot;
+export CLAUDE_RPM=&quot;30&quot;
+export CLAUDE_ITPM=&quot;50000&quot;
+export CLAUDE_OTPM=&quot;10000&quot;
+export CLAUDE_MAX_OUTPUT=&quot;800&quot;
+python claude_rate_queue.py &lt; jobs.txt &gt; results.jsonl
+</code></pre></details>
+<p><strong>验证方法：</strong> <code>results.jsonl</code> 每行应包含任务号、真实输入／输出词元、请求 ID 和回答。把三个限额暂时设得较低，可以看到程序主动等待，而不是瞬间把请求全部发出。</p>
+<p><strong>常见坑：</strong> 账号限额必须从 Claude Console 读取，不能照抄示例；短时间突发可能在一分钟总量未满时仍触发 429。官方还说明“达到月度消费上限”的 429 可能没有 <code>retry-after</code>，这种情况重试无效；代码只对带 <code>retry-after</code> 的 429 自动等待。为 OTPM 按 <code>max_tokens</code> 预留较保守，适合稳定优先的批处理。</p>
+<p><strong>什么情况下不该用：</strong> 需要数百并发、持久队列、跨机器协调或严格一次性语义时，不要依赖单进程脚本，应使用数据库队列和集中式限流服务。</p>
+<p>参考：Anthropic Claude API 官方文档<br />
+<a href="https://platform.claude.com/docs/en/api/messages/count_tokens">https://platform.claude.com/docs/en/api/messages/count_tokens</a>
+<a href="https://platform.claude.com/docs/en/api/rate-limits">https://platform.claude.com/docs/en/api/rate-limits</a>
+<a href="https://platform.claude.com/docs/en/api/errors">https://platform.claude.com/docs/en/api/errors</a>
+<strong>下期预告：</strong> 第 15 期读取响应中的限流头动态校准桶容量，并把 429、529、超时和消费上限分别送入重试、降级或人工处理队列。</p>
+</article></section><section class="zone judge-zone"><h2 id="ai独立研判-非新闻事实" class="sec judge-sec">🤖 AI独立研判（非新闻事实）</h2>
+<blockquote>
+<p>以下内容是基于本期已收集事实作出的分析，不是公司公告、监管结论或投资建议。</p>
+</blockquote>
+<ul>
+<li><strong>【AI独立研判】执行框架正在成为可交易、可优化、可审计的独立资产。</strong> Poolside 模型许可、Task-CoEvolve 和 Rillet 审计能力共同说明，价值不只在模型权重，也在模型如何被调用、验证、恢复和解释。未来 1—4 周值得观察大型厂商是否继续购买模型许可或公开框架级评测。</li>
+<li><strong>【AI独立研判】团队聊天入口会加速“会议即执行”，也会制造新的权限错觉。</strong> 在 Teams 里共同指挥 Copilot 很自然，但参与讨论、补充上下文、修改仓库和批准合并是四种不同权力。企业若只做账号接入、不做权限拆分，事故会从代码错误升级为治理错误。</li>
+<li><strong>【AI独立研判】英伟达正把算力需求从市场变量变成可主动塑造的资本循环。</strong> 入股数据中心、许可模型、吸纳人才，可以同时扩充供给和需求；好处是项目更快落地，风险是上下游依赖、融资质量和真实利用率更难独立判断。</li>
+<li><strong>【AI独立研判】机器人安全的关键动作可能是“停手”，而不是更聪明地猜。</strong> EAFG 的意义在于承认环境证据不足时应探索或停止。这个原则也适用于软件智能体：找不到凭证、目标、文件或确认信息时，应暂停而非自行补全。</li>
+<li><strong>【AI独立研判｜我可能判断错的地方】</strong> 模型能力仍可能因下一次基础架构突破重新成为绝对主导；Poolside 交易与 Cloverleaf 投资也可能主要是财务安排，而非完整的平台战略。研究论文的框架收益可能在真实生产分布上明显缩小。</li>
+</ul>
+</section><section class="zone route-zone"><h2 id="连载路线图" class="sec edu-sec">连载路线图</h2>
+<table>
+<thead>
+<tr>
+<th>系列</th>
+<th>第 1 期</th>
+<th>第 2 期</th>
+<th>第 3 期（本轮）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code 系列</td>
+<td>第 12 期：失败分类账</td>
+<td>第 13 期：PermissionDenied 记录与安全重试</td>
+<td>第 14 期：三类失败统一时间线</td>
+</tr>
+<tr>
+<td>Hermes Agent 系列</td>
+<td>第 12 期：工作树隔离</td>
+<td>第 13 期：工作树＋检查点双层恢复</td>
+<td>第 14 期：任务卡＋验收清单＋独立复核</td>
+</tr>
+<tr>
+<td>Claude 模型系列</td>
+<td>第 12 期：并发与分钟词元预算</td>
+<td>第 13 期：Count Tokens 真实预算门禁</td>
+<td>第 14 期：RPM／ITPM／OTPM 三重预算队列</td>
+</tr>
+</tbody>
+</table>
+</section><h2 id="编后与核验说明" class="sec">编后与核验说明</h2>
+<p>本期覆盖北京时间 2026 年 8 月 20 日至 22 日可核验的重要变化，共收录 10 条实质资讯和 1 条明确标注的行业风声。正式信息优先引用 DeepSeek、GitHub、OpenAI、arXiv 与官方文档；英伟达相关交易使用 Bloomberg、Reuters 与 TechCrunch 交叉核验，其中许可和投资条款尚缺相关公司完整公告，因此按媒体报道处理。</p>
+<p>“正式信息｜已确认”表示有官方文件、公司公告或论文原文；“媒体报道｜待官方完整确认”表示有具名媒体与可追踪事实，但部分交易和产品细节未完整公开；“行业风声｜未经证实”只记录有追踪价值而证据不足的线索。论文结果为作者报告，不等于独立复现结论；厂商跑分也不等于真实业务效果。</p>
+<p>网页版相对路径：<code>../../../../原始资料/附件/AI日报/2026/《模型竞赛转向执行层》-2026-08-22.html</code></p>
+<hr />
+<p>金钱豹Ai中转<br />
+<a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a></p><footer class="signature"><b>金钱豹Ai中转</b><br><a href="https://api.jinqianbao.icu/">https://api.jinqianbao.icu/</a><br><a class="toplink" href="#top">回到顶部</a></footer></div></main>
+<script>(function(){var links=[...document.querySelectorAll('#tocnav a')],targets=links.map(a=>document.querySelector(a.getAttribute('href')));function mark(){var y=scrollY+80,i=0;targets.forEach((t,n)=>{if(t&&t.offsetTop<=y)i=n});links.forEach((a,n)=>a.classList.toggle('active',n===i))}addEventListener('scroll',mark,{passive:true});addEventListener('resize',mark);mark()})();</script><button id="annotation-trigger" class="annotation-trigger" type="button" hidden>评论这句话</button><div class="annotation-panel" id="annotation-panel" data-open="false" hidden><section class="annotation-sheet" role="dialog" aria-modal="true" aria-label="文内批注"><header class="annotation-head"><strong>评论选中的内容</strong><button class="annotation-close" id="annotation-close" type="button" aria-label="关闭">×</button></header><blockquote class="annotation-quote" id="annotation-quote"></blockquote><p class="annotation-note">评论会留在这段文字旁边，其他读者之后也能看到对应批注。</p><div class="annotation-giscus" id="annotation-giscus"></div></section></div><div class="annotation-tip" id="annotation-tip" hidden>长按或拖选一句话，再点击“评论这句话”</div><div class="site-actions"><a href="../../forum.html?section=daily">返回AI日报版块</a><button type="button" id="issue-share">系统分享</button><button type="button" id="issue-copy-link">复制链接</button><a id="issue-forum-share" class="forum-share" href="../../forum.html?compose=share">分享到论坛</a><button type="button" id="annotation-help">文内批注</button></div><div class="share-status" id="issue-share-status" aria-live="polite">链接已复制</div><script>
+(function(){var share=document.getElementById('issue-share'),copy=document.getElementById('issue-copy-link'),forum=document.getElementById('issue-forum-share'),status=document.getElementById('issue-share-status');function done(){status.style.display='block';setTimeout(function(){status.style.display='none'},1600)}share.addEventListener('click',async function(){try{if(navigator.share){await navigator.share({title:document.title,url:location.href});return}await navigator.clipboard.writeText(location.href);done()}catch(e){}});copy.addEventListener('click',async function(){try{await navigator.clipboard.writeText(location.href);done()}catch(e){}});forum.addEventListener('click',function(e){e.preventDefault();location.href='../../forum.html?compose=share&title='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href)})})();
+</script><script type="module" src="../../annotation-client.mjs"></script></body></html>
