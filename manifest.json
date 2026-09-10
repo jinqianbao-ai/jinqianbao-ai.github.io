@@ -1,7 +1,16 @@
 {
-  "generated_at": "2026-09-05T09:48:43.860691",
-  "count": 24,
+  "generated_at": "2026-09-10T10:43:41.047137",
+  "count": 25,
   "issues": [
+    {
+      "date": "2026-09-10",
+      "name": "《AI圈全球前沿早报》-2026-09-10-pushplus.html",
+      "title": "AI圈全球前沿早报｜2026年9月10日 - pushplus(推送加)",
+      "theme": "AI圈全球前沿早报",
+      "url": "issues/2026/%E3%80%8AAI%E5%9C%88%E5%85%A8%E7%90%83%E5%89%8D%E6%B2%BF%E6%97%A9%E6%8A%A5%E3%80%8B-2026-09-10-pushplus.html",
+      "supplement": false,
+      "size": 32047
+    },
     {
       "date": "2026-09-05",
       "name": "《前沿模型转向可执行系统》-2026-09-05.html",
